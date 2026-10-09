@@ -10,12 +10,16 @@ const site=JSON.parse(read("data/site.json"));
 const header=read("components/header.html");
 const footer=read("components/footer.html");
 const pages=JSON.parse(read("data/pages.json"));
+const whatsappNumber=String(site.whatsapp || "").replace(/\D/g,"");
+const whatsappDisplay=whatsappNumber.startsWith("91")
+  ? "+91 "+whatsappNumber.slice(2,7)+" "+whatsappNumber.slice(7)
+  : whatsappNumber;
 
 fs.rmSync(dist,{recursive:true,force:true});
 fs.mkdirSync(dist,{recursive:true});
 
 function render(page){
-  const body=read(page.content);
+  let body=read(page.content);
   const nested=page.output.includes("/");
   const prefix=nested?"../":"";
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
@@ -49,9 +53,13 @@ function render(page){
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+body+'\n</main>\n'+foot+
     '<script src="'+prefix+'js/main.js" defer></script>\n</body>\n</html>\n';
+  const safeHtml=html
+    .replaceAll("919999999999",whatsappNumber)
+    .replaceAll("+91 99999 99999",whatsappDisplay)
+    .replaceAll("99999 99999",whatsappDisplay.replace("+91 ",""));
   const out=path.join(dist,page.output);
   ensure(out);
-  fs.writeFileSync(out,html);
+  fs.writeFileSync(out,safeHtml);
 }
 pages.forEach(render);
 ensure(path.join(dist,"css/site.css"));
