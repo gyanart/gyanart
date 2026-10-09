@@ -1,0 +1,28 @@
+name: Build GyanArt static site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build static website
+        run: npm run build
+      - name: Upload website build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gyanart-static-site
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
