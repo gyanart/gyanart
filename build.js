@@ -50,6 +50,7 @@ function render(page){
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
     '<title>'+page.title+'</title>\n'+
+    '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+body+'\n</main>\n'+foot+
     '<script src="'+prefix+'js/main.js" defer></script>\n</body>\n</html>\n';
@@ -66,6 +67,7 @@ ensure(path.join(dist,"css/site.css"));
 ensure(path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"styles/site.css"),path.join(dist,"css/site.css"));
 fs.copyFileSync(path.join(src,"scripts/main.js"),path.join(dist,"js/main.js"));
+fs.copyFileSync(path.join(src,"favicon.svg"),path.join(dist,"favicon.svg"));
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
 fs.copyFileSync(path.join(src,"sitemap.xml"),path.join(dist,"sitemap.xml"));
 const htmlFiles=[];
@@ -82,9 +84,13 @@ for(const file of htmlFiles){
   if(html.includes("919999999999") || html.includes("+91 99999 99999")){
     throw new Error("Legacy WhatsApp placeholder remains in "+path.relative(dist,file));
   }
+  const relativeFavicon=path.relative(path.dirname(file),path.join(dist,"favicon.svg")).replace(/\\\\/g,"/");
+  if(!html.includes('href="'+relativeFavicon+'"')){
+    throw new Error("Favicon link is missing or incorrect in "+path.relative(dist,file));
+  }
 }
 const contactHtml=fs.readFileSync(path.join(dist,"contact.html"),"utf8");
 if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includes(whatsappDisplay)){
   throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
 }
-console.log("Built",pages.length,"pages to dist/; WhatsApp contact verified across",htmlFiles.length,"HTML files.");
+console.log("Built",pages.length,"pages to dist/; WhatsApp contact and favicon verified across",htmlFiles.length,"HTML files.");
