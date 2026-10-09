@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
-
+    
   deploy:
     if: github.event_name != 'pull_request'
     needs: build
@@ -49,3 +49,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000  # Increase timeout to 10 minutes (in milliseconds)
