@@ -68,4 +68,23 @@ fs.copyFileSync(path.join(src,"styles/site.css"),path.join(dist,"css/site.css"))
 fs.copyFileSync(path.join(src,"scripts/main.js"),path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
 fs.copyFileSync(path.join(src,"sitemap.xml"),path.join(dist,"sitemap.xml"));
-console.log("Built",pages.length,"pages to dist/");
+const htmlFiles=[];
+function collectHtml(dir){
+  for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
+    const full=path.join(dir,entry.name);
+    if(entry.isDirectory()) collectHtml(full);
+    else if(entry.isFile() && entry.name.endsWith(".html")) htmlFiles.push(full);
+  }
+}
+collectHtml(dist);
+for(const file of htmlFiles){
+  const html=fs.readFileSync(file,"utf8");
+  if(html.includes("919999999999") || html.includes("+91 99999 99999")){
+    throw new Error("Legacy WhatsApp placeholder remains in "+path.relative(dist,file));
+  }
+}
+const contactHtml=fs.readFileSync(path.join(dist,"contact.html"),"utf8");
+if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includes(whatsappDisplay)){
+  throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
+}
+console.log("Built",pages.length,"pages to dist/; WhatsApp contact verified across",htmlFiles.length,"HTML files.");
