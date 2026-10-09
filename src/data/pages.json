@@ -1,11 +1,80 @@
 [
-  {"output":"index.html","content":"pages/home.html","title":"GyanArt | Digital Growth for Businesses","description":"GyanArt helps businesses get found, get chosen and get contacted online through UX, high-performance websites, search, AI search, social media and performance marketing."},
-  {"output":"how-it-works.html","content":"pages/how-it-works.html","title":"How It Works | GyanArt","description":"See how GyanArt diagnoses and improves the customer journey from discovery to action."},
-  {"output":"solutions.html","content":"pages/solutions.html","title":"Solutions | GyanArt","description":"GyanArt solutions for professional businesses, local businesses, local services and consumer businesses."},
-  {"output":"growth-experiments.html","content":"pages/growth-experiments.html","title":"Growth Experiments | GyanArt","description":"Explore GyanArt concept projects showing how different businesses can improve the customer journey."},
-  {"output":"pricing.html","content":"pages/pricing.html","title":"Pricing | GyanArt","description":"GyanArt monthly digital growth support: Presence, Growth and Performance."},
-  {"output":"about.html","content":"pages/about.html","title":"About Gyan | GyanArt","description":"Meet Gyaneshwar, founder of GyanArt and a UX designer with 20+ years of digital experience."},
-  {"output":"insights.html","content":"pages/insights.html","title":"Insights | GyanArt","description":"Practical insights on UX, digital growth, local search, AI search and conversion."},
-  {"output":"growth-audit.html","content":"pages/growth-audit.html","title":"Free Growth Audit | GyanArt","description":"Request a free GyanArt growth audit to identify where potential customers may be getting lost online."},
-  {"output":"contact.html","content":"pages/contact.html","title":"Contact | GyanArt","description":"Contact GyanArt about digital growth, UX, websites, search visibility and customer acquisition."}
+  {
+    "output": "index.html",
+    "content": "pages/home.html",
+    "title": "GyanArt | Digital Growth for Businesses",
+    "description": "GyanArt helps businesses get found, get chosen and get contacted online through UX, high-performance websites, search, AI search, social media and performance marketing."
+  },
+  {
+    "output": "how-it-works.html",
+    "content": "pages/how-it-works.html",
+    "title": "How It Works | GyanArt",
+    "description": "See how GyanArt diagnoses and improves the customer journey from discovery to action."
+  },
+  {
+    "output": "solutions.html",
+    "content": "pages/solutions.html",
+    "title": "Solutions | GyanArt",
+    "description": "GyanArt solutions for professional businesses, local businesses, local services and consumer businesses."
+  },
+  {
+    "output": "growth-experiments.html",
+    "content": "pages/growth-experiments.html",
+    "title": "Growth Experiments | GyanArt",
+    "description": "Explore GyanArt concept projects showing how different businesses can improve the customer journey."
+  },
+  {
+    "output": "pricing.html",
+    "content": "pages/pricing.html",
+    "title": "Pricing | GyanArt",
+    "description": "GyanArt monthly digital growth support: Presence, Growth and Performance."
+  },
+  {
+    "output": "about.html",
+    "content": "pages/about.html",
+    "title": "About Gyan | GyanArt",
+    "description": "Meet Gyaneshwar, founder of GyanArt and a UX designer with 20+ years of digital experience."
+  },
+  {
+    "output": "insights.html",
+    "content": "pages/insights.html",
+    "title": "Insights | GyanArt",
+    "description": "Practical insights on UX, digital growth, local search, AI search and conversion."
+  },
+  {
+    "output": "growth-audit.html",
+    "content": "pages/growth-audit.html",
+    "title": "Free Growth Audit | GyanArt",
+    "description": "Request a free GyanArt growth audit to identify where potential customers may be getting lost online."
+  },
+  {
+    "output": "contact.html",
+    "content": "pages/contact.html",
+    "title": "Contact | GyanArt",
+    "description": "Contact GyanArt about digital growth, UX, websites, search visibility and customer acquisition."
+  },
+  {
+    "output": "experiments/dental-clinic.html",
+    "content": "experiments/dental-clinic.html",
+    "title": "Dental Clinic Growth Experiment | GyanArt",
+    "description": "A concept project exploring the patient journey from local search to dental appointment."
+  },
+  {
+    "output": "experiments/professional-services.html",
+    "content": "experiments/professional-services.html",
+    "title": "Professional Services Growth Experiment | GyanArt",
+    "description": "A concept project exploring how expertise-led businesses can build trust before consultation."
+  },
+  {
+    "output": "experiments/appliance-repair.html",
+    "content": "experiments/appliance-repair.html",
+    "title": "Appliance Repair Growth Experiment | GyanArt",
+    "description": "A concept project exploring how local repair services can turn urgent searches into enquiries."
+  },
+  {
+    "output": "experiments/restaurant.html",
+    "content": "experiments/restaurant.html",
+    "title": "Restaurant Growth Experiment | GyanArt",
+    "description": "A concept project exploring the journey from restaurant discovery to visit."
+  }
 ]
