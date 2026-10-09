@@ -1,16 +1,25 @@
-on: push
-name: 🚀 Deploy website on push
+name: 🚀 Deploy Website via FTP
+
+on:
+  push:
+    branches:
+      - main  # Change to master if your default branch is named master
+
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: 🎉 Sync Files to Server
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v6
-    
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-      with:
-        server: ftp.samkirkland.com
-        username: myFtpUserName
-        password: ${{ secrets.ftp_password }}
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 📂 Sync files via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # local-dir: ./     # Uncomment and change if your files are in a subdirectory (e.g., ./dist)
+          # server-dir: ./    # Uncomment and change if you need to deploy to a specific folder (e.g., ./public_html/)
