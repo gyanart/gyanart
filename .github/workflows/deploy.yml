@@ -29,3 +29,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist/
           server-dir: ./gyanart_v1/
+          state-name: .ftp-deploy-sync-state-v2.json
+          log-level: verbose
