@@ -1,53 +1,35 @@
-name: Build and deploy GyanArt to GitHub Pages
+name: 🚀 Deploy Website via FTP
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
+    branches:
+      - main  # 👈 Change this to "master" if your default branch is master
 
 jobs:
-  build:
+  web-deploy:
+    name: 🎉 Sync Files to Server
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository
+      # Step 1: Get the latest code from your repository
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+
+      # Step 2: Upload files via FTP with timeout protection
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          node-version: 20
-      - name: Build static website
-        run: npm run build
-      - name: Upload build artifact for review
-        uses: actions/upload-artifact@v4
-        with:
-          name: gyanart-static-site
-          path: dist/
-          if-no-files-found: error
-          retention-days: 14
-      - name: Upload GitHub Pages artifact
-        if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/
-    
-  deploy:
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          timeout: 600000  # Increase timeout to 10 minutes (in milliseconds)
+          # Your server configuration
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # Optional: Target sub-folder on your hosting server (e.g., /public_html/)
+          # server-dir: ./ 
+
+          # 🛠️ TIMEOUT & SECURITY FIXES BELOW 🛠️
+          protocol: ftp          # Forces plain FTP instead of failing on explicit FTPS
+          port: 21               # Standard FTP port
+          security: loose        # Prevents timeout drops caused by strict SSL/TLS handshake rules
+          timeout: 190000        # Extends FTP response wait time to 190 seconds (in milliseconds)
+          log-level: verbose     # Provides detailed execution logs if it stops again
