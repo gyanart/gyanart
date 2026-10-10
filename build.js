@@ -93,7 +93,7 @@ function render(page){
     '<meta property="og:url" content="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<title>'+page.title+'</title>\n'+
-    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"hello@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
+    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+pageContent+'\n</main>\n'+foot+
@@ -116,6 +116,7 @@ const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
 fs.copyFileSync(path.join(src,"sitemap.xml"),path.join(dist,"sitemap.xml"));
+fs.copyFileSync(path.join(src,"submit-form.php"),path.join(dist,"submit-form.php"));
 const htmlFiles=[];
 function collectHtml(dir){
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})){
@@ -140,4 +141,5 @@ if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includ
   throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
 }
 fs.writeFileSync(path.join(dist,".htaccess"), "DirectoryIndex index.html\n");
-console.log("Built",pages.length,"pages to dist/; WhatsApp contact, favicon, and directory index verified across",htmlFiles.length,"HTML files.");
+if(!fs.existsSync(path.join(dist,"submit-form.php"))) throw new Error("PHP form handler was not copied to dist/");
+console.log("Built",pages.length,"pages to dist/; WhatsApp contact, favicon, PHP form handler, and directory index verified across",htmlFiles.length,"HTML files.");
