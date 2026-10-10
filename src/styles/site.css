@@ -32,3 +32,9 @@
 .insight-article .article-lead{font-size:20px;color:#384152}
 .insights-disclaimer{max-width:850px;margin:50px auto 0;padding:18px 20px;border-left:3px solid var(--blue);background:#EEF2FF;color:#536079;font-size:13px}
 @media(max-width:700px){.breadcrumbs{padding-top:16px}.page-intro{padding-top:28px;padding-bottom:64px}.page-intro .section-head h1,.page-intro h1{font-size:clamp(42px,11vw,58px);line-height:1.04}.insight-grid{grid-template-columns:1fr}.insight-card{min-height:0}.insight-article{margin-top:54px;padding-top:28px}.insight-article .article-lead{font-size:18px}}
+
+/* Keep the breadcrumb inside the continuous inner-page gradient */
+.page-top{background:linear-gradient(135deg,#EDF1FF 0%,#F8F8F6 72%);border-bottom:1px solid var(--line)}
+.page-top .page-intro{background:transparent;border-bottom:0}
+.page-top .breadcrumbs{padding-top:20px;padding-bottom:0}
+@media(max-width:700px){.page-top .breadcrumbs{padding-top:16px}}

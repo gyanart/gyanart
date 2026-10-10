@@ -51,6 +51,14 @@ function render(page){
   if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
   if(labels[page.output]) crumbParts.push({label:labels[page.output]});
   const breadcrumb=page.output==="index.html"?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
+  let pageContent=body;
+  if(page.output!=="index.html"){
+    const introEnd=body.indexOf("</section>");
+    if(introEnd===-1) throw new Error("Could not locate first section on "+page.output);
+    const intro=body.slice(0,introEnd+"</section>".length);
+    const remainder=body.slice(introEnd+"</section>".length);
+    pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
+  }
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
     .replaceAll('href="index.html"','href="'+prefix+'index.html"')
     .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
@@ -84,7 +92,7 @@ function render(page){
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","email":"hello@gyanart.com","founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
-    '</head>\n<body>\n'+nav+'\n<main>\n'+breadcrumb+'\n'+body+'\n</main>\n'+foot+
+    '</head>\n<body>\n'+nav+'\n<main>\n'+pageContent+'\n</main>\n'+foot+
     '<script src="'+prefix+'js/main.js" defer></script>\n</body>\n</html>\n';
   const safeHtml=html
     .replaceAll("919999999999",whatsappNumber)
