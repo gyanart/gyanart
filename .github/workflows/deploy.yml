@@ -29,7 +29,8 @@ jobs:
           test -f dist/js/main.js
           test -f dist/robots.txt
           test -f dist/sitemap.xml
-          echo "Build output verified."
+          test -f dist/submit-form.php
+          echo "Build output and PHP form handler verified."
 
       - name: Upload generated website to preview directory
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
