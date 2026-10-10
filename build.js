@@ -49,7 +49,10 @@ function render(page){
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
+    '<meta property="og:url" content="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
+    '<link rel="canonical" href="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<title>'+page.title+'</title>\n'+
+    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","email":"hello@gyanart.com","founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+body+'\n</main>\n'+foot+
