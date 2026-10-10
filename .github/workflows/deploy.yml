@@ -20,4 +20,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         # Preview URL: https://www.gyanart.com/gyanart_v1/
-        server-dir: /gyanart_v1/
+        server-dir: /public_html/gyanart_v1/
