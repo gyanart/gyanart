@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const status=form.querySelector(".form-status");
     const originalText=button?button.textContent:"";
     if(button){button.disabled=true;button.textContent="Sending…";}
-    if(status)status.textContent="Sending your request securely…";
+    if(status){status.className="form-status note";status.textContent="Sending your request securely…";}
     try{
       const response=await fetch(form.getAttribute("action")||"submit-form.php",{
         method:"POST",
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded",()=>{
       });
       const result=await response.json();
       if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
-      if(status)status.textContent=result.message;
+      if(status){status.className="form-status form-feedback form-feedback-success";status.textContent=result.message;}
       form.reset();
     }catch(error){
-      if(status)status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";
+      if(status){status.className="form-status form-feedback form-feedback-error";status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";}
     }finally{
       if(button){button.disabled=false;button.textContent=originalText;}
     }
