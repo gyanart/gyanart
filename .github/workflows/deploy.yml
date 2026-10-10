@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Build static website
-        run: npm run build
+        run: PREVIEW_BUILD=true npm run build
 
       - name: Deploy generated site to preview folder only
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0

@@ -27,7 +27,7 @@ jobs:
           node-version: 20
 
       - name: Build static website
-        run: npm run build
+        run: PREVIEW_BUILD=true npm run build
 
       - name: Add static-site marker
         run: touch dist/.nojekyll

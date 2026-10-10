@@ -83,7 +83,7 @@ function render(page){
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
     '<meta name="description" content="'+page.description+'">\n'+
-    (page.noindex ? '<meta name="robots" content="noindex,follow">\n' : '')+
+    ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
     '<meta property="og:site_name" content="'+site.name+'">\n'+
     '<meta property="og:locale" content="en_IN">\n'+
     '<meta name="twitter:card" content="summary">\n'+
