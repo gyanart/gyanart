@@ -71,6 +71,8 @@ ensure(path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"styles/site.css"),path.join(dist,"css/site.css"));
 fs.copyFileSync(path.join(src,"scripts/main.js"),path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"favicon.svg"),path.join(dist,"favicon.svg"));
+const assetsDir=path.join(src,"assets");
+if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
 fs.copyFileSync(path.join(src,"sitemap.xml"),path.join(dist,"sitemap.xml"));
 const htmlFiles=[];
