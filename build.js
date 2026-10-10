@@ -84,7 +84,7 @@ function render(page){
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","email":"hello@gyanart.com","founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
-    '</head>\n<body>\n'+nav+'\n<main>\n'+body+'\n</main>\n'+foot+
+    '</head>\n<body>\n'+nav+'\n<main>\n'+breadcrumb+'\n'+body+'\n</main>\n'+foot+
     '<script src="'+prefix+'js/main.js" defer></script>\n</body>\n</html>\n';
   const safeHtml=html
     .replaceAll("919999999999",whatsappNumber)
