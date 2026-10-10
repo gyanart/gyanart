@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   web-deploy:
@@ -37,5 +38,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          # FTP account root maps to /gyanart_v1/. Do not change to /gyanart_v1/.
+          # FTP account root is restricted to public_html/gyanart_v1/.
           server-dir: /
