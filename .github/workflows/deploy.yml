@@ -3,21 +3,39 @@ name: Deploy Website via FTP
 on:
   push:
     branches:
-      - main # Change to 'master' if your default branch is named master
+      - main
 
 jobs:
   web-deploy:
-    name: 🎉 Deploy
+    name: Build and deploy preview to cPanel
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-    
-    - name: 📂 Sync files to cPanel
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        # FTP account root maps to /gyanart_v1/; preview URL: https://www.gyanart.com/gyanart_v1/
-        server-dir: /
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build static website for preview
+        run: PREVIEW_BUILD=true npm run build
+
+      - name: Verify generated website
+        run: |
+          test -f dist/index.html
+          test -f dist/css/site.css
+          test -f dist/js/main.js
+          test -f dist/robots.txt
+          test -f dist/sitemap.xml
+          echo "Build output verified."
+
+      - name: Upload generated website to preview directory
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          # FTP account root maps to /gyanart_v1/. Do not change to /gyanart_v1/.
+          server-dir: /
