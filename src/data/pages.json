@@ -98,5 +98,17 @@
     "content": "pages/website-design.html",
     "title": "Website Design for Small Businesses in Bangalore | GyanArt",
     "description": "Get a clear, mobile-friendly business website built around customer questions, trust and enquiries, with thoughtful UX, performance and search-ready structure."
+  },
+  {
+    "output": "privacy-policy.html",
+    "content": "pages/privacy-policy.html",
+    "title": "Privacy Policy | GyanArt",
+    "description": "Learn how GyanArt handles contact form information and website analytics when you visit the website or request a growth audit."
+  },
+  {
+    "output": "terms-and-conditions.html",
+    "content": "pages/terms-and-conditions.html",
+    "title": "Terms & Conditions | GyanArt",
+    "description": "Read the terms for using the GyanArt website and how paid services are governed by a separate written client agreement."
   }
 ]
