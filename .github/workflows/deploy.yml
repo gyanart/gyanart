@@ -1,42 +1,22 @@
-name: Deploy GyanArt preview to cPanel
+name: Deploy Website via FTP
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    branches:
+      - main # Change to 'master' if your default branch is named master
 
 jobs:
   web-deploy:
-    name: Build and deploy preview site
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Build static website
-        run: PREVIEW_BUILD=true npm run build
-
-      - name: Deploy generated site to preview folder only
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist/
-          server-dir: ./public_html/gyanart_v1/
-          state-name: .ftp-deploy-sync-state-v2.json
-          log-level: verbose
-      
-      - name: Deploy via SFTP
-          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-          with:
-            server: ${{ secrets.FTP_SERVER }}
-            username: ${{ secrets.FTP_USERNAME }}
-            ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
-            local_path: "./dist"
-            remote_path: "./public_html/gyanart_v1/"
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files to cPanel
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: public_html/gyanart_v1/
