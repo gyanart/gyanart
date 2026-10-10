@@ -103,4 +103,17 @@ if (!mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaderSt
     respond(500, ['success' => false, 'message' => 'Your request reached GyanArt, but the confirmation email could not be sent. We’ll follow up within 24–48 hours; you can also reach us at info@gyanart.com.']);
 }
 
-respond(200, ['success' => true, 'message' => $successMessage]);
+// AJAX submissions receive JSON for the in-page success message. If JavaScript is unavailable,
+ // show a friendly HTML confirmation instead of exposing raw JSON in the browser.
+$accept = $_SERVER['HTTP_ACCEPT'] ?? '';
+if (stripos($accept, 'application/json') !== false || strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'xmlhttprequest') {
+    respond(200, ['success' => true, 'message' => $successMessage]);
+}
+http_response_code(200);
+header('Content-Type: text/html; charset=utf-8');
+$pageTitle = $type === 'audit' ? 'Growth audit request submitted' : 'Contact form submitted';
+$returnPage = $type === 'audit' ? 'growth-audit.html' : 'contact.html';
+$safeTitle = htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8');
+$safeMessage = htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8');
+echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' . $safeTitle . ' | GyanArt</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f8f8f6;color:#202421;font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.card{box-sizing:border-box;width:min(560px,calc(100% - 32px));padding:32px;border:1px solid #b8e7d3;border-radius:18px;background:#fff;box-shadow:0 16px 48px #18251b12}.mark{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#e8f7f0;color:#116149;font-size:25px}.card h1{font-size:25px;margin:18px 0 8px}.card p{margin:0 0 22px}.button{display:inline-block;padding:11px 17px;border-radius:9px;background:#173d32;color:#fff;text-decoration:none;font-weight:650}</style></head><body><main class="card"><div class="mark" aria-hidden="true">✓</div><h1>' . $safeTitle . '</h1><p>' . $safeMessage . '</p><a class="button" href="' . htmlspecialchars($returnPage, ENT_QUOTES, 'UTF-8') . '">Return to the form</a></main></body></html>';
+exit;
