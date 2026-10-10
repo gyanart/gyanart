@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
   const updateTopButton=()=>{
     const button=document.querySelector("[data-back-to-top]");
-    if(button)button.classList.toggle("is-visible",window.scrollY>=window.innerHeight);
+    if(button)button.classList.toggle("is-visible",window.scrollY>=Math.max(240,window.innerHeight*0.65));
   };
 
   updateHeader();
