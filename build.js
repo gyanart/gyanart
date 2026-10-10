@@ -139,4 +139,5 @@ const contactHtml=fs.readFileSync(path.join(dist,"contact.html"),"utf8");
 if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includes(whatsappDisplay)){
   throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
 }
-console.log("Built",pages.length,"pages to dist/; WhatsApp contact and favicon verified across",htmlFiles.length,"HTML files.");
+fs.writeFileSync(path.join(dist,".htaccess"), "DirectoryIndex index.html\n");
+console.log("Built",pages.length,"pages to dist/; WhatsApp contact, favicon, and directory index verified across",htmlFiles.length,"HTML files.");
