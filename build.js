@@ -97,7 +97,7 @@ function render(page){
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+pageContent+'\n</main>\n'+foot+
-    '<script src="'+prefix+'js/main.js" defer></script>\n</body>\n</html>\n';
+    '<script src="'+prefix+'js/main.js?v=20261011-2" defer></script>\n</body>\n</html>\n';
   const safeHtml=html
     .replaceAll("919999999999",whatsappNumber)
     .replaceAll("+91 99999 99999",whatsappDisplay)
