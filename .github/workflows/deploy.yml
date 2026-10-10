@@ -19,5 +19,5 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # Preview URL: https://www.gyanart.com/gyanart_v1/
+        # FTP account root maps to /gyanart_v1/; preview URL: https://www.gyanart.com/gyanart_v1/
         server-dir: /
