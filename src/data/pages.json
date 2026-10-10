@@ -2,8 +2,8 @@
   {
     "output": "index.html",
     "content": "pages/home.html",
-    "title": "GyanArt | Digital Growth for Businesses",
-    "description": "GyanArt helps businesses get found, get chosen and get contacted online through UX, high-performance websites, search, AI search, social media and performance marketing."
+    "title": "Digital Growth & SEO Consultant in Bangalore | GyanArt",
+    "description": "GyanArt helps Bangalore businesses attract more customers through local SEO, Google Maps visibility, high-performance websites, UX and digital growth strategy."
   },
   {
     "output": "how-it-works.html",
@@ -14,8 +14,8 @@
   {
     "output": "solutions.html",
     "content": "pages/solutions.html",
-    "title": "Solutions | GyanArt",
-    "description": "GyanArt solutions for professional businesses, local businesses, local services and consumer businesses."
+    "title": "Digital Growth Services in Bangalore | GyanArt",
+    "description": "Explore GyanArt services for local SEO, Google Business Profile optimization and conversion-focused website design for businesses in Bangalore."
   },
   {
     "output": "growth-experiments.html",
@@ -26,14 +26,14 @@
   {
     "output": "pricing.html",
     "content": "pages/pricing.html",
-    "title": "Pricing | GyanArt",
-    "description": "GyanArt monthly digital growth support: Presence, Growth and Performance."
+    "title": "Digital Growth Consulting Pricing | GyanArt",
+    "description": "Compare GyanArt's monthly digital growth support plans for local SEO, websites, content, conversion optimization and customer acquisition."
   },
   {
     "output": "about.html",
     "content": "pages/about.html",
-    "title": "About Gyan | GyanArt",
-    "description": "Meet Gyaneshwar, founder of GyanArt and a UX designer with 20+ years of digital experience."
+    "title": "About Gyaneshwar | UX & Digital Growth Consultant",
+    "description": "Meet Gyaneshwar, a UX designer with 20+ years of experience applying user-centred thinking to websites, search visibility and business growth."
   },
   {
     "output": "insights.html",
@@ -44,8 +44,8 @@
   {
     "output": "growth-audit.html",
     "content": "pages/growth-audit.html",
-    "title": "Free Growth Audit | GyanArt",
-    "description": "Request a free GyanArt growth audit to identify where potential customers may be getting lost online."
+    "title": "Free Website & Local SEO Audit | GyanArt",
+    "description": "Request a free growth audit from GyanArt. Identify opportunities in local search, Google Maps, website UX and the journey from discovery to enquiry."
   },
   {
     "output": "contact.html",
@@ -76,5 +76,23 @@
     "content": "experiments/restaurant.html",
     "title": "Restaurant Growth Experiment | GyanArt",
     "description": "A concept project exploring the journey from restaurant discovery to visit."
+  },
+  {
+    "output": "local-seo-services.html",
+    "content": "pages/local-seo-services.html",
+    "title": "Local SEO Services in Bangalore | GyanArt",
+    "description": "Improve local search and Google Maps visibility with practical local SEO services for Bangalore businesses. Focus on accurate business information, trust and customer enquiries."
+  },
+  {
+    "output": "google-business-profile-optimization.html",
+    "content": "pages/google-business-profile-optimization.html",
+    "title": "Google Business Profile Optimization | GyanArt",
+    "description": "Improve your Google Business Profile with accurate business details, service information, photos and a thoughtful review strategy to help customers choose and contact you."
+  },
+  {
+    "output": "website-design.html",
+    "content": "pages/website-design.html",
+    "title": "Website Design for Small Businesses in Bangalore | GyanArt",
+    "description": "Get a fast, mobile-friendly business website designed around customer questions, trust and enquiries. GyanArt combines UX design, performance and search-ready structure."
   }
 ]
