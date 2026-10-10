@@ -83,13 +83,17 @@ function render(page){
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
     '<meta name="description" content="'+page.description+'">\n'+
+    (page.noindex ? '<meta name="robots" content="noindex,follow">\n' : '')+
+    '<meta property="og:site_name" content="'+site.name+'">\n'+
+    '<meta property="og:locale" content="en_IN">\n'+
+    '<meta name="twitter:card" content="summary">\n'+
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
     '<meta property="og:url" content="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<title>'+page.title+'</title>\n'+
-    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","email":"hello@gyanart.com","founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
+    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"hello@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+pageContent+'\n</main>\n'+foot+
