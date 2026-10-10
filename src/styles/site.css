@@ -2,3 +2,31 @@
 
 /* Accessible, responsive enquiry forms */
 .form-card{display:grid;grid-template-columns:minmax(0,1fr);gap:9px;align-content:start;background:#fff;border:1px solid #D7DDEB;border-radius:22px;padding:clamp(22px,3vw,34px);min-width:0;box-shadow:0 12px 32px rgba(23,25,28,.05)}.form-card label{display:block;margin-top:7px;font-size:13px;font-weight:750;color:var(--ink)}.form-card input,.form-card textarea,.form-card select{display:block;width:100%;min-width:0;padding:13px 14px;border:1px solid #CDD2DC;border-radius:10px;background:#fff;color:var(--ink);font:inherit;font-size:15px;line-height:1.45}.form-card textarea{resize:vertical;min-height:112px}.form-card input:focus,.form-card textarea:focus,.form-card select:focus{outline:3px solid rgba(49,92,255,.18);border-color:var(--blue)}.form-card .btn{margin-top:12px;justify-self:start;border:0;cursor:pointer}.audit-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);align-items:center}.audit-grid>div,.audit-grid>form{min-width:0}.audit-grid h2{font-size:clamp(32px,3.8vw,48px)}.audit-grid .note{line-height:1.55;margin-top:20px}.problem-grid{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,64px);align-items:start}.problem-grid>div,.problem-grid>form{min-width:0}.problem-grid>div a{color:var(--blue);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}@media(max-width:700px){.form-card{padding:22px}.audit-grid,.problem-grid{grid-template-columns:minmax(0,1fr);gap:28px}.form-card .btn{width:100%;justify-self:stretch}}
+
+/* Inner-page orientation and editorial layout */
+.breadcrumbs{padding-top:20px;padding-bottom:0;font-size:12px;color:#667085}
+.breadcrumbs ol{display:flex;align-items:center;flex-wrap:wrap;gap:9px;list-style:none;margin:0;padding:0}
+.breadcrumbs a{color:#526078;text-decoration:underline;text-decoration-color:#CBD2DF;text-underline-offset:3px}
+.breadcrumbs a:hover{color:var(--blue)}
+.breadcrumb-separator{color:#A6ADBA}
+.page-intro{padding-top:clamp(38px,5vw,68px);padding-bottom:clamp(70px,8vw,112px);background:linear-gradient(135deg,#EDF1FF 0%,#F8F8F6 72%);border-bottom:1px solid var(--line)}
+.page-intro .section-head{max-width:920px;margin-bottom:clamp(38px,5vw,60px)}
+.page-intro .section-head h1,.page-intro h1{font-size:clamp(48px,6.3vw,84px);line-height:1.01;letter-spacing:-.055em;max-width:1000px;margin:18px 0 22px}
+.page-intro .section-head p{font-size:clamp(17px,1.7vw,21px);max-width:760px;line-height:1.55;color:#58657B}
+.page-intro .founder-grid{padding-top:4px}
+.insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.insight-card{display:flex;flex-direction:column;min-height:270px;padding:clamp(22px,3vw,32px);background:#fff;border:1px solid var(--line);border-radius:22px;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.insight-card:hover{transform:translateY(-3px);border-color:#B8C5FF;box-shadow:0 14px 32px rgba(23,25,28,.06)}
+.insight-meta{display:flex;justify-content:space-between;gap:12px;color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.09em}
+.insight-meta span:last-child{color:#778196;white-space:nowrap}
+.insight-card h2{font-size:clamp(23px,2.5vw,31px);line-height:1.16;margin:24px 0 12px}
+.insight-card p{font-size:15px;color:var(--muted);margin:0 0 25px}
+.insight-read{margin-top:auto;font-size:13px;font-weight:800;color:var(--blue)}
+.insight-article{scroll-margin-top:100px;max-width:850px;margin:76px auto 0;padding-top:40px;border-top:1px solid var(--line)}
+.insight-article h2{font-size:clamp(32px,4.2vw,48px);margin:16px 0}
+.insight-article h3{font-size:23px;letter-spacing:-.025em;margin:32px 0 10px}
+.insight-article p,.insight-article li{font-size:16px;color:#4D5665;line-height:1.8}
+.insight-article ul{padding-left:24px}
+.insight-article .article-lead{font-size:20px;color:#384152}
+.insights-disclaimer{max-width:850px;margin:50px auto 0;padding:18px 20px;border-left:3px solid var(--blue);background:#EEF2FF;color:#536079;font-size:13px}
+@media(max-width:700px){.breadcrumbs{padding-top:16px}.page-intro{padding-top:28px;padding-bottom:64px}.page-intro .section-head h1,.page-intro h1{font-size:clamp(42px,11vw,58px);line-height:1.04}.insight-grid{grid-template-columns:1fr}.insight-card{min-height:0}.insight-article{margin-top:54px;padding-top:28px}.insight-article .article-lead{font-size:18px}}

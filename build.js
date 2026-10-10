@@ -22,6 +22,35 @@ function render(page){
   let body=read(page.content);
   const nested=page.output.includes("/");
   const prefix=nested?"../":"";
+  if(page.output!=="index.html"){
+    body=body.replace('<section class="section"', '<section class="section page-intro"');
+  }
+  const labels={
+    "how-it-works.html":"How It Works","solutions.html":"Solutions",
+    "growth-experiments.html":"Growth Experiments","pricing.html":"Pricing",
+    "about.html":"About Gyan","insights.html":"Insights",
+    "growth-audit.html":"Free Growth Audit","contact.html":"Contact",
+    "experiments/dental-clinic.html":"Dental Clinic",
+    "experiments/professional-services.html":"Professional Services",
+    "experiments/appliance-repair.html":"Appliance Repair",
+    "experiments/restaurant.html":"Restaurant",
+    "local-seo-services.html":"Local SEO Services",
+    "google-business-profile-optimization.html":"Google Business Profile",
+    "website-design.html":"Website Design"
+  };
+  const parent={
+    "experiments/dental-clinic.html":["Growth Experiments","growth-experiments.html"],
+    "experiments/professional-services.html":["Growth Experiments","growth-experiments.html"],
+    "experiments/appliance-repair.html":["Growth Experiments","growth-experiments.html"],
+    "experiments/restaurant.html":["Growth Experiments","growth-experiments.html"],
+    "local-seo-services.html":["Solutions","solutions.html"],
+    "google-business-profile-optimization.html":["Solutions","solutions.html"],
+    "website-design.html":["Solutions","solutions.html"]
+  };
+  const crumbParts=[{label:"Home",href:prefix+"index.html"}];
+  if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
+  if(labels[page.output]) crumbParts.push({label:labels[page.output]});
+  const breadcrumb=page.output==="index.html"?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
     .replaceAll('href="index.html"','href="'+prefix+'index.html"')
     .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
