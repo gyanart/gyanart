@@ -38,3 +38,19 @@
 .page-top .page-intro{background:transparent;border-bottom:0}
 .page-top .breadcrumbs{padding-top:20px;padding-bottom:0}
 @media(max-width:700px){.page-top .breadcrumbs{padding-top:16px}}
+
+/* Compact sticky header while scrolling down; restore on upward scroll */
+.site-header .nav-wrap,.site-header .brand,.site-header .brand-mark,.site-header .nav-cta{transition:min-height .2s ease,height .2s ease,width .2s ease,padding .2s ease,font-size .2s ease,border-radius .2s ease,gap .2s ease}
+.site-header .nav-wrap{min-height:76px}
+.site-header.compact .nav-wrap{min-height:62px}
+.site-header.compact .brand{font-size:18px;gap:8px}
+.site-header.compact .brand-mark{width:28px;height:28px;border-radius:8px}
+.site-header.compact .site-nav{gap:20px}
+.site-header.compact .nav-cta{padding:9px 14px}
+@media(max-width:700px){
+ .site-header.compact .nav-wrap{min-height:60px}
+ .site-header.compact .site-nav{top:58px}
+}
+@media(prefers-reduced-motion:reduce){
+ .site-header .nav-wrap,.site-header .brand,.site-header .brand-mark,.site-header .nav-cta{transition:none}
+}
