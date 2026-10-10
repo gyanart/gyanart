@@ -31,3 +31,12 @@ jobs:
           server-dir: ./gyanart_v1/
           state-name: .ftp-deploy-sync-state-v2.json
           log-level: verbose
+      
+      - name: Deploy via SFTP
+          uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+          with:
+            server: ${{ secrets.FTP_SERVER }}
+            username: ${{ secrets.FTP_USERNAME }}
+            ssh_private_key: ${{ secrets.SFTP_PRIVATE_KEY }}
+            local_path: "./dist"
+            remote_path: "./public_html/gyanart_v1/"
