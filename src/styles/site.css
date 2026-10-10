@@ -63,3 +63,7 @@
 .back-to-top svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:700px){.back-to-top{right:16px;bottom:16px;width:46px;height:46px}}
 @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
+
+/* Clear submission feedback for enquiry forms */
+.form-feedback{display:block;margin:8px 0 0;padding:13px 15px;border-radius:10px;font-size:14px;line-height:1.5;font-weight:650}.form-feedback-success{color:#116149;background:#E8F7F0;border:1px solid #B8E7D3}.form-feedback-error{color:#9B1C1C;background:#FFF0F0;border:1px solid #F2C2C2}.form-card button:disabled{opacity:.7;cursor:wait}
