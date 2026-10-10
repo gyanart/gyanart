@@ -82,11 +82,11 @@ if (!mail($recipient, $subject, implode("\n", $details), $headerString)) {
 if ($type === 'audit') {
     $confirmationSubject = 'We’ve received your GyanArt Growth Audit request';
     $confirmationBody = "Hi " . $name . ",\n\nThank you for requesting a free GyanArt Growth Audit. I’ve received your details and will review your website and Google presence. I’ll get back to you within 24–48 hours with the next steps for your audit.\n\nThere’s no obligation to purchase a service.\n\nRegards,\nGyanArt\ninfo@gyanart.com";
-    $successMessage = 'Thank you. Your free growth audit request has been sent. We’ll email you within 24–48 hours with the next steps.';
+    $successMessage = 'Successfully sent! Thank you for requesting your free growth audit. We’ll email you within 24–48 hours with the next steps.';
 } else {
     $confirmationSubject = 'Thank you for contacting GyanArt';
     $confirmationBody = "Hi " . $name . ",\n\nThank you for contacting GyanArt. I’ve received your enquiry and will review the details. I’ll get back to you within 24–48 hours.\n\nIf there’s anything else you’d like to share, you can reply to this email.\n\nRegards,\nGyanArt\ninfo@gyanart.com";
-    $successMessage = 'Thank you for contacting GyanArt. We’ll email you within 24–48 hours.';
+    $successMessage = 'Successfully sent! Thank you for contacting GyanArt. We’ll get back to you within 24–48 hours.';
 }
 $confirmationHeaders = [
     'From' => 'GyanArt <' . $sender . '>',
