@@ -1,4 +1,5 @@
 name: Deploy Website via FTP
+# Redeploy check: FTP account root should map to public_html.
 
 on:
   push:
