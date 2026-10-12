@@ -8,7 +8,7 @@ on:
 
 jobs:
   web-deploy:
-    name: Build and deploy preview to cPanel
+    name: Build and deploy production site to cPanel
     runs-on: ubuntu-latest
     steps:
       - name: Check out source
@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Build static website for preview
-        run: PREVIEW_BUILD=true npm run build
+      - name: Build static website for production
+        run: npm run build
 
       - name: Verify generated website
         run: |
@@ -30,14 +30,13 @@ jobs:
           test -f dist/robots.txt
           test -f dist/sitemap.xml
           test -f dist/submit-form.php
-          echo "Build output and PHP form handler verified."
+          echo "Production build output and PHP form handler verified."
 
-      - name: Upload generated website to preview directory
+      - name: Upload generated website to public_html
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          # FTP account root is restricted to public_html/gyanart_v1/.
-          server-dir: /
+          server-dir: /public_html/
