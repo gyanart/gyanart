@@ -1,5 +1,6 @@
 const fs=require("fs");
 const path=require("path");
+const crypto=require("crypto");
 
 const root=__dirname;
 const src=path.join(root,"src");
@@ -10,6 +11,8 @@ const site=JSON.parse(read("data/site.json"));
 const header=read("components/header.html");
 const footer=read("components/footer.html");
 const pages=JSON.parse(read("data/pages.json"));
+const cssVersion=crypto.createHash("sha256").update(read("styles/site.css")).digest("hex").slice(0,12);
+const jsVersion=crypto.createHash("sha256").update(read("scripts/main.js")).digest("hex").slice(0,12);
 const whatsappNumber=String(site.whatsapp || "").replace(/\D/g,"");
 const whatsappDisplay=whatsappNumber.startsWith("91")
   ? "+91 "+whatsappNumber.slice(2,7)+" "+whatsappNumber.slice(7)
@@ -82,6 +85,7 @@ function render(page){
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
+    '<link rel="stylesheet" href="'+prefix+'css/site.css?v='+cssVersion+'">\n'+
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
     '<meta property="og:site_name" content="'+site.name+'">\n'+
@@ -95,11 +99,10 @@ function render(page){
     '<title>'+page.title+'</title>\n'+
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
-    '<link rel="stylesheet" href="'+prefix+'css/site.css">\n'+
     '<script async src="https://www.googletagmanager.com/gtag/js?id=G-D0JCS746B6"></script>\n'+
     '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-D0JCS746B6");</script>\n'+
     '</head>\n<body>\n'+nav+'\n<main>\n'+pageContent+'\n</main>\n'+foot+
-    '<script src="'+prefix+'js/main.js?v=20261011-3" defer></script>\n</body>\n</html>\n';
+    '<script src="'+prefix+'js/main.js?v='+jsVersion+'" defer></script>\n</body>\n</html>\n';
   const safeHtml=html
     .replaceAll("919999999999",whatsappNumber)
     .replaceAll("+91 99999 99999",whatsappDisplay)
@@ -142,6 +145,43 @@ const contactHtml=fs.readFileSync(path.join(dist,"contact.html"),"utf8");
 if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includes(whatsappDisplay)){
   throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
 }
-fs.writeFileSync(path.join(dist,".htaccess"), "DirectoryIndex index.html\n");
+const htaccess = `DirectoryIndex index.html
+
+# Keep HTML revalidatable so deployments appear promptly.
+<IfModule mod_headers.c>
+  <FilesMatch "\\.(html|php)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <Files "submit-form.php">
+    Header set Cache-Control "no-store, no-cache, must-revalidate"
+  </Files>
+</IfModule>
+
+# Cache versioned static assets; build.js adds content-hash query strings to CSS and JS.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\\.(css|js|jpg|jpeg|png|webp|avif|svg|woff2)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+</IfModule>
+
+# Enable compression when the hosting server provides mod_deflate.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+`;
+fs.writeFileSync(path.join(dist,".htaccess"), htaccess);
 if(!fs.existsSync(path.join(dist,"submit-form.php"))) throw new Error("PHP form handler was not copied to dist/");
-console.log("Built",pages.length,"pages to dist/; WhatsApp contact, favicon, PHP form handler, and directory index verified across",htmlFiles.length,"HTML files.");
+console.log("Built",pages.length,"pages to dist/; content-hashed CSS/JS URLs, cache/compression rules, WhatsApp contact, favicon, PHP form handler, and directory index verified across",htmlFiles.length,"HTML files.");

@@ -31,6 +31,11 @@ jobs:
           test -f dist/robots.txt
           test -f dist/sitemap.xml
           test -f dist/submit-form.php
+          grep -q 'Cache-Control' dist/.htaccess
+          grep -q 'mod_expires.c' dist/.htaccess
+          grep -q 'mod_deflate.c' dist/.htaccess
+          grep -q 'site.css?v=' dist/index.html
+          grep -q 'main.js?v=' dist/index.html
           grep -q 'G-D0JCS746B6' dist/index.html
           grep -q 'G-D0JCS746B6' dist/how-it-works.html
           echo "GA4 measurement ID verified in homepage and inner-page HTML."
