@@ -1,7 +1,7 @@
 ---
 title: "Why Is My Business Not Showing on Google Maps? 7 Checks to Try"
 slug: "why-business-not-showing-google-maps"
-status: "draft"
+status: "review"
 primary_keyword: "why is my business not showing on Google Maps"
 meta_title: "Business Not Showing on Google Maps? 7 Checks | GyanArt"
 meta_description: "Is your business missing from Google Maps? Check verification, profile status, eligibility and local ranking with these seven practical steps."
