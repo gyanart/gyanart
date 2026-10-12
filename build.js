@@ -89,8 +89,14 @@ function render(page){
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
     '<meta property="og:site_name" content="'+site.name+'">\n'+
+    '<meta property="og:image" content="https://www.gyanart.com/assets/og-gyanart.svg">\n'+
+    '<meta property="og:image:type" content="image/svg+xml">\n'+
+    '<meta property="og:image:width" content="1200">\n'+
+    '<meta property="og:image:height" content="630">\n'+
+    '<meta property="og:image:alt" content="GyanArt — Help more local customers find and choose your business. UX-led digital growth for local businesses.">\n'+
     '<meta property="og:locale" content="en_IN">\n'+
-    '<meta name="twitter:card" content="summary">\n'+
+    '<meta name="twitter:card" content="summary_large_image">\n'+
+    '<meta name="twitter:image" content="https://www.gyanart.com/assets/og-gyanart.svg">\n'+
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
@@ -117,6 +123,7 @@ ensure(path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"styles/site.css"),path.join(dist,"css/site.css"));
 fs.copyFileSync(path.join(src,"scripts/main.js"),path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"favicon.svg"),path.join(dist,"favicon.svg"));
+fs.copyFileSync(path.join(src,"assets/og-gyanart.svg"),path.join(dist,"assets/og-gyanart.svg"));
 const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));

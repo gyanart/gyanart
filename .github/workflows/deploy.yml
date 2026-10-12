@@ -31,6 +31,9 @@ jobs:
           test -f dist/robots.txt
           test -f dist/sitemap.xml
           test -f dist/submit-form.php
+          test -f dist/assets/og-gyanart.svg
+          grep -q 'og:image' dist/index.html
+          grep -q 'twitter:card.*summary_large_image' dist/index.html
           grep -q 'Cache-Control' dist/.htaccess
           grep -q 'mod_expires.c' dist/.htaccess
           grep -q 'mod_deflate.c' dist/.htaccess
