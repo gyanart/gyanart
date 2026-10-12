@@ -3,13 +3,14 @@
 **Status:** research  
 **Publication:** unpublished — research brief only  
 **Researched:** 2026-10-12  
-**Audience:** Owners and managers of small local businesses in India, especially service businesses  
+**Audience:** Owners and managers of all types of local small businesses in India  
 **Business goal:** Introduce potential customers to GyanArt's website, Google Business Profile and local SEO services without making unsupported promises  
 **Primary query:** why is my business not showing on Google Maps  
 **Related queries to validate:** business not showing on Google Maps; Google Business Profile not showing in search; my business not appearing on Google Maps; business visible by name but not for service searches  
 **Search intent:** Troubleshooting / informational  
-**Proposed format:** Diagnostic guide with a symptom-first checklist and official Google help links  
-**Article status:** Do not draft or publish until research is reviewed.
+**Proposed format:** Detailed, step-by-step diagnostic guide with seven checks, a symptom-first flow, and official Google help links  
+**Article status:** Research brief only. Do not draft or publish until research gaps are addressed and the user approves moving to drafting.  
+**User decisions (2026-10-12):** Audience = all local small businesses; depth = detailed step-by-step diagnostic guide; CTA = educational article with a subtle service link; preferred title = “Why Is My Business Not Showing on Google Maps? 7 Checks to Try.”
 
 ## Research question
 
@@ -85,7 +86,7 @@ https://support.google.com/business/answer/2911778?hl=en
 - **Suggested URL slug:** why-business-not-showing-google-maps
 - **Likely internal links (confirm current live URLs before use):** GyanArt service/pricing page; any published page explaining Google Business Profile or local SEO; contact or Growth Audit page.
 - **Reader value:** a symptom-first diagnosis, not a generic list of SEO tips.
-- **CTA approach:** offer a profile/website visibility audit as an optional next step; avoid suggesting that GyanArt can guarantee reinstatement or ranking.
+- **CTA approach (user-approved direction):** keep the article educational; include only a subtle, relevant link to a GyanArt service or audit page. Do not make the article feel like a sales page or imply guaranteed reinstatement/rankings.
 - **Geographic angle:** use Indian small-business examples only where helpful. Do not imply Google has different rules for India unless a source supports that claim.
 
 ## Claims to avoid
@@ -98,16 +99,27 @@ https://support.google.com/business/answer/2911778?hl=en
 - Unsupported statistics about how many businesses are affected, lost revenue or ranking improvements.
 - Promising a specific fix before diagnosing the actual symptom.
 
-## Review questions before drafting
+## User decisions recorded
 
-1. Is the intended audience broad local businesses, or should we focus on home-service businesses (repair, plumbing, electrical, cleaning) in India?
-2. Should the article be a concise diagnostic checklist or a more detailed step-by-step guide?
-3. Is the proposed Growth Audit CTA appropriate for this topic, and what exact live URL should it use?
-4. Confirm that the proposed title and keyword match the GyanArt content strategy.
+- **Audience:** all local small businesses; use examples that remain relevant across sectors, and avoid making the article exclusively about home-service businesses.
+- **Depth:** detailed, step-by-step diagnostic guide.
+- **CTA:** educational first, with a subtle service link only where relevant.
+- **Title:** “Why Is My Business Not Showing on Google Maps? 7 Checks to Try.”
 
-## Research limitations
+## Remaining research gaps before drafting
 
-- Search demand and keyword difficulty have not yet been measured with a dedicated SEO tool. The phrases above are working hypotheses, not verified volume data.
-- This brief uses Google's official documentation as the primary source. Secondary sources may help identify common user language, but official Google documentation should govern claims about policy and product behaviour.
-- Source pages should be re-opened and checked again during the final fact-check before publication.
-- No article draft has been written, no page has been added to the website registry or sitemap, and nothing has been published.
+1. **Keyword demand and competition:** no dedicated SEO tool data has been collected for search volume, keyword difficulty, or related queries. Treat all keyword phrases as hypotheses until checked. If no tool is available, proceed transparently without numeric claims.
+2. **Search-results intent and reader wording:** review current search results and, if useful, a small sample of genuine owner questions (for example, Google's Business Profile Help Community) to make sure the planned guide addresses the language and symptoms people actually use. Community replies are anecdotal, not policy authority.
+3. **Seven-check structure:** the current research supports the diagnostic categories, but the final seven checks need to be arranged into a simple, non-repetitive sequence. Avoid forcing a seventh item if it does not add value.
+4. **Internal links and CTA destination:** inspect the current website and confirm the exact live GyanArt page that best supports the subtle service link. Do not assume a Growth Audit page exists or hard-code a URL before confirming it.
+5. **Source verification:** re-open official Google documentation during final fact-check and confirm exact wording, eligibility exceptions, timing claims, ownership/claim process, and suspension/appeal steps. Prefer current India-relevant official help pages where available.
+6. **Scope boundaries:** clarify that the guide helps diagnose common visibility problems; it cannot diagnose an individual profile without access to that profile and cannot guarantee ranking, reinstatement, or a specific outcome.
+7. **Potentially confusing distinction:** explain separately “not appearing when searching the business name” and “not ranking for a generic service/category query.” Do not label the latter as a missing profile.
+
+## Research limitations and publication boundary
+
+- The current source base is primarily official Google Business Profile documentation. Official sources should govern policy claims; community posts, if added, should only inform common questions and must be labelled anecdotal.
+- Keyword demand and difficulty remain unmeasured. No search-volume figures should be included without evidence.
+- The meta description and slug are working recommendations, not final website metadata.
+- Source pages should be re-opened and checked again during final fact-check before publication.
+- No full article draft has been written, no article has been added to the website registry, Insights page or sitemap, and nothing has been published. This file remains an unpublished research brief on the feature branch.
