@@ -12,7 +12,7 @@ function walk(dir) {
   for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, item.name);
     if (item.isDirectory()) walk(full);
-    else if (item.isFile() && item.name.endsWith(".md")) files.push(full);
+    else if (item.isFile() && item.name.endsWith(".md") && item.name.toLowerCase() !== "readme.md") files.push(full);
   }
 }
 walk(root);
