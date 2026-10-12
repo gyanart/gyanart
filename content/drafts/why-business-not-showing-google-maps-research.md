@@ -127,4 +127,4 @@ The article title promises seven checks, so use these seven in a clear sequence.
 - Primary sources reviewed: Google Business Profile Help — find your business, local ranking, eligibility and ownership, add/claim a profile, suspended/disabled profiles, and duplicate-profile guidance. Relevant official links are listed in the source-backed findings and should be rechecked immediately before publication.
 - Keyword demand and difficulty remain unmeasured. No search-volume figures should be included without evidence.
 - The meta description and slug are working recommendations, not final website metadata.
-- No full article draft has been written, no article has been added to the website registry, Insights page or sitemap, and nothing has been published. This file remains an unpublished research brief on the feature branch.
+- A first full article draft now exists at `content/drafts/why-business-not-showing-google-maps.md`. It remains unpublished on the feature branch. No article has been added to the website registry, Insights page or sitemap, and nothing has been published or deployed.
