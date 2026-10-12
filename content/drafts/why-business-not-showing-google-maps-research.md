@@ -61,21 +61,27 @@ Source: Google Business Profile Help, “Tips to improve your local ranking on G
 https://support.google.com/business/answer/7091?hl=en
 
 ### 6. Add or claim the profile when appropriate
-If no profile exists, Google provides a process to add one. If an unverified profile already exists, the owner may be able to claim it and complete verification. If another person owns the verified profile, use Google's ownership process rather than creating a duplicate.
+If no profile exists, Google provides a process to add one. If an unverified profile already exists, the owner may be able to claim it and complete verification. If another person owns the verified profile, use Google's ownership process rather than creating a duplicate. Google also says a duplicate profile may not show on Search or Maps.
 
-Source: Google Business Profile Help, “Add or claim your Business Profile”  
-https://support.google.com/business/answer/2911778?hl=en
+Sources:
+- Google Business Profile Help, “Add or claim your Business Profile”  
+  https://support.google.com/business/answer/2911778?hl=en
+- Google Business Profile Help, “Resolve duplicate profiles & ownership issues”  
+  https://support.google.com/business/answer/12756178?hl=en-en
 
-## Proposed diagnostic flow for the eventual article
+## Proposed seven-check diagnostic flow
 
-1. Search the exact business name plus city in Google Maps and Google Search while signed into the account that manages the profile.
-2. Check whether the profile exists and whether the owner can access it.
-3. Check verification status and any suspension/disabled-profile notices.
-4. Confirm the business meets eligibility and representation guidelines.
-5. If the profile is live but not visible for a service search, explain relevance, distance and prominence; test a few relevant searches from different locations without promising a fixed ranking.
-6. Check whether the profile or key details were created/edited recently and allow for Google's stated processing windows.
-7. Only then work through profile completeness, correct categories/services, accurate hours/contact details, reviews and relevant website information.
-8. Escalate suspension, ownership and verification problems through Google's official processes.
+The article title promises seven checks, so use these seven in a clear sequence. Keep the distinction between a missing profile and low ranking for generic searches visible throughout.
+
+1. **Search for the exact business name and city.** Search Google Maps and Google Search. To locate/manage the profile, sign in to the Google Account associated with it. Where useful, check the public view in a private browser window.
+2. **Confirm whether a profile exists and who controls it.** If no profile exists, check eligibility before adding one. If an unverified profile exists, claim it. If someone else owns the verified profile, request access instead of creating a duplicate.
+3. **Check verification status.** Google says unverified profile information is not eligible to display. Follow the verification methods Google offers for that profile; available methods vary.
+4. **Check eligibility and policy status.** Confirm the business has eligible in-person customer contact, the profile accurately represents the business, and there are no disabled/suspended notices. For suspensions, follow Google's appeal process and do not create a replacement profile while an appeal is under review.
+5. **Allow for recent setup or edits.** Google says new-business rankings can take up to a month to appear and edits can take up to three days to appear in results. Explain these as possible processing windows, not guarantees.
+6. **Separate profile visibility from ranking.** If the profile appears for its exact name but not for searches such as a service/category, explain relevance, distance and prominence/popularity. Results can vary by searcher location; Google does not offer paid or requested organic ranking boosts.
+7. **Improve accurate, useful profile information and escalate unresolved issues.** Review business name, category, services, hours, contact details, photos and customer reviews where appropriate. Avoid keyword stuffing, fake reviews or duplicate profiles. If the issue is verification, ownership or suspension, use Google's official support/appeal routes rather than promising a third-party fix.
+
+**Current search-language observation:** official Google Help itself separates unverified profiles, variable ranking, recent edits and policy violations. A current Google Business Profile Community thread also shows a real owner describing a listing that appeared, then disappeared or became pending; treat community posts as anecdotal examples only, not as policy or proof of a general trend.
 
 ## SEO and content recommendations
 
@@ -84,7 +90,7 @@ https://support.google.com/business/answer/2911778?hl=en
 - **Secondary phrases:** Google Business Profile not showing; business not appearing on Google Maps; Google Maps business visibility
 - **Meta description draft:** Is your business missing from Google Maps? Check verification, profile status, eligibility and local ranking with this practical troubleshooting guide.
 - **Suggested URL slug:** why-business-not-showing-google-maps
-- **Likely internal links (confirm current live URLs before use):** GyanArt service/pricing page; any published page explaining Google Business Profile or local SEO; contact or Growth Audit page.
+- **Confirmed internal-link candidates from the current site page registry:** `google-business-profile-optimization.html` (directly relevant to profile setup/accuracy); `local-seo-services.html` (broader local visibility); `growth-audit.html` (optional subtle CTA). These are registered site routes in the source, but their live production URLs should be confirmed after the site launch. Use one contextual service link and, only if natural, one audit CTA.
 - **Reader value:** a symptom-first diagnosis, not a generic list of SEO tips.
 - **CTA approach (user-approved direction):** keep the article educational; include only a subtle, relevant link to a GyanArt service or audit page. Do not make the article feel like a sales page or imply guaranteed reinstatement/rankings.
 - **Geographic angle:** use Indian small-business examples only where helpful. Do not imply Google has different rules for India unless a source supports that claim.
@@ -106,20 +112,19 @@ https://support.google.com/business/answer/2911778?hl=en
 - **CTA:** educational first, with a subtle service link only where relevant.
 - **Title:** “Why Is My Business Not Showing on Google Maps? 7 Checks to Try.”
 
-## Remaining research gaps before drafting
+## Research gaps: status after this research pass
 
-1. **Keyword demand and competition:** no dedicated SEO tool data has been collected for search volume, keyword difficulty, or related queries. Treat all keyword phrases as hypotheses until checked. If no tool is available, proceed transparently without numeric claims.
-2. **Search-results intent and reader wording:** review current search results and, if useful, a small sample of genuine owner questions (for example, Google's Business Profile Help Community) to make sure the planned guide addresses the language and symptoms people actually use. Community replies are anecdotal, not policy authority.
-3. **Seven-check structure:** the current research supports the diagnostic categories, but the final seven checks need to be arranged into a simple, non-repetitive sequence. Avoid forcing a seventh item if it does not add value.
-4. **Internal links and CTA destination:** inspect the current website and confirm the exact live GyanArt page that best supports the subtle service link. Do not assume a Growth Audit page exists or hard-code a URL before confirming it.
-5. **Source verification:** re-open official Google documentation during final fact-check and confirm exact wording, eligibility exceptions, timing claims, ownership/claim process, and suspension/appeal steps. Prefer current India-relevant official help pages where available.
-6. **Scope boundaries:** clarify that the guide helps diagnose common visibility problems; it cannot diagnose an individual profile without access to that profile and cannot guarantee ranking, reinstatement, or a specific outcome.
-7. **Potentially confusing distinction:** explain separately “not appearing when searching the business name” and “not ranking for a generic service/category query.” Do not label the latter as a missing profile.
+1. **Keyword demand and competition — still open.** No dedicated SEO keyword tool or Google Search Console data has been queried, so search volume and difficulty are unknown. Treat all phrases as hypotheses and do not include invented metrics. The article can proceed without numeric keyword claims.
+2. **Search intent and reader wording — initial pass complete.** Current official Google Help content directly addresses the main troubleshooting categories. One current community thread describes a profile that appeared and later became pending/not visible; this is anecdotal and should only inform empathy/examples, not policy claims. A larger community sample is optional, not essential.
+3. **Seven-check structure — resolved.** The seven checks are now sequenced above, from exact-name search through profile improvements/escalation.
+4. **Internal links — source routes identified.** The current site registry includes `google-business-profile-optimization.html`, `local-seo-services.html`, and `growth-audit.html`. Since production has not been switched to this new site, verify the final live URLs after launch; do not link to a preview path in a published article.
+5. **Official source verification — completed for this pass, recheck before publication.** Rechecked official Google help results for finding a profile, local ranking, eligibility, suspensions/appeals, and duplicate profiles. Official pages should remain the authority for policy and process details.
+6. **Scope boundaries — resolved for draft instructions.** The guide can help diagnose common cases, but cannot inspect a reader's profile or guarantee ranking, reinstatement or a particular outcome.
+7. **Absence vs ranking — resolved.** The article must clearly separate not appearing for the exact business name from not ranking for a generic service/category query.
 
 ## Research limitations and publication boundary
 
-- The current source base is primarily official Google Business Profile documentation. Official sources should govern policy claims; community posts, if added, should only inform common questions and must be labelled anecdotal.
+- Primary sources reviewed: Google Business Profile Help — find your business, local ranking, eligibility and ownership, add/claim a profile, suspended/disabled profiles, and duplicate-profile guidance. Relevant official links are listed in the source-backed findings and should be rechecked immediately before publication.
 - Keyword demand and difficulty remain unmeasured. No search-volume figures should be included without evidence.
 - The meta description and slug are working recommendations, not final website metadata.
-- Source pages should be re-opened and checked again during final fact-check before publication.
 - No full article draft has been written, no article has been added to the website registry, Insights page or sitemap, and nothing has been published. This file remains an unpublished research brief on the feature branch.
