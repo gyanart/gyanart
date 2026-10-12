@@ -31,6 +31,10 @@ jobs:
           test -f dist/robots.txt
           test -f dist/sitemap.xml
           test -f dist/submit-form.php
+          grep -q 'G-D0JCS746B6' dist/index.html
+          grep -q 'G-D0JCS746B6' dist/how-it-works.html
+          echo "GA4 measurement ID verified in homepage and inner-page HTML."
+          grep -n 'G-D0JCS746B6' dist/index.html
           echo "Production build output and PHP form handler verified."
 
       - name: Upload generated website to FTP account root (public_html)
