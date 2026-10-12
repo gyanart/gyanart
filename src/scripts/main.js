@@ -1,4 +1,20 @@
+const trackGA4=(eventName,params={})=>{
+  if(typeof window.gtag==="function")window.gtag("event",eventName,params);
+};
+
 document.addEventListener("DOMContentLoaded",()=>{
+  document.addEventListener("click",event=>{
+    const link=event.target.closest("a[href]");
+    if(!link)return;
+    const href=link.getAttribute("href")||"";
+    if(/^https?:\/\/(?:www\.)?(?:wa\.me|whatsapp\.com)\//i.test(href)){
+      trackGA4("contact_click",{contact_method:"whatsapp"});
+    }else if(/^tel:/i.test(href)){
+      trackGA4("contact_click",{contact_method:"phone"});
+    }else if(/^mailto:/i.test(href)){
+      trackGA4("contact_click",{contact_method:"email"});
+    }
+  });
   const header=document.querySelector("[data-header]");
   const toggle=document.querySelector(".nav-toggle");
   const nav=document.querySelector(".site-nav");
@@ -63,6 +79,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       });
       const result=await response.json();
       if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
+      const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
+      trackGA4("generate_lead",{form_name:formName});
       if(status){status.className="form-status form-feedback form-feedback-success";status.textContent=result.message;}
       form.reset();
     }catch(error){
