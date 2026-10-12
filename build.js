@@ -81,6 +81,8 @@ function render(page){
   const html="<!doctype html>\n<html lang=\"en\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
+    '<script async src="https://www.googletagmanager.com/gtag/js?id=G-D0JCS746B6"></script>\n'+
+    '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag(\'js\',new Date());gtag(\'config\',\'G-D0JCS746B6\');</script>\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
