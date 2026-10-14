@@ -110,5 +110,145 @@
     "content": "pages/terms-and-conditions.html",
     "title": "Terms & Conditions | GyanArt",
     "description": "Read the terms for using the GyanArt website and how paid services are governed by a separate written client agreement."
+  },
+  {
+    "output": "kn/index.html",
+    "content": "translations/kn/home.html",
+    "title": "ಬೆಂಗಳೂರು ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ | GyanArt",
+    "description": "ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ, ಸ್ಥಳೀಯ SEO ಮತ್ತು Google Business Profile ಮೂಲಕ ನಿಮ್ಮ ವ್ಯಾಪಾರವನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಹೆಚ್ಚು ಜನರಿಗೆ ತಲುಪಿಸಲು GyanArt ಸಹಾಯ ಮಾಡುತ್ತದೆ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "index.html",
+    "isHome": true
+  },
+  {
+    "output": "kn/website-design.html",
+    "content": "translations/kn/website-design.html",
+    "title": "ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ಬೆಂಗಳೂರು ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ಮೊಬೈಲ್ ಸ್ನೇಹಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ, ಸ್ಪಷ್ಟ ಮಾಹಿತಿ ಮತ್ತು ಗ್ರಾಹಕರ ಸಂಪರ್ಕಕ್ಕೆ ಅನುಕೂಲಕರ ಅನುಭವ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "website-design.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/local-seo-services.html",
+    "content": "translations/kn/local-seo-services.html",
+    "title": "ಬೆಂಗಳೂರು ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು | GyanArt",
+    "description": "Google Search ಮತ್ತು Maps ನಲ್ಲಿ ನಿಮ್ಮ ಸ್ಥಳೀಯ ವ್ಯಾಪಾರದ ಮಾಹಿತಿ, ಸೇವಾ ಪುಟಗಳು ಮತ್ತು ಗ್ರಾಹಕರ ಸಂಪರ್ಕದ ಮಾರ್ಗವನ್ನು ಸುಧಾರಿಸಿ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "local-seo-services.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/google-business-profile-optimization.html",
+    "content": "translations/kn/google-business-profile-optimization.html",
+    "title": "Google Business Profile ಸುಧಾರಣೆ | GyanArt",
+    "description": "ನಿಮ್ಮ Google Business Profile ವಿವರಗಳು, ಸೇವೆಗಳು, ಫೋಟೋಗಳು ಮತ್ತು ಗ್ರಾಹಕರ ಸಂಪರ್ಕದ ಮಾರ್ಗವನ್ನು ಉಪಯುಕ್ತವಾಗಿ ನಿರ್ವಹಿಸಿ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "google-business-profile-optimization.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/pricing.html",
+    "content": "translations/kn/pricing.html",
+    "title": "ವೆಬ್‌ಸೈಟ್ ಪ್ಯಾಕೇಜ್‌ಗಳು ಮತ್ತು ಬೆಲೆಗಳು | GyanArt",
+    "description": "ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ಸ್ಪಷ್ಟ ವೆಬ್‌ಸೈಟ್ ಸೆಟಪ್ ಶುಲ್ಕಗಳು ಮತ್ತು ಮಾಸಿಕ ಬೆಂಬಲ ಆಯ್ಕೆಗಳು.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "pricing.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/about.html",
+    "content": "translations/kn/about.html",
+    "title": "GyanArt ಬಗ್ಗೆ | UX ಮತ್ತು ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ",
+    "description": "GyanArt ಸಂಸ್ಥಾಪಕರ ಪರಿಚಯ ಮತ್ತು ಬಳಕೆದಾರ ಕೇಂದ್ರಿತ ವೆಬ್‌ಸೈಟ್ ಹಾಗೂ ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆಗೆ ನಮ್ಮ ವಿಧಾನ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "about.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/contact.html",
+    "content": "translations/kn/contact.html",
+    "title": "GyanArt ಸಂಪರ್ಕ | ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ",
+    "description": "ನಿಮ್ಮ ವ್ಯಾಪಾರದ ವೆಬ್‌ಸೈಟ್, ಸ್ಥಳೀಯ ಹುಡುಕಾಟ ಮತ್ತು ಗ್ರಾಹಕರ ವಿಚಾರಣೆಗಳನ್ನು ಸುಧಾರಿಸಲು GyanArt ಅನ್ನು ಸಂಪರ್ಕಿಸಿ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "contact.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/index.html",
+    "content": "translations/hi/home.html",
+    "title": "बेंगलुरु के छोटे व्यवसायों के लिए डिजिटल विकास | GyanArt",
+    "description": "वेबसाइट डिज़ाइन, लोकल SEO और Google Business Profile के ज़रिए अपने व्यवसाय को ऑनलाइन बेहतर बनाने में GyanArt आपकी मदद करता है।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "index.html",
+    "isHome": true
+  },
+  {
+    "output": "hi/website-design.html",
+    "content": "translations/hi/website-design.html",
+    "title": "छोटे व्यवसायों के लिए वेबसाइट डिज़ाइन | GyanArt",
+    "description": "बेंगलुरु के छोटे व्यवसायों के लिए मोबाइल-अनुकूल वेबसाइट, स्पष्ट जानकारी और आसान ग्राहक संपर्क।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "website-design.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/local-seo-services.html",
+    "content": "translations/hi/local-seo-services.html",
+    "title": "बेंगलुरु में लोकल SEO सेवाएं | GyanArt",
+    "description": "Google Search और Maps में अपने स्थानीय व्यवसाय की जानकारी, सेवा पेज और संपर्क प्रक्रिया को बेहतर बनाएं।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "local-seo-services.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/google-business-profile-optimization.html",
+    "content": "translations/hi/google-business-profile-optimization.html",
+    "title": "Google Business Profile सुधार | GyanArt",
+    "description": "अपने Google Business Profile की जानकारी, सेवाओं, तस्वीरों और ग्राहक संपर्क को उपयोगी बनाएं।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "google-business-profile-optimization.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/pricing.html",
+    "content": "translations/hi/pricing.html",
+    "title": "वेबसाइट पैकेज और कीमतें | GyanArt",
+    "description": "छोटे व्यवसायों के लिए स्पष्ट वेबसाइट सेटअप शुल्क और मासिक सहायता विकल्प।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "pricing.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/about.html",
+    "content": "translations/hi/about.html",
+    "title": "GyanArt के बारे में | UX और डिजिटल विकास",
+    "description": "GyanArt के संस्थापक और छोटे व्यवसायों के लिए उपयोगकर्ता-केंद्रित वेबसाइट व डिजिटल विकास का दृष्टिकोण।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "about.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/contact.html",
+    "content": "translations/hi/contact.html",
+    "title": "GyanArt से संपर्क | डिजिटल विकास",
+    "description": "वेबसाइट, लोकल सर्च और ग्राहक पूछताछ बेहतर बनाने के लिए GyanArt से संपर्क करें।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "contact.html",
+    "isHome": false
   }
 ]
