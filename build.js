@@ -72,7 +72,7 @@ function render(page){
     const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
     const targetSlug=exists?slug:"index.html";
     const target=item.code==="en"?targetSlug:(item.code===lang?targetSlug:prefix+item.code+"/"+targetSlug);
-    return '<a href="'+target+'" lang="'+item.code+'"'+(item.code===lang?' aria-current="true"':"")+">'+item.name+"</a>";
+    return '<a href="'+target+'" lang="'+item.code+'"'+(item.code===lang?' aria-current="true"':"")+">"+item.name+"</a>";
   }).join("");
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
     .replaceAll("{{HREF_HOME}}",navHref("index.html"))
