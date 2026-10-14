@@ -300,5 +300,55 @@
     "locale": "kn_IN",
     "slug": "growth-audit.html",
     "isHome": false
+  },
+  {
+    "output": "hi/how-it-works.html",
+    "content": "translations/hi/how-it-works.html",
+    "title": "GyanArt कैसे काम करता है | डिजिटल विकास",
+    "description": "स्थानीय व्यवसायों को खोजे जाने, भरोसा जीतने और ग्राहक संपर्क बेहतर करने के व्यावहारिक चरण।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "how-it-works.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/solutions.html",
+    "content": "translations/hi/solutions.html",
+    "title": "बेंगलुरु के व्यवसायों के लिए डिजिटल सेवाएँ | GyanArt",
+    "description": "लोकल SEO, Google Business Profile और वेबसाइट डिज़ाइन के ज़रिए स्थानीय ग्राहकों तक पहुँचें।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "solutions.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/growth-experiments.html",
+    "content": "translations/hi/growth-experiments.html",
+    "title": "व्यवसाय विकास के उदाहरण | GyanArt",
+    "description": "स्थानीय व्यवसाय खोज, ग्राहक भरोसे और पूछताछ बेहतर करने के अवधारणात्मक उदाहरण।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "growth-experiments.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/insights.html",
+    "content": "translations/hi/insights.html",
+    "title": "लोकल SEO, वेबसाइट UX और डिजिटल विकास गाइड | GyanArt",
+    "description": "Google Business Profile, स्थानीय खोज, वेबसाइट UX और ग्राहक पूछताछ पर व्यावहारिक गाइड।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights.html",
+    "isHome": false
+  },
+  {
+    "output": "hi/growth-audit.html",
+    "content": "translations/hi/growth-audit.html",
+    "title": "मुफ़्त वेबसाइट और Google उपस्थिति ऑडिट | GyanArt",
+    "description": "अपनी वेबसाइट, Google प्रोफ़ाइल और ग्राहक संपर्क प्रक्रिया की मुफ़्त समीक्षा का अनुरोध करें।",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "growth-audit.html",
+    "isHome": false
   }
 ]
