@@ -45,6 +45,21 @@ document.addEventListener("DOMContentLoaded",()=>{
   const topButton=document.querySelector("[data-back-to-top]");
   if(topButton)topButton.addEventListener("click",()=>window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
 
+  document.querySelectorAll(".language-switcher").forEach(switcher=>{
+    const button=switcher.querySelector(".language-toggle");
+    const menu=switcher.querySelector(".language-menu");
+    if(!button||!menu)return;
+    const closeLanguageMenu=()=>{menu.hidden=true;button.setAttribute("aria-expanded","false");};
+    button.addEventListener("click",event=>{
+      event.stopPropagation();
+      const open=menu.hidden;
+      menu.hidden=!open;
+      button.setAttribute("aria-expanded",String(open));
+    });
+    document.addEventListener("click",event=>{if(!switcher.contains(event.target))closeLanguageMenu();});
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeLanguageMenu();});
+  });
+
   if(toggle&&nav){
     toggle.addEventListener("click",()=>{
       const open=nav.classList.toggle("open");
