@@ -98,8 +98,7 @@ function render(page){
     .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
     .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
-  const canonicalPath=page.isHome?(page.lang?page.lang+"/":""):(page.output==="index.html"?"":page.output);
-  const pageLang=page.lang||"en";
+    const pageLang=page.lang||"en";
   const pageLocale=page.locale||"en_IN";
   const pageSlug=page.slug||path.basename(page.output);
   const alternates=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug).map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):(code==="en"?"https://www.gyanart.com/"+p.output:"https://www.gyanart.com/"+p.output);return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("");
@@ -123,7 +122,7 @@ function render(page){
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
-    '<meta property="og:url" content="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output)))+'">\n'+
+    '<meta property="og:url" content="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<title>'+page.title+'</title>\n'+
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
