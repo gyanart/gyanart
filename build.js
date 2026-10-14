@@ -25,7 +25,7 @@ function render(page){
   let body=read(page.content);
   const nested=page.output.includes("/");
   const prefix=nested?"../":"";
-  if(page.output!=="index.html"){
+  if(!(page.isHome || page.output==="index.html")){
     body=body.replace('<section class="section"', '<section class="section page-intro"');
   }
   const labels={
@@ -50,27 +50,44 @@ function render(page){
     "google-business-profile-optimization.html":["Solutions","solutions.html"],
     "website-design.html":["Solutions","solutions.html"]
   };
-  const crumbParts=[{label:"Home",href:prefix+"index.html"}];
+  const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:"index.html"}];
   if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
   if(labels[page.output]) crumbParts.push({label:labels[page.output]});
-  const breadcrumb=page.output==="index.html"?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
+  const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
-  if(page.output!=="index.html"){
+  if(!(page.isHome || page.output==="index.html")){
     const introEnd=body.indexOf("</section>");
     if(introEnd===-1) throw new Error("Could not locate first section on "+page.output);
     const intro=body.slice(0,introEnd+"</section>".length);
     const remainder=body.slice(introEnd+"</section>".length);
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
+  const lang=page.lang||"en";
+  const slug=page.slug||path.basename(page.output);
+  const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
+  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
+  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
+  const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
+  const languageOptions=languageItems.map(item=>{
+    const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
+    const targetSlug=exists?slug:"index.html";
+    const target=item.code==="en"?targetSlug:(item.code===lang?targetSlug:prefix+item.code+"/"+targetSlug);
+    return '<a href="'+target+'" lang="'+item.code+'"'+(item.code===lang?' aria-current="true"':"")+">'+item.name+"</a>";
+  }).join("");
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
-    .replaceAll('href="index.html"','href="'+prefix+'index.html"')
-    .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
-    .replaceAll('href="solutions.html"','href="'+prefix+'solutions.html"')
-    .replaceAll('href="growth-experiments.html"','href="'+prefix+'growth-experiments.html"')
-    .replaceAll('href="pricing.html"','href="'+prefix+'pricing.html"')
-    .replaceAll('href="about.html"','href="'+prefix+'about.html"')
-    .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
-    .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
+    .replaceAll("{{HREF_HOME}}",navHref("index.html"))
+    .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
+    .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
+    .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
+    .replaceAll("{{HREF_PRICING}}",navHref("pricing.html"))
+    .replaceAll("{{HREF_ABOUT}}",navHref("about.html"))
+    .replaceAll("{{HREF_INSIGHTS}}",navHref("insights.html"))
+    .replaceAll("{{HREF_AUDIT}}",navHref("growth-audit.html"))
+    .replaceAll("{{NAV_HOW}}",navLabels.how).replaceAll("{{NAV_SOLUTIONS}}",navLabels.solutions)
+    .replaceAll("{{NAV_EXPERIMENTS}}",navLabels.experiments).replaceAll("{{NAV_PRICING}}",navLabels.pricing)
+    .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
+    .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)
+    .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
   const foot=footer.replaceAll("{{SITE_NAME}}",site.name).replaceAll("{{TAGLINE}}",site.tagline)
     .replaceAll('href="index.html"','href="'+prefix+'index.html"')
     .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
@@ -81,7 +98,12 @@ function render(page){
     .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
     .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
-  const html="<!doctype html>\n<html lang=\"en\">\n<head>\n"+
+  const canonicalPath=page.isHome?(page.lang?page.lang+"/":""):(page.output==="index.html"?"":page.output);
+  const pageLang=page.lang||"en";
+  const pageLocale=page.locale||"en_IN";
+  const pageSlug=page.slug||path.basename(page.output);
+  const alternates=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug).map(p=>{const code=p.lang||"en";const url=code==="en"?(p.output==="index.html"?"https://www.gyanart.com/":"https://www.gyanart.com/"+p.output):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("");
+  const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
@@ -94,13 +116,14 @@ function render(page){
     '<meta property="og:image:width" content="1200">\n'+
     '<meta property="og:image:height" content="630">\n'+
     '<meta property="og:image:alt" content="GyanArt — Help more local customers find and choose your business. UX-led digital growth for local businesses.">\n'+
-    '<meta property="og:locale" content="en_IN">\n'+
+    '<meta property="og:locale" content="'+pageLocale+'">\n'+
+    alternates+
     '<meta name="twitter:card" content="summary_large_image">\n'+
     '<meta name="twitter:image" content="https://www.gyanart.com/assets/og-gyanart.svg">\n'+
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
-    '<meta property="og:url" content="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
+    '<meta property="og:url" content="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.output === "index.html" ? "" : page.output)+'">\n'+
     '<title>'+page.title+'</title>\n'+
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
