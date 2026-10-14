@@ -3,7 +3,28 @@ const trackGA4=(eventName,params={})=>{
 };
 
 document.addEventListener("DOMContentLoaded",()=>{
+  // Remember the visitor's explicit language choice across page navigation.
+  const languageKey="gyanart-language";
+  const localizedPages={
+    kn:new Set(["index.html","website-design.html","local-seo-services.html","google-business-profile-optimization.html","pricing.html","about.html","contact.html"]),
+    hi:new Set(["index.html","website-design.html","local-seo-services.html","google-business-profile-optimization.html","pricing.html","about.html","contact.html"])
+  };
+  const pathParts=window.location.pathname.split("/").filter(Boolean);
+  const currentLanguage=["kn","hi"].includes(pathParts[0])?pathParts[0]:"en";
+  const currentSlug=pathParts.length===0?"index.html":pathParts[pathParts.length-1];
+  const savedLanguage=(()=>{try{return localStorage.getItem(languageKey);}catch{return null;}})();
+  if(savedLanguage&&savedLanguage!==currentLanguage&&localizedPages[savedLanguage]?.has(currentSlug)){
+    const target=savedLanguage==="en"
+      ?(currentSlug==="index.html"?"/":"/"+currentSlug)
+      :"/"+savedLanguage+"/"+(currentSlug==="index.html"?"":currentSlug);
+    if(target!==window.location.pathname)window.location.replace(target);
+    return;
+  }
   document.addEventListener("click",event=>{
+    const languageLink=event.target.closest(".language-menu a[lang]");
+    if(languageLink){
+      try{localStorage.setItem(languageKey,languageLink.getAttribute("lang"));}catch{}
+    }
     const link=event.target.closest("a[href]");
     if(!link)return;
     const href=link.getAttribute("href")||"";
