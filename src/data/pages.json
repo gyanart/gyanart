@@ -250,5 +250,55 @@
     "locale": "hi_IN",
     "slug": "contact.html",
     "isHome": false
+  },
+  {
+    "output": "kn/how-it-works.html",
+    "content": "translations/kn/how-it-works.html",
+    "title": "GyanArt ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ | ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ",
+    "description": "ಸ್ಥಳೀಯ ವ್ಯಾಪಾರಗಳಿಗೆ ಗ್ರಾಹಕರು ನಿಮ್ಮನ್ನು ಹುಡುಕಲು, ನಂಬಲು ಮತ್ತು ಸಂಪರ್ಕಿಸಲು ಸಹಾಯ ಮಾಡುವ ಪ್ರಾಯೋಗಿಕ ಹಂತಗಳು.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "how-it-works.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/solutions.html",
+    "content": "translations/kn/solutions.html",
+    "title": "ಸ್ಥಳೀಯ ವ್ಯಾಪಾರಗಳಿಗೆ ಡಿಜಿಟಲ್ ಸೇವೆಗಳು | GyanArt",
+    "description": "ಸ್ಥಳೀಯ SEO, Google Business Profile ಸುಧಾರಣೆ ಮತ್ತು ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸದ ಮೂಲಕ ಗ್ರಾಹಕರನ್ನು ತಲುಪಲು ಸಹಾಯ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "solutions.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/growth-experiments.html",
+    "content": "translations/kn/growth-experiments.html",
+    "title": "ವ್ಯಾಪಾರ ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು | GyanArt",
+    "description": "ಸ್ಥಳೀಯ ವ್ಯಾಪಾರಗಳ ಆನ್‌ಲೈನ್ ಗ್ರಾಹಕ ಪ್ರಯಾಣವನ್ನು ಸುಧಾರಿಸುವ ಕಲ್ಪನಾ ಉದಾಹರಣೆಗಳು.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "growth-experiments.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/insights.html",
+    "content": "translations/kn/insights.html",
+    "title": "ಸ್ಥಳೀಯ SEO ಮತ್ತು ವೆಬ್‌ಸೈಟ್ ಮಾರ್ಗದರ್ಶಿಗಳು | GyanArt",
+    "description": "Google Business Profile, ಸ್ಥಳೀಯ ಹುಡುಕಾಟ ಮತ್ತು ಗ್ರಾಹಕರ ವಿಚಾರಣೆಗಳ ಬಗ್ಗೆ ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶಿಗಳು.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights.html",
+    "isHome": false
+  },
+  {
+    "output": "kn/growth-audit.html",
+    "content": "translations/kn/growth-audit.html",
+    "title": "ಉಚಿತ ವೆಬ್‌ಸೈಟ್ ಮತ್ತು Google ಪರಿಶೀಲನೆ | GyanArt",
+    "description": "ನಿಮ್ಮ ವೆಬ್‌ಸೈಟ್, Google ಪ್ರೊಫೈಲ್ ಮತ್ತು ಗ್ರಾಹಕರ ಸಂಪರ್ಕದ ಮಾರ್ಗವನ್ನು ಪರಿಶೀಲಿಸಲು ಉಚಿತ ವಿನಂತಿ ಕಳುಹಿಸಿ.",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "growth-audit.html",
+    "isHome": false
   }
 ]
