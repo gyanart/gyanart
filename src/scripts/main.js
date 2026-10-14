@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   // Remember the visitor's explicit language choice across page navigation.
   const languageKey="gyanart-language";
   const localizedPages={
-    kn:new Set(["index.html","website-design.html","local-seo-services.html","google-business-profile-optimization.html","pricing.html","about.html","contact.html"]),
+    kn:new Set(["index.html","how-it-works.html","solutions.html","growth-experiments.html","insights.html","growth-audit.html","website-design.html","local-seo-services.html","google-business-profile-optimization.html","pricing.html","about.html","contact.html"]),
     hi:new Set(["index.html","website-design.html","local-seo-services.html","google-business-profile-optimization.html","pricing.html","about.html","contact.html"])
   };
   const pathParts=window.location.pathname.split("/").filter(Boolean);
