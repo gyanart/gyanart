@@ -25,6 +25,8 @@ function render(page){
   let body=read(page.content);
   const nested=page.output.includes("/");
   const prefix=nested?"../":"";
+  const lang=page.lang||"en";
+  const slug=page.slug||path.basename(page.output);
   if(!(page.isHome || page.output==="index.html")){
     body=body.replace('<section class="section"', '<section class="section page-intro"');
   }
@@ -62,8 +64,6 @@ function render(page){
     const remainder=body.slice(introEnd+"</section>".length);
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
-  const lang=page.lang||"en";
-  const slug=page.slug||path.basename(page.output);
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
   const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
   const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
