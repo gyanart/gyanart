@@ -41,6 +41,8 @@ jobs:
           grep -q 'main.js?v=' dist/index.html
           grep -q 'G-D0JCS746B6' dist/index.html
           grep -q 'G-D0JCS746B6' dist/how-it-works.html
+          grep -q 'clarity.ms/tag/yxvmsm9pma' dist/index.html
+          grep -q 'clarity.ms/tag/yxvmsm9pma' dist/how-it-works.html
           echo "GA4 measurement ID verified in homepage and inner-page HTML."
           grep -n 'G-D0JCS746B6' dist/index.html
           grep -q 'generate_lead' dist/js/main.js
