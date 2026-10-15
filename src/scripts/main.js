@@ -122,6 +122,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     button.setAttribute("aria-expanded",String(open));
   }));
 
+  document.querySelectorAll("form[data-email-form]").forEach(form=>{
+    const started=form.querySelector('input[name="form_started_at"]');
+    if(started)started.value=String(Date.now());
+  });
+
   document.querySelectorAll("form[data-email-form]").forEach(form=>form.addEventListener("submit",async event=>{
     event.preventDefault();
     if(!form.reportValidity())return;
