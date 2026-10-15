@@ -55,11 +55,14 @@ if (field('website_confirm', 200) !== '') {
     respond(200, ['success' => true, 'message' => 'Thank you.']);
 }
 
-// Reject missing or implausible form timing. The timestamp is a deterrent, not a standalone CAPTCHA.
+// Use form timing as a lightweight bot deterrent, not as a requirement for genuine leads.
+// Older tabs can remain open for hours, and cached pages may omit this optional field.
 $started = filter_var($_POST['form_started_at'] ?? null, FILTER_VALIDATE_INT);
-$elapsed = $started ? time() - (int)floor($started / 1000) : 0;
-if (!$started || $elapsed < 3 || $elapsed > 14400) {
-    respond(422, ['success' => false, 'message' => 'Please refresh the page and try submitting the form again.']);
+if ($started !== false && $started !== null && $started !== '') {
+    $elapsed = time() - (int)floor((int)$started / 1000);
+    if ($elapsed < 3) {
+        respond(422, ['success' => false, 'message' => 'Please wait a moment before submitting the form.']);
+    }
 }
 
 $type = field('form_type', 20);
