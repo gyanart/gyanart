@@ -24,43 +24,52 @@ jobs:
         run: npm run build
 
       - name: Verify generated website
+        shell: bash
         run: |
-          test -f dist/index.html
-          test -f dist/css/site.css
-          test -f dist/js/main.js
-          test -f dist/robots.txt
-          test -f dist/sitemap.xml
-          test -f dist/submit-form.php
-          test -f dist/assets/og-gyanart.svg
-          grep -q 'og:image' dist/index.html
-          grep -q 'twitter:card.*summary_large_image' dist/index.html
-          grep -q 'Cache-Control' dist/.htaccess
-          grep -q 'mod_expires.c' dist/.htaccess
-          grep -q 'mod_deflate.c' dist/.htaccess
-          grep -q 'site.css?v=' dist/index.html
-          grep -q 'main.js?v=' dist/index.html
-          grep -q 'G-D0JCS746B6' dist/index.html
-          grep -q 'G-D0JCS746B6' dist/how-it-works.html
-          grep -q 'clarity.ms/tag/yxvmsm9pma' dist/index.html
-          grep -q 'clarity.ms/tag/yxvmsm9pma' dist/how-it-works.html
-          echo "GA4 measurement ID verified in homepage and inner-page HTML."
-          grep -n 'G-D0JCS746B6' dist/index.html
-          grep -q 'generate_lead' dist/js/main.js
-          grep -q 'contact_click' dist/js/main.js
-          grep -q 'contact_method:"whatsapp"' dist/js/main.js
-          grep -q 'contact_method:"phone"' dist/js/main.js
-          grep -q 'contact_method:"email"' dist/js/main.js
-          grep -q 'Google Analytics 4 (GA4)' dist/privacy-policy.html
-          grep -q 'site-toast' dist/css/site.css
-          grep -q 'showFormToast' dist/js/main.js
-          grep -q 'form_started_at' dist/contact.html
-          grep -q 'website_confirm' dist/contact.html
-          grep -q 'form_started_at' dist/growth-audit.html
-          grep -q 'website_confirm' dist/growth-audit.html
-          grep -q 'rate_limit_passes' dist/submit-form.php
-          grep -q 'website_confirm' dist/submit-form.php
-          grep -q 'form_started_at' dist/submit-form.php
-          echo "GA4 tag, lead/contact events, form toast, privacy disclosure, static assets and PHP form handler verified."
+          set -euo pipefail
+          check() {
+            if "$@"; then
+              echo "PASS: $*"
+            else
+              echo "::error::FAILED CHECK: $*"
+              exit 1
+            fi
+          }
+
+          check test -f dist/index.html
+          check test -f dist/css/site.css
+          check test -f dist/js/main.js
+          check test -f dist/robots.txt
+          check test -f dist/sitemap.xml
+          check test -f dist/submit-form.php
+          check test -f dist/assets/og-gyanart.svg
+          check grep -q 'og:image' dist/index.html
+          check grep -q 'twitter:card.*summary_large_image' dist/index.html
+          check grep -q 'Cache-Control' dist/.htaccess
+          check grep -q 'mod_expires.c' dist/.htaccess
+          check grep -q 'mod_deflate.c' dist/.htaccess
+          check grep -q 'site.css?v=' dist/index.html
+          check grep -q 'main.js?v=' dist/index.html
+          check grep -q 'G-D0JCS746B6' dist/index.html
+          check grep -q 'G-D0JCS746B6' dist/how-it-works.html
+          check grep -q 'clarity.ms/tag/yxvmsm9pma' dist/index.html
+          check grep -q 'clarity.ms/tag/yxvmsm9pma' dist/how-it-works.html
+          check grep -q 'generate_lead' dist/js/main.js
+          check grep -q 'contact_click' dist/js/main.js
+          check grep -q 'contact_method:"whatsapp"' dist/js/main.js
+          check grep -q 'contact_method:"phone"' dist/js/main.js
+          check grep -q 'contact_method:"email"' dist/js/main.js
+          check grep -q 'Google Analytics 4 (GA4)' dist/privacy-policy.html
+          check grep -q 'site-toast' dist/css/site.css
+          check grep -q 'showFormToast' dist/js/main.js
+          check grep -q 'form_started_at' dist/contact.html
+          check grep -q 'website_confirm' dist/contact.html
+          check grep -q 'form_started_at' dist/growth-audit.html
+          check grep -q 'website_confirm' dist/growth-audit.html
+          check grep -q 'rate_limit_passes' dist/submit-form.php
+          check grep -q 'website_confirm' dist/submit-form.php
+          check grep -q 'form_started_at' dist/submit-form.php
+          echo "All generated-site checks passed."
 
       - name: Upload generated website to FTP account root (public_html)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
