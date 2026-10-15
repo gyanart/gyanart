@@ -3,6 +3,29 @@ const trackGA4=(eventName,params={})=>{
 };
 
 document.addEventListener("DOMContentLoaded",()=>{
+  let formToastTimer;
+  let formToastFadeTimer;
+  const showFormToast=message=>{
+    let toast=document.querySelector(".site-toast");
+    if(!toast){
+      toast=document.createElement("div");
+      toast.className="site-toast";
+      toast.setAttribute("role","status");
+      toast.setAttribute("aria-live","polite");
+      toast.setAttribute("aria-atomic","true");
+      document.body.appendChild(toast);
+    }
+    window.clearTimeout(formToastTimer);
+    window.clearTimeout(formToastFadeTimer);
+    toast.textContent=message;
+    toast.classList.remove("is-visible","is-hiding");
+    requestAnimationFrame(()=>toast.classList.add("is-visible"));
+    formToastTimer=window.setTimeout(()=>{
+      toast.classList.remove("is-visible");
+      toast.classList.add("is-hiding");
+      formToastFadeTimer=window.setTimeout(()=>toast.classList.remove("is-hiding"),350);
+    },2000);
+  };
   // Remember the visitor's explicit language choice across page navigation.
   const languageKey="gyanart-language";
   const localizedPages={
@@ -117,7 +140,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
       const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
       trackGA4("generate_lead",{form_name:formName});
-      if(status){status.className="form-status form-feedback form-feedback-success";status.textContent=result.message;}
+      if(status){status.className="form-status note";status.textContent="";}
+      showFormToast(result.message||"Your request was submitted successfully.");
       form.reset();
     }catch(error){
       if(status){status.className="form-status form-feedback form-feedback-error";status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";}
