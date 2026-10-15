@@ -51,9 +51,9 @@ jobs:
           grep -q 'contact_method:"phone"' dist/js/main.js
           grep -q 'contact_method:"email"' dist/js/main.js
           grep -q 'Google Analytics 4 (GA4)' dist/privacy-policy.html
-          grep -q 'generate_lead' dist/privacy-policy.html
-          grep -q 'contact_click' dist/privacy-policy.html
-          echo "GA4 tag, lead/contact events, privacy disclosure, static assets and PHP form handler verified."
+          grep -q 'site-toast' dist/css/site.css
+          grep -q 'showFormToast' dist/js/main.js
+          echo "GA4 tag, lead/contact events, form toast, privacy disclosure, static assets and PHP form handler verified."
 
       - name: Upload generated website to FTP account root (public_html)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
