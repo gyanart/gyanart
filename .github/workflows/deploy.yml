@@ -52,8 +52,10 @@ jobs:
           check grep -q 'main.js?v=' dist/index.html
           check grep -q 'G-D0JCS746B6' dist/index.html
           check grep -q 'G-D0JCS746B6' dist/how-it-works.html
-          check grep -q 'clarity.ms/tag/yxvmsm9pma' dist/index.html
-          check grep -q 'clarity.ms/tag/yxvmsm9pma' dist/how-it-works.html
+          check grep -q 'yxvmsm9pma' dist/index.html
+          check grep -q 'www.clarity.ms/tag/' dist/index.html
+          check grep -q 'yxvmsm9pma' dist/how-it-works.html
+          check grep -q 'www.clarity.ms/tag/' dist/how-it-works.html
           check grep -q 'generate_lead' dist/js/main.js
           check grep -q 'contact_click' dist/js/main.js
           check grep -q 'contact_method:"whatsapp"' dist/js/main.js
