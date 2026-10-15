@@ -18,9 +18,48 @@ function field(string $key, int $max = 3000): string {
 function clean_header(string $value): string {
     return str_replace(["\r", "\n"], '', $value);
 }
+function rate_limit_passes(): bool {
+    $ip = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    $key = hash('sha256', 'gyanart-form-v1|' . $ip);
+    $path = rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . 'gyanart-form-' . $key . '.json';
+    $now = time();
+    $window = 900; // 15 minutes
+    $limit = 5;    // maximum submissions per IP per window
+    $fp = @fopen($path, 'c+');
+    if ($fp === false) return true; // Do not block all genuine leads if temporary storage is unavailable.
+    try {
+        if (!flock($fp, LOCK_EX)) return true;
+        $raw = stream_get_contents($fp);
+        $times = json_decode(is_string($raw) ? $raw : '', true);
+        if (!is_array($times)) $times = [];
+        $times = array_values(array_filter($times, static fn($t) => is_int($t) && $t > $now - $window));
+        if (count($times) >= $limit) return false;
+        $times[] = $now;
+        rewind($fp);
+        ftruncate($fp, 0);
+        fwrite($fp, json_encode($times));
+        fflush($fp);
+        return true;
+    } finally {
+        flock($fp, LOCK_UN);
+        fclose($fp);
+    }
+}
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(405, ['success' => false, 'message' => 'Please submit the form on the website.']);
+}
+
+// Honeypot: legitimate visitors should never see or complete this field.
+if (field('website_confirm', 200) !== '') {
+    respond(200, ['success' => true, 'message' => 'Thank you.']);
+}
+
+// Reject missing or implausible form timing. The timestamp is a deterrent, not a standalone CAPTCHA.
+$started = filter_var($_POST['form_started_at'] ?? null, FILTER_VALIDATE_INT);
+$elapsed = $started ? time() - (int)floor($started / 1000) : 0;
+if (!$started || $elapsed < 3 || $elapsed > 14400) {
+    respond(422, ['success' => false, 'message' => 'Please refresh the page and try submitting the form again.']);
 }
 
 $type = field('form_type', 20);
@@ -43,6 +82,12 @@ if ($type === 'contact' && $message === '') {
 }
 if ($type === 'audit' && $business === '') {
     respond(422, ['success' => false, 'message' => 'Please enter your business name to request the audit.']);
+}
+if ($website !== '' && (!filter_var($website, FILTER_VALIDATE_URL) || !in_array(strtolower((string)parse_url($website, PHP_URL_SCHEME)), ['http', 'https'], true))) {
+    respond(422, ['success' => false, 'message' => 'Please enter a valid website or Google Maps URL starting with https://.']);
+}
+if (!rate_limit_passes()) {
+    respond(429, ['success' => false, 'message' => 'Too many submissions were received from this connection. Please wait 15 minutes before trying again, or email info@gyanart.com.']);
 }
 
 $recipient = 'info@gyanart.com';
@@ -69,7 +114,7 @@ $headers = [
     'Reply-To' => $replyEmail,
     'MIME-Version' => '1.0',
     'Content-Type' => 'text/plain; charset=UTF-8',
-    'X-Mailer' => 'PHP/' . phpversion()
+    'X-Mailer' => 'GyanArt website form'
 ];
 $headerString = '';
 foreach ($headers as $key => $value) $headerString .= $key . ': ' . $value . "\r\n";
@@ -93,18 +138,16 @@ $confirmationHeaders = [
     'Reply-To' => $sender,
     'MIME-Version' => '1.0',
     'Content-Type' => 'text/plain; charset=UTF-8',
-    'X-Mailer' => 'PHP/' . phpversion()
+    'X-Mailer' => 'GyanArt website form'
 ];
 $confirmationHeaderString = '';
 foreach ($confirmationHeaders as $key => $value) $confirmationHeaderString .= $key . ': ' . $value . "\r\n";
 
 if (!mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaderString)) {
-    error_log('GyanArt form: confirmation email failed for ' . $type . ' form; sender email ' . $email);
+    error_log('GyanArt form: confirmation email failed for ' . $type . ' form');
     respond(500, ['success' => false, 'message' => 'Your request reached GyanArt, but the confirmation email could not be sent. We’ll follow up within 24–48 hours; you can also reach us at info@gyanart.com.']);
 }
 
-// AJAX submissions receive JSON for the in-page success message. If JavaScript is unavailable,
- // show a friendly HTML confirmation instead of exposing raw JSON in the browser.
 $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
 if (stripos($accept, 'application/json') !== false || strtolower($_SERVER['HTTP_X_REQUESTED_WITH'] ?? '') === 'xmlhttprequest') {
     respond(200, ['success' => true, 'message' => $successMessage]);
