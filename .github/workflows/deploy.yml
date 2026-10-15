@@ -53,6 +53,13 @@ jobs:
           grep -q 'Google Analytics 4 (GA4)' dist/privacy-policy.html
           grep -q 'site-toast' dist/css/site.css
           grep -q 'showFormToast' dist/js/main.js
+          grep -q 'form_started_at' dist/contact.html
+          grep -q 'website_confirm' dist/contact.html
+          grep -q 'form_started_at' dist/growth-audit.html
+          grep -q 'website_confirm' dist/growth-audit.html
+          grep -q 'rate_limit_passes' dist/submit-form.php
+          grep -q 'website_confirm' dist/submit-form.php
+          grep -q 'form_started_at' dist/submit-form.php
           echo "GA4 tag, lead/contact events, form toast, privacy disclosure, static assets and PHP form handler verified."
 
       - name: Upload generated website to FTP account root (public_html)
