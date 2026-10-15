@@ -5,7 +5,7 @@ const trackGA4=(eventName,params={})=>{
 document.addEventListener("DOMContentLoaded",()=>{
   let formToastTimer;
   let formToastFadeTimer;
-  const showFormToast=message=>{
+  const showFormToast=(message,form)=>{
     let toast=document.querySelector(".site-toast");
     if(!toast){
       toast=document.createElement("div");
@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       toast.setAttribute("role","status");
       toast.setAttribute("aria-live","polite");
       toast.setAttribute("aria-atomic","true");
-      document.body.appendChild(toast);
     }
+    if(form&&!toast.parentElement?.isSameNode(form))form.appendChild(toast);
     window.clearTimeout(formToastTimer);
     window.clearTimeout(formToastFadeTimer);
     toast.textContent=message;
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
       trackGA4("generate_lead",{form_name:formName});
       if(status){status.className="form-status note";status.textContent="";}
-      showFormToast(result.message||"Your request was submitted successfully.");
+      showFormToast(result.message||"Your request was submitted successfully.",form);
       form.reset();
     }catch(error){
       if(status){status.className="form-status form-feedback form-feedback-error";status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";}
