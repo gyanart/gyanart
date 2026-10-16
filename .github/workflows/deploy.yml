@@ -41,6 +41,11 @@ jobs:
           check test -f dist/js/main.js
           check test -f dist/robots.txt
           check test -f dist/sitemap.xml
+          check grep -q 'https://www.gyanart.com/' dist/robots.txt
+          check grep -q 'https://www.gyanart.com/' dist/sitemap.xml
+          check grep -q 'rel="canonical" href="https://www.gyanart.com/' dist/index.html
+          check grep -q 'https://www.gyanart.com%{REQUEST_URI}' dist/.htaccess
+          check grep -q 'https://www.gyanart.com/ [R=301,L,QSD]' dist/.htaccess
           check test -f dist/submit-form.php
           check test -f dist/assets/og-gyanart.svg
           check grep -q 'og:image' dist/index.html
