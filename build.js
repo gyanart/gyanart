@@ -180,6 +180,19 @@ if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includ
 }
 const htaccess = `DirectoryIndex index.html
 
+# Preserve HTTPS and redirect removed legacy URLs to the homepage.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Existing files and directories continue to work normally.
+  # Any deleted or unknown URL is permanently redirected to the homepage.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ https://%{HTTP_HOST}/ [R=301,L,QSD]
+</IfModule>
+
 # Keep HTML revalidatable so deployments appear promptly.
 <IfModule mod_headers.c>
   <FilesMatch "\\.(html|php)$">
