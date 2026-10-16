@@ -180,17 +180,18 @@ if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includ
 }
 const htaccess = `DirectoryIndex index.html
 
-# Preserve HTTPS and redirect removed legacy URLs to the homepage.
+# Canonicalize every request to HTTPS on the preferred www hostname.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteCond %{HTTPS} !=on
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\\.gyanart\\.com$ [NC]
+  RewriteRule ^ https://www.gyanart.com%{REQUEST_URI} [R=301,L]
 
   # Existing files and directories continue to work normally.
-  # Any deleted or unknown URL is permanently redirected to the homepage.
+  # Any deleted or unknown URL is permanently redirected to the canonical homepage.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ https://%{HTTP_HOST}/ [R=301,L,QSD]
+  RewriteRule ^ https://www.gyanart.com/ [R=301,L,QSD]
 </IfModule>
 
 # Keep HTML revalidatable so deployments appear promptly.

@@ -148,6 +148,8 @@ document.addEventListener("DOMContentLoaded",()=>{
       if(status){status.className="form-status note";status.textContent="";}
       showFormToast(result.message||"Your request was submitted successfully.",form);
       form.reset();
+      const resetStarted=form.querySelector('input[name="form_started_at"]');
+      if(resetStarted)resetStarted.value=String(Date.now());
     }catch(error){
       if(status){status.className="form-status form-feedback form-feedback-error";status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";}
     }finally{
