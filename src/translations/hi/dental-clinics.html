@@ -1,0 +1,126 @@
+<section class="dental-landing">
+  <style>
+    body:has(.dental-landing) .site-nav,body:has(.dental-landing) .nav-toggle,body:has(.dental-landing) .site-footer,body:has(.dental-landing) .back-to-top{display:none}
+    body:has(.dental-landing) .site-header{background:#fff;border-bottom:1px solid #e6eef8}
+    body:has(.dental-landing) .nav-wrap{min-height:70px;justify-content:flex-start}
+    .dental-landing{--dental-blue:#1769ef;--dental-navy:#102b50;--dental-green:#08a765;color:var(--dental-navy);background:#fff;font-family:Inter,system-ui,sans-serif}
+    .dental-container{width:min(1120px,calc(100% - 40px));margin:auto}
+    .dental-hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#f3faff 0%,#fff 54%,#e7f5ff 100%);padding:64px 0 58px}
+    .dental-hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:34px}
+    .dental-kicker{display:inline-block;color:var(--dental-blue);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+    .dental-hero h1{font-size:clamp(38px,5vw,62px);line-height:1.04;letter-spacing:-.045em;margin:15px 0 18px;color:var(--dental-navy)}
+    .dental-hero h1 span{color:var(--dental-blue)}
+    .dental-hero p{font-size:18px;line-height:1.65;color:#405875;max-width:570px;margin:0 0 24px}
+    .dental-benefits{display:flex;flex-wrap:wrap;gap:10px;margin:25px 0}
+    .dental-benefits span{padding:9px 12px;background:#fff;border:1px solid #dceafa;border-radius:999px;font-size:13px;font-weight:700}
+    .dental-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--dental-green);color:#fff;padding:15px 23px;border-radius:999px;font-weight:800;font-size:16px;box-shadow:0 10px 25px #08a7652b;transition:transform .2s,box-shadow .2s}
+    .dental-btn:hover{transform:translateY(-2px);box-shadow:0 13px 28px #08a76540}
+    .dental-micro{display:block;color:#647995;font-size:12px;margin-top:12px}
+    .dental-photo{min-height:430px;border-radius:30px;overflow:hidden;position:relative;background:#e7f4ff;box-shadow:0 22px 55px #17365a20}
+    .dental-photo img{display:block;width:100%;height:100%;min-height:430px;position:absolute;inset:0;object-fit:cover;object-position:center 42%}
+    .dental-photo-note{position:absolute;left:18px;right:18px;bottom:18px;background:#ffffffed;border:1px solid #ffffff;border-radius:18px;padding:15px 18px;font-weight:800;box-shadow:0 10px 35px #17365a20}
+    .dental-photo-note small{display:block;color:#55708c;font-weight:500;margin-top:3px}
+    .dental-section{padding:65px 0}
+    .dental-section.tint{background:#f4f9ff}
+    .dental-section-head{max-width:700px;margin:0 auto 30px;text-align:center}
+    .dental-section h2{font-size:clamp(29px,3.7vw,42px);line-height:1.12;margin:10px 0 13px;color:var(--dental-navy)}
+    .dental-section-head p{color:#526985;margin:0;font-size:16px}
+    .dental-service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .dental-card{background:#fff;border:1px solid #e0eaf6;border-radius:20px;padding:24px;box-shadow:0 8px 25px #17365a08}
+    .dental-card-icon{width:46px;height:46px;display:grid;place-items:center;background:#eaf4ff;color:var(--dental-blue);border-radius:14px;font-size:24px;margin-bottom:16px}
+    .dental-card h3{font-size:19px;line-height:1.25;margin:0 0 10px}
+    .dental-card p{color:#526985;font-size:14px;margin:0;line-height:1.65}
+    .dental-process{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}
+    .dental-step{position:relative;padding:21px 16px;background:#fff;border:1px solid #e0eaf6;border-radius:18px}
+    .dental-step-number{width:31px;height:31px;display:grid;place-items:center;border-radius:50%;background:var(--dental-blue);color:#fff;font-weight:800;font-size:13px;margin-bottom:14px}
+    .dental-step h3{font-size:16px;margin:0 0 8px;line-height:1.3}
+    .dental-step p{font-size:13px;color:#526985;line-height:1.6;margin:0}
+    .dental-offer{background:linear-gradient(120deg,#102d54,#174a83);color:#fff;border-radius:26px;padding:36px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+    .dental-offer h2{color:#fff;margin:0 0 10px;font-size:clamp(27px,3vw,36px)}
+    .dental-offer p{color:#d4e5fa;margin:0;max-width:650px}
+    .dental-offer .dental-btn{white-space:nowrap}
+    .dental-form-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:start}
+    .dental-form-copy p{color:#526985;line-height:1.7}
+    .dental-form{background:#fff;border:1px solid #dfe9f6;border-radius:22px;padding:26px;box-shadow:0 15px 45px #17365a0c}
+    .dental-form label{display:block;font-size:13px;font-weight:700;margin:13px 0 6px}
+    .dental-form input,.dental-form textarea{width:100%;border:1px solid #d6e1ef;border-radius:10px;padding:12px 13px;font:inherit;font-size:14px;background:#fbfdff;color:#102b50}
+    .dental-form input:focus,.dental-form textarea:focus{outline:2px solid #a9ccff;border-color:var(--dental-blue)}
+    .dental-form .dental-btn{border:0;cursor:pointer;margin-top:17px;width:100%}
+    .dental-form .form-status{min-height:18px}
+    .dental-privacy{font-size:11px;color:#6a7e95;line-height:1.5;margin-top:10px}
+    .dental-bottom{padding:23px 0;background:#102b50;color:#d9e8f8;font-size:12px}
+    .dental-bottom .dental-container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .dental-bottom a{color:#fff;text-decoration:underline}
+    @media(max-width:760px){.dental-hero{padding:38px 0 42px}.dental-hero-grid,.dental-form-wrap{grid-template-columns:1fr}.dental-photo{min-height:300px;order:-1}.dental-photo img{min-height:300px}.dental-hero h1{font-size:clamp(37px,10vw,52px)}.dental-hero p{font-size:16px}.dental-section{padding:46px 0}.dental-service-grid{grid-template-columns:1fr}.dental-process{grid-template-columns:1fr 1fr}.dental-offer{grid-template-columns:1fr;padding:26px}.dental-offer .dental-btn{justify-self:start}.dental-container{width:min(100% - 28px,1120px)}}
+    @media(max-width:420px){.dental-process{grid-template-columns:1fr}.dental-benefits span{font-size:12px}.dental-form{padding:19px}}
+  </style>
+  <section class="dental-hero">
+    <div class="dental-container dental-hero-grid">
+      <div>
+        <span class="dental-kicker">डेंटल क्लीनिक के लिए डिजिटल विकास</span>
+        <h1>Grow Your Dental Clinic <span>Online</span></h1>
+        <p>ऑनलाइन दृश्यता बढ़ाने, भरोसा बनाने और अपॉइंटमेंट पूछताछ बढ़ाने के व्यावहारिक तरीके जानें।</p>
+        <div class="dental-benefits"><span>✓ वेबसाइट डिज़ाइन</span><span>✓ लोकल SEO</span><span>✓ Google Business Profile</span></div>
+        <a class="dental-btn" data-track-event="dental_cta_click" data-track-label="hero_whatsapp" href="https://wa.me/919880208870?text=Hi%20GyanArt%2C%20I%27d%20like%20a%20free%20digital%20growth%20review%20for%20my%20dental%20clinic." target="_blank" rel="noopener">Get a Free Growth Review <span aria-hidden="true">→</span></a>
+        <span class="dental-micro">पहली समीक्षा मुफ़्त · कोई बाध्यता नहीं · व्यावहारिक सुझाव</span>
+      </div>
+      <div class="dental-photo">
+        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Dentist caring for a patient in a bright, modern dental clinic" width="1200" height="900" fetchpriority="high" decoding="async">
+        <div class="dental-photo-note">More smiles. More visibility.<small>Digital growth support from GyanArt</small></div>
+      </div>
+    </div>
+  </section>
+  <section class="dental-section">
+    <div class="dental-container">
+      <div class="dental-section-head"><span class="dental-kicker">हम क्या करते हैं</span><h2>आपके क्लीनिक के लिए व्यावहारिक डिजिटल समाधान</h2><p>स्थानीय मरीजों को आपका क्लीनिक खोजने, सेवाएँ समझने और भरोसे के साथ संपर्क करने में मदद करें।</p></div>
+      <div class="dental-service-grid">
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">⌘</div><h3>वेबसाइट डिज़ाइन & UX</h3><p>मोबाइल-अनुकूल पेज, उपचार की स्पष्ट जानकारी, भरोसा बढ़ाने वाली सामग्री और आसान अपॉइंटमेंट संपर्क विकल्प।</p></article>
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">⌖</div><h3>लोकल SEO</h3><p>लोकल सर्च, सेवा पेज, ऑन-पेज SEO और मरीजों के क्लीनिक खोजने के तरीके बेहतर करें।</p></article>
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">G</div><h3>Google Business Profile</h3><p>सही क्लीनिक विवरण, सेवाएँ, तस्वीरें, अपडेट और वास्तविक मरीज समीक्षाओं के प्रति जिम्मेदार तरीका।</p></article>
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">↗</div><h3>Google और Meta विज्ञापन</h3><p>स्पष्ट लक्ष्यों और प्रासंगिक लैंडिंग पेज के साथ अभियान बनाएं; विज्ञापन खर्च अलग दिखाया जाएगा।</p></article>
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">◎</div><h3>सामग्री और सोशल मीडिया</h3><p>क्लीनिक द्वारा स्वीकृत उपयोगी सामग्री जो मरीजों के सवालों का जवाब दे और भरोसा बनाए।</p></article>
+        <article class="dental-card"><div class="dental-card-icon" aria-hidden="true">▥</div><h3>एनालिटिक्स और सुधार</h3><p>विज़िट, WhatsApp क्लिक, कॉल और फ़ॉर्म पूछताछ मापें; मरीज यात्रा बेहतर करने के लिए डेटा उपयोग करें।</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="dental-section tint">
+    <div class="dental-container">
+      <div class="dental-section-head"><span class="dental-kicker">हम कैसे काम करते हैं</span><h2>समीक्षा से सुधार तक स्पष्ट प्रक्रिया</h2><p>अस्पष्ट वादों के बजाय व्यावहारिक कदम और मापने योग्य प्रगति पर ध्यान।</p></div>
+      <div class="dental-process">
+        <article class="dental-step"><div class="dental-step-number">1</div><h3>समझें</h3><p>अपने क्लीनिक, सेवाओं, स्थानीय दर्शकों और विकास लक्ष्यों पर चर्चा करें।</p></article>
+        <article class="dental-step"><div class="dental-step-number">2</div><h3>समीक्षा करें</h3><p>वेबसाइट, Google प्रोफ़ाइल, सर्च उपस्थिति और संपर्क यात्रा की समीक्षा करें।</p></article>
+        <article class="dental-step"><div class="dental-step-number">3</div><h3>प्राथमिकता तय करें</h3><p>मुख्य अवसर और व्यावहारिक कार्य योजना साझा करें।</p></article>
+        <article class="dental-step"><div class="dental-step-number">4</div><h3>लागू करें</h3><p>दायरा तय करें, फिर पेज, दृश्यता या अभियान बेहतर करें।</p></article>
+        <article class="dental-step"><div class="dental-step-number">5</div><h3>मापें</h3><p>पूछताछ और प्रदर्शन मापें, फिर अगले कदम सुधारें।</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="dental-section">
+    <div class="dental-container">
+      <div class="dental-offer">
+        <div><h2>मुफ़्त डेंटल ग्रोथ समीक्षा से शुरुआत करें</h2><p>अपनी ऑनलाइन उपस्थिति और अगले उपयोगी सुधारों पर खास सुझाव प्राप्त करें।</p></div>
+        <a class="dental-btn" data-track-event="dental_cta_click" data-track-label="midpage_whatsapp" href="https://wa.me/919880208870?text=Hi%20GyanArt%2C%20I%27d%20like%20a%20free%20digital%20growth%20review%20for%20my%20dental%20clinic." target="_blank" rel="noopener">समीक्षा माँगें →</a>
+      </div>
+    </div>
+  </section>
+  <section class="dental-section tint" id="request-review">
+    <div class="dental-container dental-form-wrap">
+      <div class="dental-form-copy"><span class="dental-kicker">बात करें</span><h2>अपनी मुफ़्त समीक्षा माँगें</h2><p>अपने क्लीनिक का विवरण साझा करें। मैं जानकारी देखकर अगले कदम बताऊँगा। सेवा खरीदने की कोई बाध्यता नहीं है।</p><p><strong>WhatsApp पसंद है?</strong><br><a data-track-event="dental_cta_click" data-track-label="form_whatsapp" href="https://wa.me/919880208870?text=Hi%20GyanArt%2C%20I%27d%20like%20a%20free%20digital%20growth%20review%20for%20my%20dental%20clinic." target="_blank" rel="noopener">GyanArt को सीधे संदेश भेजें →</a></p></div>
+      <form class="dental-form" action="submit-form.php" method="post" data-email-form>
+        <input type="hidden" name="form_started_at" value="">
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label>इस फ़ील्ड को खाली छोड़ें<input name="website_confirm" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="form_type" value="audit">
+        <label for="dental-name">आपका नाम *</label><input id="dental-name" name="name" autocomplete="name" required>
+        <label for="dental-clinic">क्लीनिक का नाम *</label><input id="dental-clinic" name="business" autocomplete="organization" required>
+        <label for="dental-website">क्लीनिक वेबसाइट या Google Maps लिंक</label><input id="dental-website" name="website" type="url" placeholder="https://">
+        <label for="dental-email">ईमेल पता *</label><input id="dental-email" name="email" type="email" autocomplete="email" required>
+        <label for="dental-mobile">मोबाइल नंबर *</label><input id="dental-mobile" name="mobile" type="tel" autocomplete="tel" inputmode="tel" required>
+        <label for="dental-goal">आप सबसे ज़्यादा क्या बेहतर करना चाहते हैं?</label><textarea id="dental-goal" name="goal" rows="3" placeholder="e.g. local visibility, website, appointment enquiries"></textarea>
+        <button class="dental-btn" type="submit">मेरी मुफ़्त समीक्षा माँगें →</button>
+        <p class="form-status dental-privacy" role="status" aria-live="polite"></p>
+        <p class="dental-privacy">आपकी जानकारी का उपयोग इस अनुरोध का जवाब देने के लिए होगा। मरीज या चिकित्सा संबंधी जानकारी शामिल न करें।</p>
+      </form>
+    </div>
+  </section>
+  <div class="dental-bottom"><div class="dental-container"><span>© 2026 GyanArt · डेंटल क्लीनिक के लिए डिजिटल ग्रोथ पार्टनर</span><span><a href="privacy-policy.html">गोपनीयता नीति</a> · <a href="mailto:info@gyanart.com">info@gyanart.com</a></span></div></div>
+</section>
