@@ -103,6 +103,7 @@ function render(page){
     .replaceAll('href="pricing.html"','href="'+prefix+'pricing.html"')
     .replaceAll('href="about.html"','href="'+prefix+'about.html"')
     .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
+    .replaceAll('href="faqs.html"','href="'+prefix+'faqs.html"')
     .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
