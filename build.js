@@ -41,7 +41,7 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design"
+    "website-design.html":"Website Design","logo-design.html":"Logo Design"
   };
   const parent={
     "experiments/dental-clinic.html":["Growth Experiments","growth-experiments.html"],
@@ -50,7 +50,8 @@ function render(page){
     "experiments/restaurant.html":["Growth Experiments","growth-experiments.html"],
     "local-seo-services.html":["Solutions","solutions.html"],
     "google-business-profile-optimization.html":["Solutions","solutions.html"],
-    "website-design.html":["Solutions","solutions.html"]
+    "website-design.html":["Solutions","solutions.html"],
+    "logo-design.html":["Solutions","solutions.html"]
   };
   const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:"index.html"}];
   if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
@@ -66,7 +67,7 @@ function render(page){
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
   const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
-  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
+  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const languageOptions=languageItems.map(item=>{
     const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
@@ -79,6 +80,7 @@ function render(page){
     .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
     .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
     .replaceAll("{{HREF_WEBSITE_DESIGN}}",navHref("website-design.html"))
+    .replaceAll("{{HREF_LOGO_DESIGN}}","https://www.gyanart.com/logo-design.html")
     .replaceAll("{{HREF_LOCAL_SEO}}",navHref("local-seo-services.html"))
     .replaceAll("{{HREF_GBP}}",navHref("google-business-profile-optimization.html"))
     .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
@@ -87,7 +89,7 @@ function render(page){
     .replaceAll("{{HREF_INSIGHTS}}",navHref("insights.html"))
     .replaceAll("{{HREF_AUDIT}}",navHref("growth-audit.html"))
     .replaceAll("{{NAV_HOW}}",navLabels.how).replaceAll("{{NAV_SOLUTIONS}}",navLabels.solutions)
-    .replaceAll("{{NAV_SOLUTIONS_ALL}}",navLabels.solutionsAll).replaceAll("{{NAV_WEBSITE_DESIGN}}",navLabels.websiteDesign)
+    .replaceAll("{{NAV_SOLUTIONS_ALL}}",navLabels.solutionsAll).replaceAll("{{NAV_WEBSITE_DESIGN}}",navLabels.websiteDesign).replaceAll("{{NAV_LOGO_DESIGN}}",navLabels.logoDesign)
     .replaceAll("{{NAV_LOCAL_SEO}}",navLabels.localSeo).replaceAll("{{NAV_GBP}}",navLabels.gbp)
     .replaceAll("{{NAV_EXPERIMENTS}}",navLabels.experiments).replaceAll("{{NAV_PRICING}}",navLabels.pricing)
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
@@ -185,18 +187,19 @@ if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includ
 }
 const htaccess = `DirectoryIndex index.html
 
-# Canonicalize every request to HTTPS on the preferred www hostname.
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Redirect legacy URLs to the closest current equivalent in one hop.
+  RewriteRule ^index\\.(html|htm)$ https://www.gyanart.com/ [R=301,L,NC]
+  RewriteRule ^website_design\\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]
+  RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]
+  RewriteRule ^logo_design\\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]
+
+  # Canonicalize all other requests to HTTPS on the preferred www hostname.
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} !^www\\.gyanart\\.com$ [NC]
   RewriteRule ^ https://www.gyanart.com%{REQUEST_URI} [R=301,L]
-
-  # Existing files and directories continue to work normally.
-  # Any deleted or unknown URL is permanently redirected to the canonical homepage.
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ https://www.gyanart.com/ [R=301,L,QSD]
 </IfModule>
 
 # Keep HTML revalidatable so deployments appear promptly.
