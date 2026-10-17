@@ -195,6 +195,9 @@ const htaccess = `DirectoryIndex index.html
   RewriteRule ^website_design\\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^logo_design\\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]
+  RewriteRule ^about-us\\.html$ https://www.gyanart.com/about.html [R=301,L,NC]
+  RewriteRule ^website-design-portfolio\\.html$ https://www.gyanart.com/website-design.html [R=301,L,NC]
+  RewriteRule ^testimonials\\.html$ - [G,L]
 
   # Canonicalize all other requests to HTTPS on the preferred www hostname.
   RewriteCond %{HTTPS} !=on [OR]
