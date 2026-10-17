@@ -100,6 +100,12 @@
     "description": "Get a clear, mobile-friendly business website built around customer questions, trust and enquiries, with thoughtful UX, performance and search-ready structure."
   },
   {
+    "output": "logo-design.html",
+    "content": "pages/logo-design.html",
+    "title": "Logo Design Services in Bangalore | GyanArt",
+    "description": "Create a clear, memorable logo for your Bangalore business. GyanArt helps small businesses develop practical logo concepts and files suited to websites, social media and print."
+  },
+  {
     "output": "privacy-policy.html",
     "content": "pages/privacy-policy.html",
     "title": "Privacy Policy | GyanArt",

@@ -45,7 +45,13 @@ jobs:
           check grep -q 'https://www.gyanart.com/' dist/sitemap.xml
           check grep -q 'rel="canonical" href="https://www.gyanart.com/' dist/index.html
           check grep -q 'https://www.gyanart.com%{REQUEST_URI}' dist/.htaccess
-          check grep -Fq 'RewriteRule ^ https://www.gyanart.com/ [R=301,L,QSD]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^index\.(html|htm)$ https://www.gyanart.com/ [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^website_design\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^logo_design\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]' dist/.htaccess
+          check test -f dist/logo-design.html
+          check grep -q 'logo-design.html' dist/sitemap.xml
+          check grep -q 'Logo Design' dist/solutions.html
           check test -f dist/submit-form.php
           check test -f dist/assets/og-gyanart.svg
           check grep -q 'og:image' dist/index.html
