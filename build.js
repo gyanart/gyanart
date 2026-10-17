@@ -34,7 +34,7 @@ function render(page){
     "how-it-works.html":"How It Works","solutions.html":"Solutions",
     "growth-experiments.html":"Growth Experiments","pricing.html":"Pricing",
     "about.html":"About Gyan","insights.html":"Insights",
-    "growth-audit.html":"Free Growth Audit","contact.html":"Contact",
+    "growth-audit.html":"Free Growth Audit","contact.html":"Contact","faqs.html":"FAQs",
     "experiments/dental-clinic.html":"Dental Clinic",
     "experiments/professional-services.html":"Professional Services",
     "experiments/appliance-repair.html":"Appliance Repair",
@@ -103,6 +103,7 @@ function render(page){
     .replaceAll('href="pricing.html"','href="'+prefix+'pricing.html"')
     .replaceAll('href="about.html"','href="'+prefix+'about.html"')
     .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
+    .replaceAll('href="faqs.html"','href="'+prefix+'faqs.html"')
     .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
@@ -195,6 +196,9 @@ const htaccess = `DirectoryIndex index.html
   RewriteRule ^website_design\\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^logo_design\\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]
+  RewriteRule ^about-us\\.html$ https://www.gyanart.com/about.html [R=301,L,NC]
+  RewriteRule ^website-design-portfolio\\.html$ https://www.gyanart.com/website-design.html [R=301,L,NC]
+  RewriteRule ^testimonials\\.html$ - [G,L]
 
   # Canonicalize all other requests to HTTPS on the preferred www hostname.
   RewriteCond %{HTTPS} !=on [OR]

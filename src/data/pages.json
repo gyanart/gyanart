@@ -363,5 +363,11 @@
     "title": "Digital Growth for Dental Clinics in Bangalore | GyanArt",
     "description": "Help more local patients discover your dental clinic with website design, local SEO, Google Business Profile optimization, digital ads and measurable enquiry tracking.",
     "noBreadcrumbs": true
+  },
+  {
+    "output": "faqs.html",
+    "content": "pages/faqs.html",
+    "title": "FAQs About Website Design, Local SEO & Digital Growth | GyanArt",
+    "description": "Answers to common questions about website design, local SEO, Google Business Profile optimization, logo design, pricing and improving enquiries for small businesses."
   }
 ]
