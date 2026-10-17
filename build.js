@@ -27,7 +27,7 @@ function render(page){
   const prefix=nested?"../":"";
   const lang=page.lang||"en";
   const slug=page.slug||path.basename(page.output);
-  if(!(page.isHome || page.output==="index.html")){
+  if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
     body=body.replace('<section class="section"', '<section class="section page-intro"');
   }
   const labels={
@@ -57,7 +57,7 @@ function render(page){
   if(labels[page.output]) crumbParts.push({label:labels[page.output]});
   const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
-  if(!(page.isHome || page.output==="index.html")){
+  if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
     const introEnd=body.indexOf("</section>");
     if(introEnd===-1) throw new Error("Could not locate first section on "+page.output);
     const intro=body.slice(0,introEnd+"</section>".length);
