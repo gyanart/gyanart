@@ -49,6 +49,12 @@ jobs:
           check grep -Fq 'RewriteRule ^website_design\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]' dist/.htaccess
           check grep -Fq 'RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]' dist/.htaccess
           check grep -Fq 'RewriteRule ^logo_design\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^about-us\.html$ https://www.gyanart.com/about.html [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^website-design-portfolio\.html$ https://www.gyanart.com/website-design.html [R=301,L,NC]' dist/.htaccess
+          check grep -Fq 'RewriteRule ^testimonials\.html$ - [G,L]' dist/.htaccess
+          check grep -q 'Website design FAQs' dist/website-design.html
+          check grep -q 'Google Business Profile FAQs' dist/google-business-profile-optimization.html
+          check grep -q 'Explore GyanArt services' dist/insights.html
           check test -f dist/logo-design.html
           check grep -q 'logo-design.html' dist/sitemap.xml
           check grep -q 'Logo Design' dist/solutions.html
