@@ -54,7 +54,7 @@ function render(page){
     "logo-design.html":["Solutions","solutions.html"]
   };
   const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:"index.html"}];
-  if(parent[slug]) crumbParts.push({label:parent[slug][0],href:lang==="en"?prefix+parent[slug][1]:parent[slug][1]});
+  if(parent[slug]) crumbParts.push({label:parent[slug][0],href:lang==="en"?prefix+parent[slug][1]:"../".repeat(Math.max(0,page.output.split("/").length-2))+parent[slug][1]});
   if(labels[slug]) crumbParts.push({label:labels[slug]});
   const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
