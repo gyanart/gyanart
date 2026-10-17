@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     const link=event.target.closest("a[href]");
     if(!link)return;
     const href=link.getAttribute("href")||"";
+    const tracked=link.dataset.trackEvent;
+    if(tracked){trackGA4(tracked,{campaign_label:link.dataset.trackLabel||"unspecified",page_path:window.location.pathname});}
     if(/^https?:\/\/(?:www\.)?(?:wa\.me|whatsapp\.com)\//i.test(href)){
       trackGA4("contact_click",{contact_method:"whatsapp"});
     }else if(/^tel:/i.test(href)){
