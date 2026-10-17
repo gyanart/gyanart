@@ -3,7 +3,7 @@
     body:has(.dental-landing) .site-nav,body:has(.dental-landing) .nav-toggle,body:has(.dental-landing) .site-footer,body:has(.dental-landing) .back-to-top{display:none}
     body:has(.dental-landing) .site-header{background:#fff;border-bottom:1px solid #e6eef8}
     body:has(.dental-landing) .nav-wrap{min-height:70px;justify-content:flex-start}
-    .dental-landing{--dental-blue:#1769ef;--dental-navy:#102b50;--dental-green:#08a765;color:var(--dental-navy);background:#fff;font-family:Inter,system-ui,sans-serif}
+    .dental-language{position:absolute;top:14px;right:24px;z-index:20;display:flex;gap:10px;font-size:12px;font-weight:700}.dental-language a{color:#1769ef;text-decoration:none}.dental-landing{--dental-blue:#1769ef;--dental-navy:#102b50;--dental-green:#08a765;color:var(--dental-navy);background:#fff;font-family:Inter,system-ui,sans-serif}
     .dental-container{width:min(1120px,calc(100% - 40px));margin:auto}
     .dental-hero{position:relative;overflow:hidden;background:linear-gradient(115deg,#f3faff 0%,#fff 54%,#e7f5ff 100%);padding:64px 0 58px}
     .dental-hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:34px}
@@ -54,6 +54,7 @@
     @media(max-width:760px){.dental-hero{padding:38px 0 42px}.dental-hero-grid,.dental-form-wrap{grid-template-columns:1fr}.dental-photo{min-height:300px;order:-1}.dental-photo img{min-height:300px}.dental-hero h1{font-size:clamp(37px,10vw,52px)}.dental-hero p{font-size:16px}.dental-section{padding:46px 0}.dental-service-grid{grid-template-columns:1fr}.dental-process{grid-template-columns:1fr 1fr}.dental-offer{grid-template-columns:1fr;padding:26px}.dental-offer .dental-btn{justify-self:start}.dental-container{width:min(100% - 28px,1120px)}}
     @media(max-width:420px){.dental-process{grid-template-columns:1fr}.dental-benefits span{font-size:12px}.dental-form{padding:19px}}
   </style>
+  <nav class="dental-language" aria-label="Language"><a href="dental-clinics.html" lang="en" aria-current="page">English</a><a href="kn/dental-clinics.html" lang="kn">ಕನ್ನಡ</a><a href="hi/dental-clinics.html" lang="hi">हिन्दी</a></nav>
   <section class="dental-hero">
     <div class="dental-container dental-hero-grid">
       <div>

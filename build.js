@@ -24,7 +24,7 @@ fs.mkdirSync(dist,{recursive:true});
 function render(page){
   let body=read(page.content);
   const nested=page.output.includes("/");
-  const prefix=nested?"../":"";
+  const prefix="../".repeat(page.output.split("/").length-1);
   const lang=page.lang||"en";
   const slug=page.slug||path.basename(page.output);
   if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
@@ -41,7 +41,7 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design","logo-design.html":"Logo Design"
+    "website-design.html":"Website Design","logo-design.html":"Logo Design","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions"
   };
   const parent={
     "experiments/dental-clinic.html":["Growth Experiments","growth-experiments.html"],
@@ -53,9 +53,10 @@ function render(page){
     "website-design.html":["Solutions","solutions.html"],
     "logo-design.html":["Solutions","solutions.html"]
   };
-  const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:"index.html"}];
-  if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
-  if(labels[page.output]) crumbParts.push({label:labels[page.output]});
+  const homeHref=lang==="en"?prefix+"index.html":"../".repeat(Math.max(0,page.output.split("/").length-2))+"index.html";
+  const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:homeHref}];
+  if(parent[slug]) crumbParts.push({label:parent[slug][0],href:lang==="en"?prefix+parent[slug][1]:"../".repeat(Math.max(0,page.output.split("/").length-2))+parent[slug][1]});
+  if(labels[slug]) crumbParts.push({label:labels[slug]});
   const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
   if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
@@ -66,13 +67,14 @@ function render(page){
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
-  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
+  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
   const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const languageOptions=languageItems.map(item=>{
     const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
     const targetSlug=exists?slug:"index.html";
-    const target=item.code===lang?targetSlug:(item.code==="en"?prefix+targetSlug:prefix+item.code+"/"+targetSlug);
+    const sameLanguageSlug=targetSlug.includes("/")?targetSlug.split("/").pop():targetSlug;
+    const target=item.code===lang?sameLanguageSlug:(item.code==="en"?prefix+targetSlug:prefix+item.code+"/"+targetSlug);
     return '<a href="'+target+'" lang="'+item.code+'"'+(item.code===lang?' aria-current="true"':"")+">"+item.name+"</a>";
   }).join("");
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
@@ -80,7 +82,7 @@ function render(page){
     .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
     .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
     .replaceAll("{{HREF_WEBSITE_DESIGN}}",navHref("website-design.html"))
-    .replaceAll("{{HREF_LOGO_DESIGN}}","https://www.gyanart.com/logo-design.html")
+    .replaceAll("{{HREF_LOGO_DESIGN}}",navHref("logo-design.html"))
     .replaceAll("{{HREF_LOCAL_SEO}}",navHref("local-seo-services.html"))
     .replaceAll("{{HREF_GBP}}",navHref("google-business-profile-optimization.html"))
     .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
@@ -95,17 +97,20 @@ function render(page){
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
     .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)
     .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
+  const footerPrefix=lang==="en"?prefix:"../".repeat(Math.max(0,page.output.split("/").length-2));
   const foot=footer.replaceAll("{{SITE_NAME}}",site.name).replaceAll("{{TAGLINE}}",site.tagline)
-    .replaceAll('href="index.html"','href="'+prefix+'index.html"')
-    .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
-    .replaceAll('href="solutions.html"','href="'+prefix+'solutions.html"')
-    .replaceAll('href="growth-experiments.html"','href="'+prefix+'growth-experiments.html"')
-    .replaceAll('href="pricing.html"','href="'+prefix+'pricing.html"')
-    .replaceAll('href="about.html"','href="'+prefix+'about.html"')
-    .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
-    .replaceAll('href="faqs.html"','href="'+prefix+'faqs.html"')
-    .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
-    .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
+    .replaceAll('href="index.html"','href="'+footerPrefix+'index.html"')
+    .replaceAll('href="how-it-works.html"','href="'+footerPrefix+'how-it-works.html"')
+    .replaceAll('href="solutions.html"','href="'+footerPrefix+'solutions.html"')
+    .replaceAll('href="growth-experiments.html"','href="'+footerPrefix+'growth-experiments.html"')
+    .replaceAll('href="pricing.html"','href="'+footerPrefix+'pricing.html"')
+    .replaceAll('href="about.html"','href="'+footerPrefix+'about.html"')
+    .replaceAll('href="insights.html"','href="'+footerPrefix+'insights.html"')
+    .replaceAll('href="faqs.html"','href="'+footerPrefix+'faqs.html"')
+    .replaceAll('href="privacy-policy.html"','href="'+footerPrefix+'privacy-policy.html"')
+    .replaceAll('href="terms-and-conditions.html"','href="'+footerPrefix+'terms-and-conditions.html"')
+    .replaceAll('href="contact.html"','href="'+footerPrefix+'contact.html"')
+    .replaceAll('href="growth-audit.html"','href="'+footerPrefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
   const pageLocale=page.locale||"en_IN";
   const pageSlug=page.slug||path.basename(page.output);
