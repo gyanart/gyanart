@@ -369,5 +369,159 @@
     "content": "pages/faqs.html",
     "title": "FAQs About Website Design, Local SEO & Digital Growth | GyanArt",
     "description": "Answers to common questions about website design, local SEO, Google Business Profile optimization, logo design, pricing and improving enquiries for small businesses."
+  },
+  {
+    "output": "kn/logo-design.html",
+    "content": "translations/kn/logo-design.html",
+    "title": "ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ಲೋಗೋ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ಬೆಂಗಳೂರು ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್, ಸಾಮಾಜಿಕ ಮಾಧ್ಯಮ ಮತ್ತು ಮುದ್ರಣಕ್ಕೆ ಸೂಕ್ತವಾದ ಲೋಗೋ ವಿನ್ಯಾಸ.",
+    "lang": "kn",
+    "slug": "logo-design.html"
+  },
+  {
+    "output": "hi/logo-design.html",
+    "content": "translations/hi/logo-design.html",
+    "title": "छोटे व्यवसायों के लिए लोगो डिज़ाइन | GyanArt",
+    "description": "बेंगलुरु के छोटे व्यवसायों के लिए वेबसाइट, सोशल मीडिया और प्रिंट पर उपयोगी लोगो डिज़ाइन.",
+    "lang": "hi",
+    "slug": "logo-design.html"
+  },
+  {
+    "output": "kn/faqs.html",
+    "content": "translations/kn/faqs.html",
+    "title": "ವೆಬ್‌ಸೈಟ್, ಸ್ಥಳೀಯ SEO ಮತ್ತು ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ FAQ | GyanArt",
+    "description": "ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ, ಸ್ಥಳೀಯ SEO, Google Business Profile ಮತ್ತು ಲೋಗೋ ವಿನ್ಯಾಸದ ಸಾಮಾನ್ಯ ಪ್ರಶ್ನೆಗಳಿಗೆ ಉತ್ತರಗಳು.",
+    "lang": "kn",
+    "slug": "faqs.html"
+  },
+  {
+    "output": "hi/faqs.html",
+    "content": "translations/hi/faqs.html",
+    "title": "वेबसाइट, लोकल SEO और डिजिटल ग्रोथ FAQs | GyanArt",
+    "description": "वेबसाइट डिज़ाइन, लोकल SEO, Google Business Profile और लोगो डिज़ाइन से जुड़े सामान्य सवालों के जवाब.",
+    "lang": "hi",
+    "slug": "faqs.html"
+  },
+  {
+    "output": "kn/privacy-policy.html",
+    "content": "translations/kn/privacy-policy.html",
+    "title": "ಗೌಪ್ಯತಾ ನೀತಿ | GyanArt",
+    "description": "GyanArt ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿ, ವಿಶ್ಲೇಷಣೆ ಮತ್ತು ಗೌಪ್ಯತೆ ನಿರ್ವಹಣೆ ಕುರಿತು ಮಾಹಿತಿ.",
+    "lang": "kn",
+    "slug": "privacy-policy.html"
+  },
+  {
+    "output": "hi/privacy-policy.html",
+    "content": "translations/hi/privacy-policy.html",
+    "title": "गोपनीयता नीति | GyanArt",
+    "description": "GyanArt वेबसाइट पर व्यक्तिगत जानकारी, एनालिटिक्स और गोपनीयता संभालने की जानकारी.",
+    "lang": "hi",
+    "slug": "privacy-policy.html"
+  },
+  {
+    "output": "kn/terms-and-conditions.html",
+    "content": "translations/kn/terms-and-conditions.html",
+    "title": "ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು | GyanArt",
+    "description": "GyanArt ವೆಬ್‌ಸೈಟ್ ಬಳಕೆ, ಸೇವಾ ವ್ಯಾಪ್ತಿ, ಶುಲ್ಕಗಳು ಮತ್ತು ಸಾಮಾನ್ಯ ಷರತ್ತುಗಳ ಮಾಹಿತಿ.",
+    "lang": "kn",
+    "slug": "terms-and-conditions.html"
+  },
+  {
+    "output": "hi/terms-and-conditions.html",
+    "content": "translations/hi/terms-and-conditions.html",
+    "title": "नियम और शर्तें | GyanArt",
+    "description": "GyanArt वेबसाइट उपयोग, सेवा दायरे, शुल्क और सामान्य शर्तों की जानकारी.",
+    "lang": "hi",
+    "slug": "terms-and-conditions.html"
+  },
+  {
+    "output": "kn/dental-clinics.html",
+    "content": "translations/kn/dental-clinics.html",
+    "title": "ದಂತ ಚಿಕಿತ್ಸಾಲಯಗಳಿಗೆ ಡಿಜಿಟಲ್ ಬೆಳವಣಿಗೆ | GyanArt",
+    "description": "ಬೆಂಗಳೂರು ದಂತ ಚಿಕಿತ್ಸಾಲಯಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ, ಸ್ಥಳೀಯ SEO, Google Business Profile ಮತ್ತು ವಿಚಾರಣೆ ಸುಧಾರಣೆ.",
+    "lang": "kn",
+    "slug": "dental-clinics.html",
+    "noBreadcrumbs": true
+  },
+  {
+    "output": "hi/dental-clinics.html",
+    "content": "translations/hi/dental-clinics.html",
+    "title": "डेंटल क्लीनिक के लिए डिजिटल ग्रोथ | GyanArt",
+    "description": "बेंगलुरु के डेंटल क्लीनिक के लिए वेबसाइट डिज़ाइन, लोकल SEO, Google Business Profile और पूछताछ में सुधार.",
+    "lang": "hi",
+    "slug": "dental-clinics.html",
+    "noBreadcrumbs": true
+  },
+  {
+    "output": "kn/experiments/dental-clinic.html",
+    "content": "translations/kn/experiments/dental-clinic.html",
+    "title": "ದಂತ ಚಿಕಿತ್ಸಾಲಯದ ಗ್ರಾಹಕ ಪ್ರಯಾಣದ ಕಲ್ಪನೆ | GyanArt",
+    "description": "ಸ್ಥಳೀಯ ಹುಡುಕಾಟದಿಂದ ಅಪಾಯಿಂಟ್‌ಮೆಂಟ್‌ವರೆಗೆ ದಂತ ಚಿಕಿತ್ಸಾಲಯದ ಗ್ರಾಹಕ ಪ್ರಯಾಣದ ಕಲ್ಪಿತ ಉದಾಹರಣೆ.",
+    "lang": "kn",
+    "slug": "experiments/dental-clinic.html",
+    "noindex": true
+  },
+  {
+    "output": "hi/experiments/dental-clinic.html",
+    "content": "translations/hi/experiments/dental-clinic.html",
+    "title": "डेंटल क्लिनिक ग्राहक यात्रा अवधारणा | GyanArt",
+    "description": "स्थानीय खोज से अपॉइंटमेंट तक डेंटल क्लिनिक की ग्राहक यात्रा का काल्पनिक उदाहरण.",
+    "lang": "hi",
+    "slug": "experiments/dental-clinic.html",
+    "noindex": true
+  },
+  {
+    "output": "kn/experiments/professional-services.html",
+    "content": "translations/kn/experiments/professional-services.html",
+    "title": "ವೃತ್ತಿಪರ ಸೇವೆಗಳ ಗ್ರಾಹಕ ಪ್ರಯಾಣದ ಕಲ್ಪನೆ | GyanArt",
+    "description": "ವೃತ್ತಿಪರ ಸೇವೆಗಳು ತಮ್ಮ ಪರಿಣತಿಯನ್ನು ಸ್ಪಷ್ಟಪಡಿಸಿ ವಿಚಾರಣೆಗಳನ್ನು ಸುಲಭಗೊಳಿಸುವ ಕಲ್ಪಿತ ಉದಾಹರಣೆ.",
+    "lang": "kn",
+    "slug": "experiments/professional-services.html",
+    "noindex": true
+  },
+  {
+    "output": "hi/experiments/professional-services.html",
+    "content": "translations/hi/experiments/professional-services.html",
+    "title": "पेशेवर सेवाओं की ग्राहक यात्रा अवधारणा | GyanArt",
+    "description": "पेशेवर सेवाएँ अपनी विशेषज्ञता स्पष्ट करके पूछताछ आसान कैसे करें, इसका काल्पनिक उदाहरण.",
+    "lang": "hi",
+    "slug": "experiments/professional-services.html",
+    "noindex": true
+  },
+  {
+    "output": "kn/experiments/appliance-repair.html",
+    "content": "translations/kn/experiments/appliance-repair.html",
+    "title": "ಗೃಹೋಪಯೋಗಿ ದುರಸ್ತಿ ಗ್ರಾಹಕ ಪ್ರಯಾಣದ ಕಲ್ಪನೆ | GyanArt",
+    "description": "ಸ್ಥಳೀಯ ಸಾಧನ ದುರಸ್ತಿ ಸೇವೆಯ ಮಾಹಿತಿಯನ್ನು ಸ್ಪಷ್ಟಪಡಿಸುವ ಕಲ್ಪಿತ ಉದಾಹರಣೆ.",
+    "lang": "kn",
+    "slug": "experiments/appliance-repair.html",
+    "noindex": true
+  },
+  {
+    "output": "hi/experiments/appliance-repair.html",
+    "content": "translations/hi/experiments/appliance-repair.html",
+    "title": "उपकरण मरम्मत ग्राहक यात्रा अवधारणा | GyanArt",
+    "description": "स्थानीय उपकरण मरम्मत सेवा की जानकारी स्पष्ट करने का काल्पनिक उदाहरण.",
+    "lang": "hi",
+    "slug": "experiments/appliance-repair.html",
+    "noindex": true
+  },
+  {
+    "output": "kn/experiments/restaurant.html",
+    "content": "translations/kn/experiments/restaurant.html",
+    "title": "ರೆಸ್ಟೋರೆಂಟ್ ಭೇಟಿ ಪ್ರಯಾಣದ ಕಲ್ಪನೆ | GyanArt",
+    "description": "ಸ್ಥಳೀಯ ಗ್ರಾಹಕರಿಗೆ ರೆಸ್ಟೋರೆಂಟ್ ಮಾಹಿತಿ ಮತ್ತು ಭೇಟಿ ಯೋಜನೆ ಸುಲಭಗೊಳಿಸುವ ಕಲ್ಪಿತ ಉದಾಹರಣೆ.",
+    "lang": "kn",
+    "slug": "experiments/restaurant.html",
+    "noindex": true
+  },
+  {
+    "output": "hi/experiments/restaurant.html",
+    "content": "translations/hi/experiments/restaurant.html",
+    "title": "रेस्टोरेंट विज़िट यात्रा अवधारणा | GyanArt",
+    "description": "स्थानीय ग्राहकों के लिए रेस्टोरेंट जानकारी और विज़िट की योजना आसान करने का काल्पनिक उदाहरण.",
+    "lang": "hi",
+    "slug": "experiments/restaurant.html",
+    "noindex": true
   }
 ]
