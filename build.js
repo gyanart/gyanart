@@ -66,7 +66,7 @@ function render(page){
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
   const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
-  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
+  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const languageOptions=languageItems.map(item=>{
     const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
@@ -78,12 +78,17 @@ function render(page){
     .replaceAll("{{HREF_HOME}}",navHref("index.html"))
     .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
     .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
+    .replaceAll("{{HREF_WEBSITE_DESIGN}}",navHref("website-design.html"))
+    .replaceAll("{{HREF_LOCAL_SEO}}",navHref("local-seo-services.html"))
+    .replaceAll("{{HREF_GBP}}",navHref("google-business-profile-optimization.html"))
     .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
     .replaceAll("{{HREF_PRICING}}",navHref("pricing.html"))
     .replaceAll("{{HREF_ABOUT}}",navHref("about.html"))
     .replaceAll("{{HREF_INSIGHTS}}",navHref("insights.html"))
     .replaceAll("{{HREF_AUDIT}}",navHref("growth-audit.html"))
     .replaceAll("{{NAV_HOW}}",navLabels.how).replaceAll("{{NAV_SOLUTIONS}}",navLabels.solutions)
+    .replaceAll("{{NAV_SOLUTIONS_ALL}}",navLabels.solutionsAll).replaceAll("{{NAV_WEBSITE_DESIGN}}",navLabels.websiteDesign)
+    .replaceAll("{{NAV_LOCAL_SEO}}",navLabels.localSeo).replaceAll("{{NAV_GBP}}",navLabels.gbp)
     .replaceAll("{{NAV_EXPERIMENTS}}",navLabels.experiments).replaceAll("{{NAV_PRICING}}",navLabels.pricing)
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
     .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)

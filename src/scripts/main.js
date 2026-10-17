@@ -104,6 +104,22 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.addEventListener("keydown",event=>{if(event.key==="Escape")closeLanguageMenu();});
   });
 
+  document.querySelectorAll(".nav-dropdown").forEach(dropdown=>{
+    const button=dropdown.querySelector(".nav-dropdown-toggle");
+    if(!button)return;
+    button.addEventListener("click",()=>{
+      if(!window.matchMedia("(max-width: 700px)").matches)return;
+      const open=dropdown.classList.toggle("open");
+      button.setAttribute("aria-expanded",String(open));
+    });
+    document.addEventListener("keydown",event=>{
+      if(event.key==="Escape"){
+        dropdown.classList.remove("open");
+        button.setAttribute("aria-expanded","false");
+      }
+    });
+  });
+
   if(toggle&&nav){
     toggle.addEventListener("click",()=>{
       const open=nav.classList.toggle("open");
