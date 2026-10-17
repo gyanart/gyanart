@@ -69,6 +69,25 @@ jobs:
           check test -f dist/hi/terms-and-conditions.html
           check test -f dist/kn/experiments/dental-clinic.html
           check test -f dist/hi/experiments/dental-clinic.html
+
+          check test -f dist/kn/logo-design.html
+          check test -f dist/hi/logo-design.html
+          check test -f dist/kn/faqs.html
+          check test -f dist/hi/faqs.html
+          check test -f dist/kn/privacy-policy.html
+          check test -f dist/hi/privacy-policy.html
+          check test -f dist/kn/terms-and-conditions.html
+          check test -f dist/hi/terms-and-conditions.html
+          check grep -q 'https://www.gyanart.com/kn/logo-design.html' dist/sitemap.xml
+          check grep -q 'https://www.gyanart.com/hi/logo-design.html' dist/sitemap.xml
+          check grep -q 'https://www.gyanart.com/kn/dental-clinics.html' dist/sitemap.xml
+          check grep -q 'https://www.gyanart.com/hi/dental-clinics.html' dist/sitemap.xml
+          check test -f dist/kn/experiments/professional-services.html
+          check test -f dist/hi/experiments/professional-services.html
+          check test -f dist/kn/experiments/appliance-repair.html
+          check test -f dist/hi/experiments/appliance-repair.html
+          check test -f dist/kn/experiments/restaurant.html
+          check test -f dist/hi/experiments/restaurant.html
           check grep -q 'faqs.html' dist/sitemap.xml
           check grep -q 'href="faqs.html"' dist/index.html
           check grep -q 'logo-design.html' dist/sitemap.xml
