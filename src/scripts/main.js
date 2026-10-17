@@ -3,6 +3,11 @@ const trackGA4=(eventName,params={})=>{
 };
 
 document.addEventListener("DOMContentLoaded",()=>{
+  const packageInterest=new URLSearchParams(window.location.search).get("package");
+  const contactMessage=document.querySelector("#contact-message");
+  if(packageInterest&&contactMessage&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)&&!contactMessage.value.trim()){
+    contactMessage.value=`I’m interested in the ${packageInterest} package. I’d like to discuss my business requirements.`;
+  }
   let formToastTimer;
   let formToastFadeTimer;
   const showFormToast=(message,form)=>{
@@ -162,7 +167,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       const result=await response.json();
       if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
       const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
-      trackGA4("generate_lead",{form_name:formName});
+      trackGA4("generate_lead",{form_name:formName,...(packageInterest&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)?{package_interest:packageInterest}:{})});
       if(status){status.className="form-status note";status.textContent="";}
       showFormToast(result.message||"Your request was submitted successfully.",form);
       form.reset();
