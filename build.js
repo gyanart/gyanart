@@ -168,7 +168,7 @@ fs.copyFileSync(path.join(src,"og-gyanart.svg"),path.join(dist,"assets/og-gyanar
 const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
-const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>page.isHome?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output);
+const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>(page.isHome||page.output==="index.html")?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output);
 const sitemapXml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemapUrls.map(url=>'  <url><loc>'+url+'</loc></url>').join("\n")+'\n</urlset>\n';
 fs.writeFileSync(path.join(dist,"sitemap.xml"),sitemapXml);
 fs.copyFileSync(path.join(src,"submit-form.php"),path.join(dist,"submit-form.php"));
