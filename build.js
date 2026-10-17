@@ -66,13 +66,14 @@ function render(page){
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
-  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?target:prefix+target);
+  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
   const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const languageOptions=languageItems.map(item=>{
     const exists=pages.some(p=>(p.lang||"en")===item.code&&(p.slug||path.basename(p.output))===slug);
     const targetSlug=exists?slug:"index.html";
-    const target=item.code===lang?targetSlug:(item.code==="en"?prefix+targetSlug:prefix+item.code+"/"+targetSlug);
+    const sameLanguageSlug=targetSlug.includes("/")?targetSlug.split("/").pop():targetSlug;
+    const target=item.code===lang?sameLanguageSlug:(item.code==="en"?prefix+targetSlug:prefix+item.code+"/"+targetSlug);
     return '<a href="'+target+'" lang="'+item.code+'"'+(item.code===lang?' aria-current="true"':"")+">"+item.name+"</a>";
   }).join("");
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
@@ -95,19 +96,20 @@ function render(page){
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
     .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)
     .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
+  const footerPrefix=lang==="en"?prefix:"../".repeat(Math.max(0,page.output.split("/").length-2));
   const foot=footer.replaceAll("{{SITE_NAME}}",site.name).replaceAll("{{TAGLINE}}",site.tagline)
-    .replaceAll('href="index.html"','href="'+prefix+'index.html"')
-    .replaceAll('href="how-it-works.html"','href="'+prefix+'how-it-works.html"')
-    .replaceAll('href="solutions.html"','href="'+prefix+'solutions.html"')
-    .replaceAll('href="growth-experiments.html"','href="'+prefix+'growth-experiments.html"')
-    .replaceAll('href="pricing.html"','href="'+prefix+'pricing.html"')
-    .replaceAll('href="about.html"','href="'+prefix+'about.html"')
-    .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
-    .replaceAll('href="faqs.html"','href="'+prefix+'faqs.html"')
-    .replaceAll('href="privacy-policy.html"','href="'+prefix+'privacy-policy.html"')
-    .replaceAll('href="terms-and-conditions.html"','href="'+prefix+'terms-and-conditions.html"')
-    .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
-    .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
+    .replaceAll('href="index.html"','href="'+footerPrefix+'index.html"')
+    .replaceAll('href="how-it-works.html"','href="'+footerPrefix+'how-it-works.html"')
+    .replaceAll('href="solutions.html"','href="'+footerPrefix+'solutions.html"')
+    .replaceAll('href="growth-experiments.html"','href="'+footerPrefix+'growth-experiments.html"')
+    .replaceAll('href="pricing.html"','href="'+footerPrefix+'pricing.html"')
+    .replaceAll('href="about.html"','href="'+footerPrefix+'about.html"')
+    .replaceAll('href="insights.html"','href="'+footerPrefix+'insights.html"')
+    .replaceAll('href="faqs.html"','href="'+footerPrefix+'faqs.html"')
+    .replaceAll('href="privacy-policy.html"','href="'+footerPrefix+'privacy-policy.html"')
+    .replaceAll('href="terms-and-conditions.html"','href="'+footerPrefix+'terms-and-conditions.html"')
+    .replaceAll('href="contact.html"','href="'+footerPrefix+'contact.html"')
+    .replaceAll('href="growth-audit.html"','href="'+footerPrefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
   const pageLocale=page.locale||"en_IN";
   const pageSlug=page.slug||path.basename(page.output);
