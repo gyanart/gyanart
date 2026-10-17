@@ -24,7 +24,7 @@ fs.mkdirSync(dist,{recursive:true});
 function render(page){
   let body=read(page.content);
   const nested=page.output.includes("/");
-  const prefix=nested?"../":"";
+  const prefix="../".repeat(page.output.split("/").length-1);
   const lang=page.lang||"en";
   const slug=page.slug||path.basename(page.output);
   if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
@@ -41,7 +41,7 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design","logo-design.html":"Logo Design"
+    "website-design.html":"Website Design","logo-design.html":"Logo Design","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions"
   };
   const parent={
     "experiments/dental-clinic.html":["Growth Experiments","growth-experiments.html"],
@@ -54,8 +54,8 @@ function render(page){
     "logo-design.html":["Solutions","solutions.html"]
   };
   const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:"index.html"}];
-  if(parent[page.output]) crumbParts.push({label:parent[page.output][0],href:prefix+parent[page.output][1]});
-  if(labels[page.output]) crumbParts.push({label:labels[page.output]});
+  if(parent[slug]) crumbParts.push({label:parent[slug][0],href:lang==="en"?prefix+parent[slug][1]:parent[slug][1]});
+  if(labels[slug]) crumbParts.push({label:labels[slug]});
   const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
   if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
@@ -80,7 +80,7 @@ function render(page){
     .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
     .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
     .replaceAll("{{HREF_WEBSITE_DESIGN}}",navHref("website-design.html"))
-    .replaceAll("{{HREF_LOGO_DESIGN}}","https://www.gyanart.com/logo-design.html")
+    .replaceAll("{{HREF_LOGO_DESIGN}}",navHref("logo-design.html"))
     .replaceAll("{{HREF_LOCAL_SEO}}",navHref("local-seo-services.html"))
     .replaceAll("{{HREF_GBP}}",navHref("google-business-profile-optimization.html"))
     .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
@@ -104,6 +104,8 @@ function render(page){
     .replaceAll('href="about.html"','href="'+prefix+'about.html"')
     .replaceAll('href="insights.html"','href="'+prefix+'insights.html"')
     .replaceAll('href="faqs.html"','href="'+prefix+'faqs.html"')
+    .replaceAll('href="privacy-policy.html"','href="'+prefix+'privacy-policy.html"')
+    .replaceAll('href="terms-and-conditions.html"','href="'+prefix+'terms-and-conditions.html"')
     .replaceAll('href="contact.html"','href="'+prefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+prefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
