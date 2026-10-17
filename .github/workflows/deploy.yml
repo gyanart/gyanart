@@ -56,6 +56,9 @@ jobs:
           check grep -q 'Google Business Profile FAQs' dist/google-business-profile-optimization.html
           check grep -q 'Explore GyanArt services' dist/insights.html
           check test -f dist/logo-design.html
+          check test -f dist/faqs.html
+          check grep -q 'faqs.html' dist/sitemap.xml
+          check grep -q 'href="faqs.html"' dist/index.html
           check grep -q 'logo-design.html' dist/sitemap.xml
           check grep -q 'Logo Design' dist/solutions.html
           check test -f dist/submit-form.php
