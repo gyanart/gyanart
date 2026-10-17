@@ -350,5 +350,11 @@
     "locale": "hi_IN",
     "slug": "growth-audit.html",
     "isHome": false
+  },
+  {
+    "output": "dental-clinics.html",
+    "content": "pages/dental-clinics.html",
+    "title": "Digital Growth for Dental Clinics in Bangalore | GyanArt",
+    "description": "Help more local patients discover your dental clinic with website design, local SEO, Google Business Profile optimization, digital ads and measurable enquiry tracking."
   }
 ]
