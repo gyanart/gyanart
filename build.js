@@ -34,7 +34,7 @@ function render(page){
     "how-it-works.html":"How It Works","solutions.html":"Solutions",
     "growth-experiments.html":"Growth Experiments","pricing.html":"Pricing",
     "about.html":"About Gyan","insights.html":"Insights",
-    "growth-audit.html":"Free Growth Audit","contact.html":"Contact",
+    "growth-audit.html":"Free Growth Audit","contact.html":"Contact","faqs.html":"FAQs",
     "experiments/dental-clinic.html":"Dental Clinic",
     "experiments/professional-services.html":"Professional Services",
     "experiments/appliance-repair.html":"Appliance Repair",
