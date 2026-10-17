@@ -27,7 +27,7 @@ function render(page){
   const prefix=nested?"../":"";
   const lang=page.lang||"en";
   const slug=page.slug||path.basename(page.output);
-  if(!(page.isHome || page.output==="index.html")){
+  if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
     body=body.replace('<section class="section"', '<section class="section page-intro"');
   }
   const labels={
