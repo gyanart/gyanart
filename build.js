@@ -114,7 +114,9 @@ function render(page){
     const pageLang=page.lang||"en";
   const pageLocale=page.locale||"en_IN";
   const pageSlug=page.slug||path.basename(page.output);
-  const alternates=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug).map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):(code==="en"?"https://www.gyanart.com/"+p.output:"https://www.gyanart.com/"+p.output);return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("");
+  const matchingPages=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug);
+  const alternates=matchingPages.map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("")+
+    '<link rel="alternate" hreflang="x-default" href="'+(matchingPages.find(p=>(p.lang||"en")==="en") ? (matchingPages.find(p=>(p.lang||"en")==="en").output==="index.html" ? "https://www.gyanart.com/" : "https://www.gyanart.com/"+matchingPages.find(p=>(p.lang||"en")==="en").output) : "https://www.gyanart.com/")+'">\n';
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
@@ -166,7 +168,9 @@ fs.copyFileSync(path.join(src,"og-gyanart.svg"),path.join(dist,"assets/og-gyanar
 const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
-fs.copyFileSync(path.join(src,"sitemap.xml"),path.join(dist,"sitemap.xml"));
+const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>(page.isHome||page.output==="index.html")?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output);
+const sitemapXml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemapUrls.map(url=>'  <url><loc>'+url+'</loc></url>').join("\n")+'\n</urlset>\n';
+fs.writeFileSync(path.join(dist,"sitemap.xml"),sitemapXml);
 fs.copyFileSync(path.join(src,"submit-form.php"),path.join(dist,"submit-form.php"));
 const htmlFiles=[];
 function collectHtml(dir){
