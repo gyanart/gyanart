@@ -1,0 +1,45 @@
+name: Validate translated SEO links
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'build.js'
+      - 'src/translations/**'
+      - '.github/workflows/translated-links-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run build
+      - name: Check localized CTAs and alternate metadata
+        run: |
+          node <<'NODE'
+          const fs=require('fs'),assert=require('node:assert/strict');
+          for(const lang of ['hi','kn']){
+            for(const page of ['website-design','local-seo-services','google-business-profile-optimization','pricing','about']){
+              const text=fs.readFileSync('dist/'+lang+'/'+page+'.html','utf8');
+              assert(!text.includes('href="../growth-audit.html"'),lang+'/'+page+' links to English audit');
+              assert(!text.includes('href="../contact.html"'),lang+'/'+page+' links to English contact');
+              assert(text.includes('hreflang="en"')&&text.includes('hreflang="hi"')&&text.includes('hreflang="kn"'));
+              assert(text.includes('property="og:locale" content="'+(lang==='hi'?'hi_IN':'kn_IN')+'"'),lang+'/'+page+' OG locale');
+              assert(!text.includes('content="noindex,follow"'));
+            }
+            const faq=fs.readFileSync('dist/'+lang+'/faqs.html','utf8');
+            assert(faq.includes('property="og:locale" content="'+(lang==='hi'?'hi_IN':'kn_IN')+'"'),lang+' FAQ locale');
+          }
+          const kn=fs.readFileSync('dist/kn/growth-experiments.html','utf8');
+          assert(kn.includes('href="experiments/dental-clinic.html"'));
+          assert(!kn.includes('href="../experiments/dental-clinic.html"'));
+          const sitemap=fs.readFileSync('dist/sitemap.xml','utf8');
+          for(const lang of ['hi','kn']) assert(sitemap.includes('<loc>https://www.gyanart.com/'+lang+'/growth-audit.html</loc>'));
+          console.log('Localized CTA, hreflang, sitemap and metadata checks passed.');
+          NODE
