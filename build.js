@@ -112,7 +112,7 @@ function render(page){
     .replaceAll('href="contact.html"','href="'+footerPrefix+'contact.html"')
     .replaceAll('href="growth-audit.html"','href="'+footerPrefix+'growth-audit.html"');
     const pageLang=page.lang||"en";
-  const pageLocale=page.locale||"en_IN";
+  const pageLocale=page.locale||({kn:"kn_IN",hi:"hi_IN",en:"en_IN"}[pageLang]||"en_IN");
   const pageSlug=page.slug||path.basename(page.output);
   const matchingPages=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug);
   const alternates=matchingPages.map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("")+
