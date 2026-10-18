@@ -1,0 +1,48 @@
+name: Validate homepage SEO positioning
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/pages/home.html'
+      - 'src/translations/hi/home.html'
+      - 'src/translations/kn/home.html'
+      - 'src/data/pages.json'
+      - 'docs/seo-keyword-page-map.md'
+      - '.github/workflows/homepage-positioning-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run build
+      - name: Verify homepage intent and language destinations
+        run: |
+          node <<'NODE'
+          const fs=require('fs'), assert=require('node:assert/strict');
+          const read=p=>fs.readFileSync('dist/'+p,'utf8');
+          const en=read('index.html'),hi=read('hi/index.html'),kn=read('kn/index.html');
+          assert(en.includes('<h1>Website Design in Bangalore That Helps Small Businesses Get More Customers</h1>'));
+          assert(en.includes('Website Designer in Bangalore for Small Businesses | GyanArt'));
+          assert(hi.includes('<h1>बेंगलुरु में छोटे व्यवसायों के लिए वेबसाइट डिज़ाइन</h1>'));
+          assert(kn.includes('<h1>ಬೆಂಗಳೂರಿನ ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ</h1>'));
+          for(const [lang,html] of [['hi',hi],['kn',kn]]){
+            assert(html.includes('href="growth-audit.html"'),lang+' needs localized audit link');
+            assert(html.includes('href="contact.html"'),lang+' needs localized contact link');
+            assert(!html.includes('href="../growth-audit.html"'),lang+' links to English audit');
+            assert(!html.includes('href="../contact.html"'),lang+' links to English contact');
+            assert(html.includes('hreflang="en"')&&html.includes('hreflang="hi"')&&html.includes('hreflang="kn"'));
+            assert(!html.includes('content="noindex,follow"'));
+          }
+          assert(en.includes('href="website-design.html"'));
+          assert(read('sitemap.xml').includes('<loc>https://www.gyanart.com/hi/</loc>'));
+          assert(read('sitemap.xml').includes('<loc>https://www.gyanart.com/kn/</loc>'));
+          console.log('Homepage SEO and language checks passed.');
+          NODE
