@@ -21,6 +21,7 @@ class PageParser(HTMLParser):
         self.meta={}
         self.links=[]
         self.anchors=[]
+        self.language_options={}
         self.h1=0
         self.jsonld=[]
         self.in_jsonld=False
@@ -33,7 +34,10 @@ class PageParser(HTMLParser):
         if tag=="h1":self.h1+=1
         if tag=="link":self.links.append(a)
         if tag=="meta":self.meta[a.get("name") or a.get("property") or ""]=a.get("content","")
-        if tag=="a":self.anchors.append(a.get("href",""))
+        if tag=="a":
+            self.anchors.append(a.get("href",""))
+            if a.get("lang") in ("en","hi","kn"):
+                self.language_options[a["lang"]]=a.get("href","")
         if "id" in a:self.ids.append(a["id"])
         if tag=="script" and a.get("type")=="application/ld+json":
             self.in_jsonld=True
@@ -53,7 +57,7 @@ def entry_url(p):
     return BASE+p["output"]
 
 def slug(p):
-    return p.get("slug") or Path(p["output"]).name
+    return p.get("slug") or (p["output"] if p["output"].startswith("experiments/") else Path(p["output"]).name)
 
 def check(condition,kind,description,page=""):
     if not condition:issues.append((kind,page,description))
@@ -116,6 +120,18 @@ for p in PAGES:
             actual_alts[lang]=x.get("href")
     check(actual_alts==expected_alts,"hreflang",
           f"Expected {expected_alts}; got {actual_alts}",key)
+    # Verify every EN/HI/KN language switch leads to the same page in that language.
+    for target_lang in ("en","hi","kn"):
+        matches=[q for q in groups[slug(p)] if (q.get("lang") or "en")==target_lang]
+        check(len(matches)==1,"language-peer",f"Need exactly one {target_lang} equivalent",key)
+        if matches:
+            switch=pg.language_options.get(target_lang)
+            check(bool(switch),"language-switcher",f"Missing {target_lang} option",key)
+            if switch:
+                resolved=(ROOT/Path(key).parent/switch)
+                expected=(ROOT/matches[0]["output"])
+                if resolved.is_dir():resolved=resolved/"index.html"
+                check(resolved.resolve()==expected.resolve(),"language-switcher",f"{target_lang} -> {switch}: {resolved} expected {expected}",key)
     # Resolve all same-host relative href targets against the current generated HTML path.
     for link in pg.anchors:
         if not link or link.startswith(("#","mailto:","tel:","sms:","javascript:","data:")):continue
