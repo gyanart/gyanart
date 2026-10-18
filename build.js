@@ -67,7 +67,7 @@ function render(page){
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
-  const navHref=(target)=>lang==="en"?target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
+  const navHref=(target)=>lang==="en"?prefix+target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
   const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const languageOptions=languageItems.map(item=>{
@@ -115,7 +115,7 @@ function render(page){
   const pageLocale=page.locale||({kn:"kn_IN",hi:"hi_IN",en:"en_IN"}[pageLang]||"en_IN");
   const pageSlug=page.slug||path.basename(page.output);
   const matchingPages=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug);
-  const alternates=matchingPages.map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("")+
+  const alternates=matchingPages.map(p=>{const code=p.lang||"en";const url=(p.isHome||p.output==="index.html")?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("")+
     '<link rel="alternate" hreflang="x-default" href="'+(matchingPages.find(p=>(p.lang||"en")==="en") ? (matchingPages.find(p=>(p.lang||"en")==="en").output==="index.html" ? "https://www.gyanart.com/" : "https://www.gyanart.com/"+matchingPages.find(p=>(p.lang||"en")==="en").output) : "https://www.gyanart.com/")+'">\n';
   // Only the measured English Website Design page uses this progressive CSS path.
   // Keep a non-JS fallback and leave other pages on their current stylesheet path.
