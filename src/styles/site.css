@@ -113,3 +113,6 @@
  .nav-dropdown.open .nav-dropdown-menu{display:block}
 }
 @media(prefers-reduced-motion:reduce){.nav-dropdown-toggle .nav-chevron{transition:none}}
+
+/* Breathing room between the Website Design closing audit panel and the footer. */
+.website-design-final-audit{padding-bottom:clamp(32px,4vw,56px)}
