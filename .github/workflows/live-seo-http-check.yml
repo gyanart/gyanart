@@ -1,0 +1,90 @@
+name: Live GyanArt SEO HTTP diagnostics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/live-seo-http-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  http-check:
+    name: Inspect public URLs and redirects without changes
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check live URLs, status, redirect hops, and HTML hints
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import http.client, urllib.request, urllib.error, ssl, re
+          from urllib.parse import urlparse, urljoin
+          urls=[
+            "https://www.gyanart.com/",
+            "https://www.gyanart.com/website-design.html",
+            "https://www.gyanart.com/pricing.html",
+            "https://www.gyanart.com/faqs.html",
+            "https://www.gyanart.com/hi/",
+            "https://www.gyanart.com/kn/",
+            "https://www.gyanart.com/hi/website-design.html",
+            "https://www.gyanart.com/kn/website-design.html",
+            "https://www.gyanart.com/robots.txt",
+            "https://www.gyanart.com/sitemap.xml",
+            "http://gyanart.com/",
+            "https://gyanart.com/",
+            "https://www.gyanart.com/index.html",
+            "https://www.gyanart.com/website_design.htm",
+            "https://www.gyanart.com/website-design-portfolio.html",
+            "https://www.gyanart.com/about-us.html",
+            "https://www.gyanart.com/testimonials.html"
+          ]
+          class NoRedirect(urllib.request.HTTPRedirectHandler):
+              def redirect_request(self,*args,**kwargs):return None
+          opener=urllib.request.build_opener(NoRedirect)
+          rows=[]
+          for url in urls:
+              hop=url
+              chain=[]
+              try:
+                  for n in range(7):
+                      try:
+                          req=urllib.request.Request(hop,headers={"User-Agent":"GyanArt-SEO-Diagnostic/1.0","Accept":"text/html,application/xml,text/plain,*/*"})
+                          with opener.open(req,timeout=12) as resp:
+                              status=resp.status
+                              content=resp.read(600000).decode("utf-8","replace")
+                              location=resp.headers.get("Location","")
+                      except urllib.error.HTTPError as err:
+                          status=err.code
+                          location=err.headers.get("Location","")
+                          content=err.read(80000).decode("utf-8","replace")
+                      chain.append(f"{status} {hop}")
+                      if status in (301,302,303,307,308) and location:
+                          hop=urljoin(hop,location)
+                          continue
+                      break
+                  canonical=re.search(r'<link\s+rel=["\']canonical["\']\s+href=["\']([^"\']+)',content,re.I)
+                  langs=re.findall(r'hreflang=["\'](en|hi|kn|x-default)["\']',content,re.I)
+                  oglocale=re.search(r'<meta\s+property=["\']og:locale["\']\s+content=["\']([^"\']+)',content,re.I)
+                  h1=re.search(r'<h1[^>]*>(.*?)</h1>',content,re.I|re.S)
+                  row=f"URL: {url}\n  CHAIN: {' -> '.join(chain)}\n  FINAL STATUS: {status}\n  CANONICAL: {canonical.group(1) if canonical else '(not detected)'}\n  HREFLANG: {','.join(langs) if langs else '(not detected)'}\n  OG LOCALE: {oglocale.group(1) if oglocale else '(not detected)'}\n  H1: {re.sub('<[^>]+>','',h1.group(1)).strip()[:115] if h1 else '(not detected)'}"
+                  print(row,flush=True)
+                  rows.append(row)
+              except Exception as e:
+                  row=f"URL: {url}\n  ERROR: {type(e).__name__}: {e}"
+                  print(row,flush=True)
+                  rows.append(row)
+          with open("live-seo-http-results.txt","w") as f:
+              f.write("\n\n".join(rows)+"\n")
+          with open(__import__('os').environ["GITHUB_STEP_SUMMARY"],"a") as f:
+              f.write("## Read-only public HTTP SEO probe\n\n")
+              f.write("Requests are from GitHub's runner, not Google's crawler or URL Inspection. A success cannot prove indexing.\n\n")
+              f.write("```text\n"+"\n\n".join(rows)+"\n```\n")
+          PY
+      - name: Upload diagnostic results
+        uses: actions/upload-artifact@v4
+        with:
+          name: gyanart-live-seo-http
+          path: live-seo-http-results.txt
