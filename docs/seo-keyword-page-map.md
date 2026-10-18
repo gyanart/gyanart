@@ -6,7 +6,9 @@
 
 The 11–17 October 2026 Search Console baseline is a very small sample: `website designer bangalore` had **4 impressions**, **0 clicks**, and **average position 4.25**. The earlier 11–14 October snapshot had 3 impressions and average position 5.33; these overlapping snapshots should not be treated as a trend. The Pages export includes HTTP/HTTPS and tracking-parameter variants, so its counts should not be treated as clean canonical-page performance. Use this as an initial intent map, not as proof of search demand or a statistically meaningful ranking trend. Revisit it after more canonical HTTPS data accumulates.
 
-**Positioning approved 18 October 2026:** Website Design is GyanArt’s primary service, with Local SEO and Google Business Profile as complementary services. The homepage is the main target for the local website-designer query cluster in all three languages. This is a strategic assignment, not proof of search volume or ranking outcomes.\n\n## Primary keyword-to-page map
+**Positioning approved 18 October 2026:** Website Design is GyanArt’s primary service, with Local SEO and Google Business Profile as complementary services. The homepage is the main target for the local website-designer query cluster in all three languages. This is a strategic assignment, not proof of search volume or ranking outcomes.
+
+## Primary keyword-to-page map
 
 | Page | Primary intent / target phrase | Secondary themes | Page role and next action |
 |---|---|---|---|
