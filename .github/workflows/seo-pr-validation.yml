@@ -1,0 +1,47 @@
+name: Validate SEO Fix PR
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'build.js'
+      - 'src/pages/website-design.html'
+      - 'src/styles/site.css'
+      - 'src/styles/critical-website-design.css'
+      - '.github/workflows/seo-pr-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Build and verify SEO accessibility and CSS loading
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build production assets without deploying
+        run: npm run build
+      - name: Verify generated output
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const assert = require('node:assert/strict');
+          const website = fs.readFileSync('dist/website-design.html', 'utf8');
+          const home = fs.readFileSync('dist/index.html', 'utf8');
+          assert(website.includes('<style data-critical="website-design">'), 'missing inlined first-viewport CSS');
+          assert(website.includes('media="print" onload="this.media=\'all\'"'), 'missing deferred full CSS');
+          assert(website.includes('<noscript><link rel="stylesheet"'), 'missing no-JS fallback');
+          assert(website.includes('<link rel="preload" as="style"'), 'missing preload');
+          assert(website.includes('<h2 class="sr-only">What makes a small-business website effective</h2>'), 'missing semantic H2');
+          const headings = [...website.matchAll(/<h([1-6])\b[^>]*>/g)].map(m=>Number(m[1]));
+          for (let i=1;i<headings.length;i++) assert(headings[i]<=headings[i-1]+1, 'heading hierarchy skips from '+headings[i-1]+' to '+headings[i]);
+          assert(home.includes('<link rel="stylesheet" href="css/site.css?v='), 'homepage CSS must remain unchanged');
+          assert(!home.includes('data-critical="website-design"'), 'critical styles leaked into homepage');
+          assert(!website.includes('content="noindex,follow"'), 'production page must be index eligible');
+          assert(website.includes('href="https://www.gyanart.com/website-design.html"'), 'missing canonical');
+          assert(fs.readFileSync('dist/css/site.css', 'utf8').includes('--muted:#5E687A'), 'contrast change missing');
+          console.log('PASS: heading hierarchy, indexability, CSS loading/fallback, unchanged homepage.');
+          NODE

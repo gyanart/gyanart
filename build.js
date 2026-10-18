@@ -117,11 +117,20 @@ function render(page){
   const matchingPages=pages.filter(p=>(p.slug||path.basename(p.output))===pageSlug);
   const alternates=matchingPages.map(p=>{const code=p.lang||"en";const url=p.isHome?(code==="en"?"https://www.gyanart.com/":"https://www.gyanart.com/"+code+"/"):"https://www.gyanart.com/"+p.output;return '<link rel="alternate" hreflang="'+code+'" href="'+url+'">\n';}).join("")+
     '<link rel="alternate" hreflang="x-default" href="'+(matchingPages.find(p=>(p.lang||"en")==="en") ? (matchingPages.find(p=>(p.lang||"en")==="en").output==="index.html" ? "https://www.gyanart.com/" : "https://www.gyanart.com/"+matchingPages.find(p=>(p.lang||"en")==="en").output) : "https://www.gyanart.com/")+'">\n';
+  // Only the measured English Website Design page uses this progressive CSS path.
+  // Keep a non-JS fallback and leave other pages on their current stylesheet path.
+  const stylesheetHref=prefix+"css/site.css?v="+cssVersion;
+  const stylesheetTag=page.output==="website-design.html"
+    ? `<style data-critical="website-design">\n${read("styles/critical-website-design.css")}\n</style>\n`+
+      `<link rel="preload" as="style" href="${stylesheetHref}">\n`+
+      `<link rel="stylesheet" href="${stylesheetHref}" media="print" onload="this.media='all'">\n`+
+      `<noscript><link rel="stylesheet" href="${stylesheetHref}"></noscript>\n`
+    : `<link rel="stylesheet" href="${stylesheetHref}">\n`;
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
     '<meta name="theme-color" content="#F8F8F6">\n'+
-    '<link rel="stylesheet" href="'+prefix+'css/site.css?v='+cssVersion+'">\n'+
+    stylesheetTag+
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
     '<meta property="og:site_name" content="'+site.name+'">\n'+
