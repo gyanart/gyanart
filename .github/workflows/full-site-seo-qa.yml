@@ -1,0 +1,41 @@
+name: Full-site SEO and multilingual QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/seo_full_site_qa.py'
+      - '.github/workflows/full-site-seo-qa.yml'
+      - 'src/**'
+      - 'build.js'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/seo_full_site_qa.py'
+      - '.github/workflows/full-site-seo-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  crawl:
+    name: Build and validate every generated HTML page
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build production website
+        run: npm run build
+      - name: Crawl 63 generated pages for SEO metadata, links and language equivalence
+        run: python3 scripts/seo_full_site_qa.py
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-full-site-qa
+          path: seo-full-site-qa.json
+          if-no-files-found: warn
