@@ -275,3 +275,15 @@
   .section.home-pricing{padding-top:48px;padding-bottom:48px}
   .section.home-free-audit{padding-top:48px}
 }
+
+/* Phase 2 buyer clarity: three focused services and a compact project-start explanation.
+   The selectors appear only on English, Hindi and Kannada homepage content. */
+.home-core-services{grid-template-columns:repeat(3,minmax(0,1fr))}
+.home-core-services .solution-card{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
+.home-core-services .solution-card p{flex:1}
+.home-buyer-note{max-width:980px;margin:22px 0 0;color:var(--muted);font-size:15px;line-height:1.7}
+.home-buyer-note strong{color:var(--ink)}
+.home-buyer-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:19px}
+.home-buyer-actions .text-link,.hero-copy .micro a{color:var(--blue);text-decoration:underline;text-underline-offset:3px;font-weight:700}
+@media(max-width:1050px){.home-core-services{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.home-core-services{grid-template-columns:1fr}.home-buyer-actions{align-items:stretch;gap:12px}.home-buyer-actions .btn{width:100%}}
