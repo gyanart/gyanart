@@ -80,7 +80,7 @@ h2{font-size:clamp(34px,4vw,52px)}
  .language-menu{position:static;min-width:0;margin-top:6px;box-shadow:none}
  .breadcrumbs{padding-top:16px}
  .page-intro{padding-top:28px;padding-bottom:64px}
- .page-intro .section-head h1,.page-intro h1{font-size:clamp(34px,8.5vw,44px);line-height:1.04}
+ .page-intro .section-head h1,.page-intro h1{font-size:clamp(36px,8.5vw,44px);line-height:1.04}
  .solution-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
