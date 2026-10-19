@@ -249,3 +249,29 @@
 /* Use the actual project screenshot as the featured visual on home and portfolio. */
 .work-home-grid .work-feature-screenshot,.work-showcase-layout .work-feature-screenshot{margin:0}
 .work-feature-screenshot figcaption a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* Homepage only: tighter section rhythm, with comfortable content spacing.
+   Adjacent sections share a visual gap, so padding on both sides is tuned
+   together. These classes are present only in src/pages/home.html. */
+.hero.home-hero{padding-top:clamp(36px,4vw,52px)}
+.section.home-customer-journey{padding-top:60px;padding-bottom:62px}
+.section.home-growth-engine{padding-top:46px;padding-bottom:48px}
+.section.home-capabilities{padding-top:62px}
+.founder.home-founder{padding-bottom:68px}
+.section.home-featured-project{padding-top:54px;padding-bottom:70px}
+.section.home-how-i-think{padding-top:56px;padding-bottom:70px}
+.section.home-different-approach{padding-top:54px;padding-bottom:54px}
+.section.home-pricing{padding-top:70px;padding-bottom:68px}
+.section.home-free-audit{padding-top:58px}
+@media(max-width:700px){
+  .hero.home-hero{padding-top:28px}
+  .section.home-customer-journey{padding-top:44px;padding-bottom:44px}
+  .section.home-growth-engine{padding-top:36px;padding-bottom:36px}
+  .section.home-capabilities{padding-top:48px}
+  .founder.home-founder{padding-bottom:48px}
+  .section.home-featured-project{padding-top:44px;padding-bottom:50px}
+  .section.home-how-i-think{padding-top:44px;padding-bottom:48px}
+  .section.home-different-approach{padding-top:44px;padding-bottom:44px}
+  .section.home-pricing{padding-top:48px;padding-bottom:48px}
+  .section.home-free-audit{padding-top:48px}
+}
