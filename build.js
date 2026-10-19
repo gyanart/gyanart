@@ -41,9 +41,10 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design","logo-design.html":"Logo Design","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions"
+    "website-design.html":"Website Design","logo-design.html":"Logo Design","portfolio.html":"Our Work","case-studies/mayura-cafe.html":"Mayura Cafe Case Study","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions"
   };
   const parent={
+    "case-studies/mayura-cafe.html":["Our Work","portfolio.html"],
     "experiments/dental-clinic.html":["Growth Experiments","growth-experiments.html"],
     "experiments/professional-services.html":["Growth Experiments","growth-experiments.html"],
     "experiments/appliance-repair.html":["Growth Experiments","growth-experiments.html"],
@@ -68,7 +69,7 @@ function render(page){
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
   const navHref=(target)=>lang==="en"?prefix+target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
-  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
+  const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",work:"ನಮ್ಮ ಕೆಲಸ",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",work:"हमारा काम",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",work:"Our Work",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const equivalentSlug=p=>p.slug||(p.output.startsWith("experiments/")?p.output:path.basename(p.output));
   const languageOptions=languageItems.map(item=>{
@@ -89,6 +90,7 @@ function render(page){
     .replaceAll("{{HREF_LOCAL_SEO}}",navHref("local-seo-services.html"))
     .replaceAll("{{HREF_GBP}}",navHref("google-business-profile-optimization.html"))
     .replaceAll("{{HREF_EXPERIMENTS}}",navHref("growth-experiments.html"))
+    .replaceAll("{{HREF_PORTFOLIO}}",navHref("portfolio.html"))
     .replaceAll("{{HREF_PRICING}}",navHref("pricing.html"))
     .replaceAll("{{HREF_ABOUT}}",navHref("about.html"))
     .replaceAll("{{HREF_INSIGHTS}}",navHref("insights.html"))
@@ -96,7 +98,7 @@ function render(page){
     .replaceAll("{{NAV_HOW}}",navLabels.how).replaceAll("{{NAV_SOLUTIONS}}",navLabels.solutions)
     .replaceAll("{{NAV_SOLUTIONS_ALL}}",navLabels.solutionsAll).replaceAll("{{NAV_WEBSITE_DESIGN}}",navLabels.websiteDesign).replaceAll("{{NAV_LOGO_DESIGN}}",navLabels.logoDesign)
     .replaceAll("{{NAV_LOCAL_SEO}}",navLabels.localSeo).replaceAll("{{NAV_GBP}}",navLabels.gbp)
-    .replaceAll("{{NAV_EXPERIMENTS}}",navLabels.experiments).replaceAll("{{NAV_PRICING}}",navLabels.pricing)
+    .replaceAll("{{NAV_EXPERIMENTS}}",navLabels.experiments).replaceAll("{{NAV_WORK}}",navLabels.work).replaceAll("{{NAV_PRICING}}",navLabels.pricing)
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
     .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)
     .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
@@ -106,6 +108,7 @@ function render(page){
     .replaceAll('href="how-it-works.html"','href="'+footerPrefix+'how-it-works.html"')
     .replaceAll('href="solutions.html"','href="'+footerPrefix+'solutions.html"')
     .replaceAll('href="growth-experiments.html"','href="'+footerPrefix+'growth-experiments.html"')
+    .replaceAll('href="portfolio.html"','href="'+footerPrefix+'portfolio.html"')
     .replaceAll('href="pricing.html"','href="'+footerPrefix+'pricing.html"')
     .replaceAll('href="about.html"','href="'+footerPrefix+'about.html"')
     .replaceAll('href="insights.html"','href="'+footerPrefix+'insights.html"')

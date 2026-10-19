@@ -523,5 +523,54 @@
     "lang": "hi",
     "slug": "experiments/restaurant.html",
     "noindex": true
+  },
+  {
+    "output": "portfolio.html",
+    "content": "pages/portfolio.html",
+    "title": "Website Design Portfolio & Our Work in Bangalore | GyanArt",
+    "description": "Explore genuine GyanArt website design projects in Bangalore, including the Mayura Cafe and Food Court UX design process and working preview."
+  },
+  {
+    "output": "case-studies/mayura-cafe.html",
+    "content": "pages/case-studies/mayura-cafe.html",
+    "slug": "case-studies/mayura-cafe.html",
+    "title": "Mayura Cafe Website Design Case Study in Bengaluru | GyanArt",
+    "description": "Genuine UX and website design case study: a visit-first customer journey for Mayura Cafe and Food Court, responsive development and technical validation."
+  },
+  {
+    "output": "hi/portfolio.html",
+    "content": "translations/hi/portfolio.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "portfolio.html",
+    "title": "GyanArt वेबसाइट डिज़ाइन पोर्टफोलियो और हमारा काम",
+    "description": "बेंगलुरु में GyanArt के वास्तविक वेबसाइट डिज़ाइन प्रोजेक्ट और Mayura Cafe UX केस स्टडी देखें।"
+  },
+  {
+    "output": "hi/case-studies/mayura-cafe.html",
+    "content": "translations/hi/case-studies/mayura-cafe.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "case-studies/mayura-cafe.html",
+    "title": "Mayura Cafe वेबसाइट डिज़ाइन केस स्टडी | GyanArt",
+    "description": "Mayura Cafe के लिए UX, मेनू संरचना, स्पष्ट दिशा-निर्देश, मोबाइल वेबसाइट डिज़ाइन और तकनीकी परीक्षण।"
+  },
+  {
+    "output": "kn/portfolio.html",
+    "content": "translations/kn/portfolio.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "portfolio.html",
+    "title": "GyanArt ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಪೋರ್ಟ್‌ಫೋಲಿಯೊ ಮತ್ತು ನಮ್ಮ ಕೆಲಸ",
+    "description": "ಬೆಂಗಳೂರಿನಲ್ಲಿ GyanArt ನೈಜ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಯೋಜನೆಗಳು ಮತ್ತು Mayura Cafe UX ಕೇಸ್ ಸ್ಟಡಿ ನೋಡಿ."
+  },
+  {
+    "output": "kn/case-studies/mayura-cafe.html",
+    "content": "translations/kn/case-studies/mayura-cafe.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "case-studies/mayura-cafe.html",
+    "title": "Mayura Cafe ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಕೇಸ್ ಸ್ಟಡಿ | GyanArt",
+    "description": "Mayura Cafe ಗಾಗಿ UX ವಿನ್ಯಾಸ, ಮೆನು ರಚನೆ, ದಿಕ್ಕುಗಳಿಗೆ ಆದ್ಯತೆ, ಮೊಬೈಲ್ ಅಭಿವೃದ್ಧಿ ಮತ್ತು ತಾಂತ್ರಿಕ ಪರಿಶೀಲನೆ."
   }
 ]
