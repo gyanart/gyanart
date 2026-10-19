@@ -1,0 +1,52 @@
+name: Capture approved Mayura website screenshots
+
+on:
+  push:
+    branches:
+      - phase2-mayura-case-study-draft
+    paths:
+      - .github/workflows/capture-mayura-screenshots.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Capture actual public Mayura website on desktop and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [[ -z "$browser" ]]; then
+            echo "::error::Chrome/Chromium not installed on runner"
+            exit 1
+          fi
+          mkdir -p src/assets/mayura
+          timeout 100 "$browser" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage \
+            --virtual-time-budget=11000 --window-size=1440,980 --screenshot=src/assets/mayura/home-desktop.png \
+            https://mayuracafe.gyanart.com/ || exit 1
+          timeout 100 "$browser" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-dev-shm-usage \
+            --virtual-time-budget=11000 --window-size=390,844 --screenshot=src/assets/mayura/home-mobile.png \
+            https://mayuracafe.gyanart.com/ || exit 1
+          file src/assets/mayura/home-*.png
+          test "$(stat -c%s src/assets/mayura/home-desktop.png)" -gt 20000
+          test "$(stat -c%s src/assets/mayura/home-mobile.png)" -gt 10000
+      - name: Commit screenshots to case-study branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/assets/mayura/home-desktop.png src/assets/mayura/home-mobile.png
+          if git diff --cached --quiet; then
+            echo "Screenshot files unchanged"
+          else
+            git commit -m "Capture genuine public Mayura website for portfolio case study"
+            git push origin HEAD:phase2-mayura-case-study-draft
+          fi
