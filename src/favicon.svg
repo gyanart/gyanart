@@ -1,4 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#315CFF"/>
-  <path d="M45 21.5A18 18 0 1 0 49.5 38H33v-9h26v5c0 15.5-11.8 27-27 27A29 29 0 1 1 55 18z" fill="#fff" transform="translate(-1 -1) scale(.94)"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" role="img" aria-labelledby="title desc">
+<title id="title">GyanArt brush icon</title>
+<desc id="desc">Orange paintbrush flame and white handle on black</desc>
+<rect width="500" height="500" fill="#000"/>
+<path fill="#FF924F" d="M377 66 L330 76 L284 93 L246 115 L211 146 L188 177 L172 210 L165 231 L158 263 L155 288 L155 314 L174 308 L188 308 L202 312 L215 321 L218 321 L246 304 L263 289 L280 266 L292 237 L298 205 L300 214 L299 241 L291 273 L283 289 L269 308 L250 326 L234 337 L237 344 L258 336 L274 325 L292 305 L309 275 L310 278 L305 294 L289 321 L268 341 L242 356 L241 362 L255 360 L278 352 L298 341 L316 325 L332 301 L345 262 L350 224 L350 146 L352 127 L360 96 L368 79 Z"/>
+<path fill="#fff" d="M226 355 L207 338 L196 332 L180 327 L161 327 L145 336 L127 354 L108 379 L77 427 L36 499 L113 499 L166 428 L214 378 L230 365 Z"/>
 </svg>
