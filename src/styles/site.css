@@ -245,3 +245,7 @@
  .work-ux-figure figcaption{padding:0 8px 5px}
  .work-case-facts>div{padding:14px}
 }
+
+/* Use the actual project screenshot as the featured visual on home and portfolio. */
+.work-home-grid .work-feature-screenshot,.work-showcase-layout .work-feature-screenshot{margin:0}
+.work-feature-screenshot figcaption a{color:var(--blue);font-weight:700;text-decoration:underline;text-underline-offset:3px}
