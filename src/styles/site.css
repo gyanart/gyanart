@@ -202,3 +202,15 @@
 @media(max-width:950px){.work-intro-grid,.work-showcase-layout,.work-case-visual-grid,.work-home-grid{grid-template-columns:1fr}.work-process-grid,.work-case-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.work-intro h1,.work-case-hero h1{font-size:clamp(36px,8vw,48px)}.work-intro-side{padding:27px}.work-case-buttons{flex-direction:column}.work-case-buttons .btn{width:100%;text-align:center}.work-case-facts,.work-process-grid,.work-case-cta-grid{grid-template-columns:1fr}.work-more-grid,.work-service-inner,.work-local-grid{flex-direction:column;align-items:flex-start}.work-demo-main{min-height:280px}.work-demo-main strong{font-size:37px}.work-demo-cats{font-size:10px;gap:8px}.work-case-cta-grid{gap:38px}}
 
+
+
+/* Genuine screenshots captured from Mayura's live design preview (October 2026). */
+.work-actual-shot{margin:20px 0 0;border:1px solid #e0e6e5;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 12px 38px rgba(15,36,26,.09)}
+.work-actual-shot img{display:block;width:100%;height:auto;object-fit:cover}
+.work-actual-shot figcaption{padding:12px 15px;font-size:12px;color:#5b6d72;background:#fff}
+.work-screen-section{background:#eff4f2}
+.work-screen-grid{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(190px,.65fr);align-items:start;gap:26px}
+.work-screen-grid>.work-actual-shot{margin:0}
+.work-screen-grid>.work-actual-shot:not(.work-actual-mobile) img{max-height:640px;object-fit:cover;object-position:top}
+.work-screen-grid .work-actual-mobile{max-width:390px;margin:0 auto;width:100%}
+@media(max-width:700px){.work-screen-grid{grid-template-columns:1fr}.work-screen-grid .work-actual-mobile{width:min(100%,310px)}}
