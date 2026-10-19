@@ -13,6 +13,7 @@ const footer=read("components/footer.html");
 const pages=JSON.parse(read("data/pages.json"));
 const cssVersion=crypto.createHash("sha256").update(read("styles/site.css")).digest("hex").slice(0,12);
 const jsVersion=crypto.createHash("sha256").update(read("scripts/main.js")).digest("hex").slice(0,12);
+const faviconVersion=crypto.createHash("sha256").update(read("favicon.svg")).digest("hex").slice(0,12);
 const whatsappNumber=String(site.whatsapp || "").replace(/\D/g,"");
 const whatsappDisplay=whatsappNumber.startsWith("91")
   ? "+91 "+whatsappNumber.slice(2,7)+" "+whatsappNumber.slice(7)
@@ -83,6 +84,7 @@ function render(page){
   }).join("");
   const nav=header.replaceAll("{{SITE_NAME}}",site.name)
     .replaceAll("{{HREF_HOME}}",navHref("index.html"))
+    .replaceAll("{{HREF_BRAND_ICON}}",prefix+"favicon.svg?v="+faviconVersion)
     .replaceAll("{{HREF_HOW}}",navHref("how-it-works.html"))
     .replaceAll("{{HREF_SOLUTIONS}}",navHref("solutions.html"))
     .replaceAll("{{HREF_WEBSITE_DESIGN}}",navHref("website-design.html"))
@@ -156,7 +158,7 @@ function render(page){
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<title>'+page.title+'</title>\n'+
     '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
-    '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
+    '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg?v='+faviconVersion+'">\n'+
     '<script>\n'+
     '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "yxvmsm9pma");\n'+
     '</script>\n'+
@@ -202,7 +204,7 @@ for(const file of htmlFiles){
     throw new Error("Legacy WhatsApp placeholder remains in "+path.relative(dist,file));
   }
   const relativeFavicon=path.relative(path.dirname(file),path.join(dist,"favicon.svg")).replace(/\\\\/g,"/");
-  if(!html.includes('href="'+relativeFavicon+'"')){
+  if(!html.includes('href="'+relativeFavicon+'?v='+faviconVersion+'"')){
     throw new Error("Favicon link is missing or incorrect in "+path.relative(dist,file));
   }
 }
