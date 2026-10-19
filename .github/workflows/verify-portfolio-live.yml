@@ -65,3 +65,35 @@ jobs:
             sys.exit(1)
           print("PASS: all six language URLs, canonical hints, links and sitemap entries")
           PY
+
+      - name: Verify deployed GyanArt light theme and UX diagrams
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re,urllib.request,xml.etree.ElementTree as ET
+          from urllib.parse import urljoin
+          base="https://www.gyanart.com/"
+          case=urljoin(base,"case-studies/mayura-cafe.html")
+          headers={"User-Agent":"Mozilla/5.0 (compatible; GyanArt-Portfolio-LiveQA/2.0)","Accept":"text/html,image/svg+xml,text/css,*/*"}
+          def get(url):
+              with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=25) as response:
+                  data=response.read()
+                  print(f"HTTP {response.status} {url} bytes={len(data)} type={response.headers.get_content_type()}")
+                  assert response.status==200
+                  return data
+          html=get(case).decode("utf-8","replace")
+          names=("ux-journey.svg","ux-user-flow.svg","ux-information-architecture.svg","ux-wireframe-desktop.svg","ux-wireframe-mobile.svg")
+          for name in names:
+              assert f"../assets/mayura/{name}" in html, f"Missing case-study reference: {name}"
+              doc=ET.fromstring(get(urljoin(base,"assets/mayura/"+name)))
+              assert doc.tag.endswith("svg"), f"Invalid SVG {name}"
+              assert any(child.tag.endswith("title") for child in doc), f"Missing SVG title {name}"
+              assert any(child.tag.endswith("desc") for child in doc), f"Missing SVG description {name}"
+          styles=re.search(r'<link rel="stylesheet" href="([^"]*site[.]css[^"]*)"',html)
+          assert styles, "Missing stylesheet link"
+          css=get(urljoin(case,styles.group(1))).decode("utf-8","replace")
+          assert ".work-case-hero{background:linear-gradient(135deg,#EDF1FF" in css,"Old/different case-study hero theme served"
+          assert ".work-case-cta{background:#EEF2FF" in css,"Old dark-green CTA theme served"
+          assert "ux-journey.svg" in html and "@type\":\"Article" in html, "Case-study markup missing"
+          print("PASS: five UX graphics and GyanArt-branded light case-study CSS are deployed")
+          PY
