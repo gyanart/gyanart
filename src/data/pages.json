@@ -572,5 +572,130 @@
     "slug": "case-studies/mayura-cafe.html",
     "title": "Mayura Cafe ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಕೇಸ್ ಸ್ಟಡಿ | GyanArt",
     "description": "Mayura Cafe ಗಾಗಿ UX ವಿನ್ಯಾಸ, ಮೆನು ರಚನೆ, ದಿಕ್ಕುಗಳಿಗೆ ಆದ್ಯತೆ, ಮೊಬೈಲ್ ಅಭಿವೃದ್ಧಿ ಮತ್ತು ತಾಂತ್ರಿಕ ಪರಿಶೀಲನೆ."
+  },
+  {
+    "output": "insights/why-visitors-dont-contact-you.html",
+    "content": "pages/insights/why-visitors-dont-contact-you.html",
+    "slug": "insights/why-visitors-dont-contact-you.html",
+    "title": "Why Website Visitors Don't Contact You | Conversion & UX Guide | GyanArt",
+    "description": "Diagnose the gap between website visibility, trust, and enquiry actions. Practical conversion and UX framework for Bangalore small businesses."
+  },
+  {
+    "output": "hi/insights/why-visitors-dont-contact-you.html",
+    "content": "translations/hi/insights/why-visitors-dont-contact-you.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights/why-visitors-dont-contact-you.html",
+    "title": "लोग आपकी वेबसाइट देखकर भी संपर्क क्यों नहीं करते? | UX और कन्वर्ज़न गाइड | GyanArt",
+    "description": "वेबसाइट पर विज़िटर्स आने के बाद भी संपर्क न करने के कारणों को समझें। बेंगलुरु के छोटे व्यवसायों के लिए कन्वर्ज़न और UX सुधार गाइड।"
+  },
+  {
+    "output": "kn/insights/why-visitors-dont-contact-you.html",
+    "content": "translations/kn/insights/why-visitors-dont-contact-you.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights/why-visitors-dont-contact-you.html",
+    "title": "ಜನರು ವೆಬ್‌ಸೈಟ್ ನೋಡಿದರೂ ಸಂಪರ್ಕಿಸುವುದಿಲ್ಲ ಏಕೆ? | Conversion & UX ಗೈಡ್ | GyanArt",
+    "description": "ವೆಬ್‌ಸೈಟ್ ವೀಕ್ಷಣೆಗಳು ವಿಚಾರಣೆಯಾಗಿ ಬದಲಾಗದಿರಲು ಕಾರಣಗಳೇನು? ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ಕನ್ವರ್ಶನ್ ಮತ್ತು UX ಸುಧಾರಣೆಯ ಪ್ರಾಯೋಗಿಕ ಮಾರ್ಗದರ್ಶಿ."
+  },
+  {
+    "output": "insights/google-business-profile-local-seo-guide.html",
+    "content": "pages/insights/google-business-profile-local-seo-guide.html",
+    "slug": "insights/google-business-profile-local-seo-guide.html",
+    "title": "Google Business Profile & Local SEO Guide for Local Businesses | GyanArt",
+    "description": "Learn how customers use Google Maps and local search to evaluate businesses. Best practices for categories, photos, reviews, and enquiry measurement in Bangalore."
+  },
+  {
+    "output": "hi/insights/google-business-profile-local-seo-guide.html",
+    "content": "translations/hi/insights/google-business-profile-local-seo-guide.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights/google-business-profile-local-seo-guide.html",
+    "title": "Google Business Profile और लोकल SEO गाइड | GyanArt",
+    "description": "Google Maps और लोकल सर्च पर ग्राहक व्यवसाय का चुनाव कैसे करते हैं? प्रोफ़ाइल ऑप्टिमाइज़ेशन, समीक्षाओं और पूछताछ बढ़ाने की मार्गदर्शिका।"
+  },
+  {
+    "output": "kn/insights/google-business-profile-local-seo-guide.html",
+    "content": "translations/kn/insights/google-business-profile-local-seo-guide.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights/google-business-profile-local-seo-guide.html",
+    "title": "Google Business Profile ಮತ್ತು ಸ್ಥಳೀಯ SEO ಮಾರ್ಗದರ್ಶಿ | GyanArt",
+    "description": "Google Maps ನಲ್ಲಿ ವ್ಯಾಪಾರವನ್ನು ಸರಿಯಾಗಿ ಪ್ರದರ್ಶಿಸುವುದು ಹೇಗೆ? ಸ್ಥಳೀಯ ಹುಡುಕಾಟ, ವಿಮರ್ಶೆಗಳು ಮತ್ತು ಗ್ರಾಹಕರ ವಿಚಾರಣೆಗಳ ಮಾರ್ಗದರ್ಶಿ."
+  },
+  {
+    "output": "insights/ai-search-google-visibility-local-business.html",
+    "content": "pages/insights/ai-search-google-visibility-local-business.html",
+    "slug": "insights/ai-search-google-visibility-local-business.html",
+    "title": "How to Help Google & AI Search Understand Your Business | GyanArt",
+    "description": "Build clear, structured content that helps Google Search and AI answer engines understand your business services, locations, and customer value."
+  },
+  {
+    "output": "hi/insights/ai-search-google-visibility-local-business.html",
+    "content": "translations/hi/insights/ai-search-google-visibility-local-business.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights/ai-search-google-visibility-local-business.html",
+    "title": "Google और AI Search के लिए अपने व्यवसाय को स्पष्ट कैसे बनाएं | GyanArt",
+    "description": "सर्च इंजन और AI उत्तर प्रणालियों के लिए अपने व्यवसाय की सेवाओं और जानकारी को स्पष्ट, संरचित और भरोसेमंद बनाने की गाइड।"
+  },
+  {
+    "output": "kn/insights/ai-search-google-visibility-local-business.html",
+    "content": "translations/kn/insights/ai-search-google-visibility-local-business.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights/ai-search-google-visibility-local-business.html",
+    "title": "Google ಮತ್ತು AI ಸರ್ಚ್‌ಗೆ ನಿಮ್ಮ ವ್ಯಾಪಾರ ಸುಲಭವಾಗಿ ಅರ್ಥವಾಗುವಂತೆ ಮಾಡುವುದು ಹೇಗೆ | GyanArt",
+    "description": "ಹುಡುಕಾಟ ವ್ಯವಸ್ಥೆಗಳು ಮತ್ತು AI ಗೆ ನಿಮ್ಮ ವ್ಯಾಪಾರ ಸೇವೆಗಳು ಮತ್ತು ಮಾಹಿತಿ ಸ್ಪಷ್ಟವಾಗಿ ಅರ್ಥವಾಗಲು ರಚನಾತ್ಮಕ ಮಾಹಿತಿ ಗೈಡ್."
+  },
+  {
+    "output": "insights/designing-website-customer-journey.html",
+    "content": "pages/insights/designing-website-customer-journey.html",
+    "slug": "insights/designing-website-customer-journey.html",
+    "title": "Don't Just Build a Website: Design the Customer Journey | GyanArt",
+    "description": "Move past decorative website redesigns. Learn how to map customer decisions, reduce friction, and build websites that convert visitors into real enquiries."
+  },
+  {
+    "output": "hi/insights/designing-website-customer-journey.html",
+    "content": "translations/hi/insights/designing-website-customer-journey.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights/designing-website-customer-journey.html",
+    "title": "सिर्फ वेबसाइट न बनाएं: ग्राहक यात्रा (Customer Journey) डिज़ाइन करें | GyanArt",
+    "description": "सजावटी वेबसाइट डिज़ाइनों से आगे बढ़ें। ग्राहकों के सवालों, रुकावटों और निर्णय यात्रा के आधार पर प्रभावी वेबसाइट बनाने की रणनीति।"
+  },
+  {
+    "output": "kn/insights/designing-website-customer-journey.html",
+    "content": "translations/kn/insights/designing-website-customer-journey.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights/designing-website-customer-journey.html",
+    "title": "ಕೇವಲ ವೆಬ್‌ಸೈಟ್ ನಿರ್ಮಿಸಬೇಡಿ: ಗ್ರಾಹಕ ಪ್ರಯಾಣವನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಿ | GyanArt",
+    "description": "ಕೇವಲ ಆಕರ್ಷಕ ವೆಬ್‌ಸೈಟ್‌ಗಿಂತ ಗ್ರಾಹಕರ ತೀರ್ಮಾನ ಮತ್ತು ವಿಚಾರಣೆಯ ಹಾದಿಯನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸುವ ಪ್ರಾಯೋಗಿಕ UX ಮಾರ್ಗದರ್ಶಿ."
+  },
+  {
+    "output": "insights/website-design-cost-in-bangalore.html",
+    "content": "pages/insights/website-design-cost-in-bangalore.html",
+    "slug": "insights/website-design-cost-in-bangalore.html",
+    "title": "Website Design Cost in Bangalore (2026 Price Guide) | GyanArt",
+    "description": "Comprehensive 2026 price guide for website design in Bangalore. Compare freelancer vs agency pricing, realistic package tiers, and hidden hosting costs."
+  },
+  {
+    "output": "hi/insights/website-design-cost-in-bangalore.html",
+    "content": "translations/hi/insights/website-design-cost-in-bangalore.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "insights/website-design-cost-in-bangalore.html",
+    "title": "बेंगलुरु में वेबसाइट डिज़ाइन की कीमत (2026 मूल्य गाइड) | GyanArt",
+    "description": "बेंगलुरु में वेबसाइट डिज़ाइन की लागत का विस्तृत विश्लेषण। फ्रीलांसर बनाम एजेंसी शुल्क, पैकेज मूल्य और मेंटेनेंस खर्च की जानकारी।"
+  },
+  {
+    "output": "kn/insights/website-design-cost-in-bangalore.html",
+    "content": "translations/kn/insights/website-design-cost-in-bangalore.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "insights/website-design-cost-in-bangalore.html",
+    "title": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸದ ವೆಚ್ಚ ಎಷ್ಟು? (2026 ಬೆಲೆ ಮಾರ್ಗದರ್ಶಿ) | GyanArt",
+    "description": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸದ ದರಗಳು, ಫ್ರೀಲ್ಯಾನ್ಸರ್ vs ಏಜೆನ್ಸಿ ಹೋಲಿಕೆ ಮತ್ತು ನಿರ್ವಹಣಾ ವೆಚ್ಚದ ಸಮಗ್ರ 2026 ಬೆಲೆ ಗೈಡ್."
   }
 ]
