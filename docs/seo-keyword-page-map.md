@@ -52,3 +52,20 @@ The 11–17 October 2026 Search Console baseline is a very small sample: `websit
 
 ### Mobile Lead-Capture Triggers
 - Floating sticky WhatsApp button (`.whatsapp-float`) enabled across all viewport sizes with pre-filled enquiry text, configured so it never collides with `.back-to-top`.
+
+
+## Phase 2: Platform Solutions & Bangalore Pricing Guide (October 2026)
+
+### Category B (Platforms & Specializations)
+- **WordPress Web Design:** High-speed, block-based WordPress builds with zero plugin bloat, tailored for Bangalore local businesses.
+- **E-Commerce & Online Stores:** Streamlined Shopify and WooCommerce storefronts featuring Razorpay, Cashfree, and UPI payment gateways.
+- **Landing Pages & PPC CRO:** Lead generation landing pages for Bangalore startups running Meta and Google Ads.
+- **Website Redesign:** Modernizing legacy portals with improved Core Web Vitals and mobile UX while protecting existing search equity.
+
+### Category D (Bangalore Cost Transparency & Conversion)
+- **Bangalore Website Cost Guide (`#article-website-cost`):** Direct breakdown of local market costs:
+  - Basic Presence: ₹10,000 – ₹20,000
+  - Enquiry & Growth Builder: ₹25,000 – ₹45,000
+  - Comprehensive / E-Commerce: ₹37,000 – ₹80,000+
+  - Freelancer vs. Agency pricing comparison.
+- **Internal Linking:** Integrated bidirectional links between `pricing.html`, `faqs.html`, and `insights.html#article-website-cost`.
