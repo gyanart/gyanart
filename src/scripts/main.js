@@ -114,10 +114,16 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll(".nav-dropdown").forEach(dropdown=>{
     const button=dropdown.querySelector(".nav-dropdown-toggle");
     if(!button)return;
-    button.addEventListener("click",()=>{
-      if(!window.matchMedia("(max-width: 700px)").matches)return;
+    button.addEventListener("click",(e)=>{
+      e.stopPropagation();
       const open=dropdown.classList.toggle("open");
       button.setAttribute("aria-expanded",String(open));
+    });
+    document.addEventListener("click",(e)=>{
+      if(!dropdown.contains(e.target)){
+        dropdown.classList.remove("open");
+        button.setAttribute("aria-expanded","false");
+      }
     });
     document.addEventListener("keydown",event=>{
       if(event.key==="Escape"){
