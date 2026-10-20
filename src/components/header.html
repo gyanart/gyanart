@@ -1,10 +1,20 @@
 <header class="site-header" data-header>
   <div class="container nav-wrap">
     <a class="brand" href="{{HREF_HOME}}" aria-label="{{SITE_NAME}} home"><span class="brand-mark">G</span><span>{{SITE_NAME}}</span></a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
+    <div class="header-actions-mobile">
+      <button class="theme-toggle" type="button" aria-label="Toggle dark / light theme" title="Toggle dark / light theme" data-theme-toggle>
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">☀️</span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">🌙</span>
+      </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
+    </div>
     <nav id="site-nav" class="site-nav" aria-label="Main navigation">
       <a href="{{HREF_HOW}}">{{NAV_HOW}}</a><div class="nav-dropdown"><div class="nav-dropdown-heading"><a class="nav-dropdown-link" href="{{HREF_SOLUTIONS}}">{{NAV_SOLUTIONS}}</a><button class="nav-dropdown-toggle" type="button" aria-label="Toggle Solutions submenu" aria-expanded="false" aria-haspopup="true"><span class="nav-chevron" aria-hidden="true"></span></button></div><div class="nav-dropdown-menu"><a href="{{HREF_WEBSITE_DESIGN}}">{{NAV_WEBSITE_DESIGN}}</a><a href="{{HREF_LOGO_DESIGN}}">{{NAV_LOGO_DESIGN}}</a><a href="{{HREF_LOCAL_SEO}}">{{NAV_LOCAL_SEO}}</a><a href="{{HREF_GBP}}">{{NAV_GBP}}</a></div></div><a href="{{HREF_PORTFOLIO}}">{{NAV_WORK}}</a><a href="{{HREF_PRICING}}">{{NAV_PRICING}}</a><a href="{{HREF_ABOUT}}">{{NAV_ABOUT}}</a><a href="{{HREF_INSIGHTS}}">{{NAV_INSIGHTS}}</a>
       <div class="language-switcher"><button class="language-toggle" type="button" aria-expanded="false" aria-haspopup="true">{{LANGUAGE_LABEL}} <span aria-hidden="true">⌄</span></button><div class="language-menu" hidden>{{LANGUAGE_OPTIONS}}</div></div>
+      <button class="theme-toggle theme-toggle-desktop" type="button" aria-label="Toggle dark / light theme" title="Toggle dark / light theme" data-theme-toggle>
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">☀️</span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">🌙</span>
+      </button>
       <a class="nav-cta" href="{{HREF_AUDIT}}">{{NAV_AUDIT}}</a>
     </nav>
   </div>

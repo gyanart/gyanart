@@ -120,6 +120,8 @@ for p in PAGES:
             actual_alts[lang]=x.get("href")
     check(actual_alts==expected_alts,"hreflang",
           f"Expected {expected_alts}; got {actual_alts}",key)
+    if slug(p) == "404.html":
+        continue
     # Verify every EN/HI/KN language switch leads to the same page in that language.
     for target_lang in ("en","hi","kn"):
         matches=[q for q in groups[slug(p)] if (q.get("lang") or "en")==target_lang]

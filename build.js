@@ -916,10 +916,15 @@ function render(page){
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(profFaqSchema) + '</script>\n';
   }
+  const fontPreconnect='<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n';
+  const themeDetectionScript='<script>(function(){try{var s=localStorage.getItem("gyanart-theme");var t=s||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>\n';
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
-    '<meta name="theme-color" content="#F8F8F6">\n'+
+    '<meta name="color-scheme" content="light dark">\n'+
+    '<meta name="theme-color" content="#0B0D13">\n'+
+    themeDetectionScript+
+    fontPreconnect+
     stylesheetTag+
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+

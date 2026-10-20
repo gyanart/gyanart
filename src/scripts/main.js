@@ -179,4 +179,40 @@ document.addEventListener("DOMContentLoaded",()=>{
       if(button){button.disabled=false;button.textContent=originalText;}
     }
   }));
+
+  // Theme Switcher & System Color Scheme Sync
+  const themeToggles = document.querySelectorAll("[data-theme-toggle]");
+  function getEffectiveTheme() {
+    return document.documentElement.getAttribute("data-theme") || 
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+  function updateThemeUI(theme) {
+    themeToggles.forEach(btn => {
+      const targetMode = theme === "dark" ? "light" : "dark";
+      btn.setAttribute("aria-label", `Switch to ${targetMode} mode`);
+      btn.setAttribute("title", `Switch to ${targetMode} mode`);
+    });
+  }
+  function applyTheme(theme, save = true) {
+    document.documentElement.setAttribute("data-theme", theme);
+    if (save) {
+      try { localStorage.setItem("gyanart-theme", theme); } catch(e) {}
+    }
+    updateThemeUI(theme);
+  }
+  themeToggles.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const current = getEffectiveTheme();
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next, true);
+    });
+  });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+    try {
+      if (!localStorage.getItem("gyanart-theme")) {
+        applyTheme(e.matches ? "dark" : "light", false);
+      }
+    } catch(err) {}
+  });
+  updateThemeUI(getEffectiveTheme());
 });
