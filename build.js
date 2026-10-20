@@ -46,7 +46,9 @@ function render(page){
     "insights/google-business-profile-local-seo-guide.html":"Google Business Profile Guide",
     "insights/ai-search-google-visibility-local-business.html":"AI Search Visibility Guide",
     "insights/designing-website-customer-journey.html":"Customer Journey Guide",
-    "insights/website-design-cost-in-bangalore.html":"Website Design Cost Guide"
+    "insights/website-design-cost-in-bangalore.html":"Website Design Cost Guide",
+    "restaurants.html":"Restaurants & Cafes",
+    "professional-services.html":"Professional Services"
   };
   const parent={
     "case-studies/mayura-cafe.html":["Our Work","portfolio.html"],
@@ -62,7 +64,9 @@ function render(page){
     "insights/google-business-profile-local-seo-guide.html":["Insights","insights.html"],
     "insights/ai-search-google-visibility-local-business.html":["Insights","insights.html"],
     "insights/designing-website-customer-journey.html":["Insights","insights.html"],
-    "insights/website-design-cost-in-bangalore.html":["Insights","insights.html"]
+    "insights/website-design-cost-in-bangalore.html":["Insights","insights.html"],
+    "restaurants.html":["Solutions","solutions.html"],
+    "professional-services.html":["Solutions","solutions.html"]
   };
   const parentLabels = {
     "Insights": { en: "Insights", kn: "ಮಾಹಿತಿ", hi: "जानकारी" },
@@ -95,6 +99,16 @@ function render(page){
       en: "Website Design Cost Guide",
       kn: "ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ವೆಚ್ಚ ಗೈಡ್",
       hi: "वेबसाइट डिज़ाइन लागत गाइड"
+    },
+    "restaurants.html": {
+      en: "Restaurants & Cafes",
+      kn: "ರೆಸ್ಟೋರೆಂಟ್‌ಗಳು ಮತ್ತು ಕೆಫೆಗಳು",
+      hi: "रेस्टोरेंट और कैफ़े"
+    },
+    "professional-services.html": {
+      en: "Professional Services",
+      kn: "ವೃತ್ತಿಪರ ಸೇವೆಗಳು",
+      hi: "पेशेवर सेवाएं"
     }
   };
   const homeHref=lang==="en"?prefix+"index.html":"../".repeat(Math.max(0,page.output.split("/").length-2))+"index.html";
@@ -383,6 +397,88 @@ function render(page){
       ]
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(costFaqSchema) + '</script>\n';
+  }
+  if (pageSlug === "restaurants.html") {
+    const restaurantFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why should a restaurant have a website if they are already on Zomato and Swiggy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Food delivery apps take substantial commissions (typically 18% to 28%) and display competitor advertisements alongside your listing. A dedicated website builds direct loyalty, captures high-margin in-person diners, and allows customers to navigate directly via Google Maps or book tables on WhatsApp without third-party fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a restaurant website design cost in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt restaurant setup packages start at ₹10,000 for standard mobile-friendly websites with digital menus and directions, ₹25,000 for custom visual layouts with event booking funnels, and ₹37,000 for multi-location food businesses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we update our food menu and prices easily after launch?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Because our menus are built as clean structured text rather than flattened image files, prices, seasonal items, and daily specials can be updated swiftly without requiring complete redesigns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you help optimize our restaurant on Google Maps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every restaurant website package includes Google Business Profile coordination: ensuring primary categories, verified entrance coordinates, operating hours, and photo guidelines match your website."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(restaurantFaqSchema) + '</script>\n';
+  }
+  if (pageSlug === "professional-services.html") {
+    const profFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does a website actually generate consulting enquiries?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By organizing the page around the specific problems prospective clients face, explaining your approach clearly, answering common hesitations upfront, and providing a single, frictionless next step—such as scheduling an introductory phone call or sending a WhatsApp message."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a website for an advisory or legal practice cost in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt professional service packages start at ₹10,000 for standard 5-page firm presence, ₹25,000 for customized lead-building architectures with calendar integrations, and ₹37,000 for multi-practice advisory firms."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you help us rank for local B2B searches in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We optimize your website's location signals, service-specific pages, and Google Business Profile to target decision-makers searching across commercial hubs like HSR Layout, Koramangala, Whitefield, and Indiranagar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need a massive blog to demonstrate expertise?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. You don't need dozens of generic posts. Three or four well-crafted, original field guides that answer high-intent client questions (pricing, process, mistakes to avoid) generate far more trust than hundreds of automated articles."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(profFaqSchema) + '</script>\n';
   }
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+

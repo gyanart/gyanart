@@ -697,5 +697,55 @@
     "slug": "insights/website-design-cost-in-bangalore.html",
     "title": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸದ ವೆಚ್ಚ ಎಷ್ಟು? (2026 ಬೆಲೆ ಮಾರ್ಗದರ್ಶಿ) | GyanArt",
     "description": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸದ ದರಗಳು, ಫ್ರೀಲ್ಯಾನ್ಸರ್ vs ಏಜೆನ್ಸಿ ಹೋಲಿಕೆ ಮತ್ತು ನಿರ್ವಹಣಾ ವೆಚ್ಚದ ಸಮಗ್ರ 2026 ಬೆಲೆ ಗೈಡ್."
+  },
+  {
+    "output": "restaurants.html",
+    "content": "pages/restaurants.html",
+    "slug": "restaurants.html",
+    "title": "Website Design for Restaurants & Cafes in Bangalore | GyanArt",
+    "description": "Turn online searches into in-person diners. Mobile-first website design, fast digital menus, Google Maps directions, and direct WhatsApp table bookings for Bangalore restaurants."
+  },
+  {
+    "output": "hi/restaurants.html",
+    "content": "translations/hi/restaurants.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "restaurants.html",
+    "title": "बेंगलुरु में रेस्टोरेंट और कैफ़े के लिए वेबसाइट डिज़ाइन | GyanArt",
+    "description": "रेस्तरां, कैफे और क्लाउड किचन के लिए मोबाइल-फ्रेंडली मेनू, Google Maps दिशा निर्देश और WhatsApp टेबल बुकिंग।"
+  },
+  {
+    "output": "kn/restaurants.html",
+    "content": "translations/kn/restaurants.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "restaurants.html",
+    "title": "ಬೆಂಗಳೂರಿನ ರೆಸ್ಟೋರೆಂಟ್‌ಗಳು ಮತ್ತು ಕೆಫೆಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ರೆಸ್ಟೋರೆಂಟ್ ಮತ್ತು ಕೆಫೆಗಳಿಗೆ ಮೊಬೈಲ್ ಮೆನು, Google Maps ನಿರ್ದೇಶನಗಳು ಮತ್ತು ನೇರ WhatsApp ಟೇಬಲ್ ಬುಕಿಂಗ್ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ."
+  },
+  {
+    "output": "professional-services.html",
+    "content": "pages/professional-services.html",
+    "slug": "professional-services.html",
+    "title": "Website Design for Professional Services in Bangalore | GyanArt",
+    "description": "Build authority and generate qualified client enquiries. Custom website design and Local SEO for consultants, architects, law firms, and advisory practices in Bangalore."
+  },
+  {
+    "output": "hi/professional-services.html",
+    "content": "translations/hi/professional-services.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "professional-services.html",
+    "title": "बेंगलुरु में पेशेवर सेवाओं के लिए वेबसाइट डिज़ाइन | GyanArt",
+    "description": "कंसल्टेंट्स, सीए फर्मों, आर्किटेक्ट्स और कानूनी सलाहकारों के लिए अधिकार निर्माण और परामर्श पूछताछ बढ़ाने वाली वेबसाइटें।"
+  },
+  {
+    "output": "kn/professional-services.html",
+    "content": "translations/kn/professional-services.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "professional-services.html",
+    "title": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೃತ್ತಿಪರ ಸೇವೆಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ಸಲಹೆಗಾರರು, ಸಿಎ ಸಂಸ್ಥೆಗಳು, ಆರ್ಕಿಟೆಕ್ಟ್‌ಗಳು ಮತ್ತು ವಕೀಲರಿಗೆ ಹೊಸ ಗ್ರಾಹಕರ ವಿಚಾರಣೆಗಳನ್ನು ತರುವ ವಿಶ್ವಾಸಾರ್ಹ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ."
   }
 ]
