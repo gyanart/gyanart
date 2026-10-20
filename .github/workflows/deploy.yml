@@ -41,6 +41,8 @@ jobs:
           check test -f dist/js/main.js
           check test -f dist/robots.txt
           check test -f dist/sitemap.xml
+          check test -f dist/llms.txt
+          check test -f dist/llms-full.txt
           check grep -q 'https://www.gyanart.com/' dist/robots.txt
           check grep -q 'https://www.gyanart.com/' dist/sitemap.xml
           check grep -q 'rel="canonical" href="https://www.gyanart.com/' dist/index.html

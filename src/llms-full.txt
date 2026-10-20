@@ -1,0 +1,74 @@
+# GyanArt — Comprehensive LLM Documentation
+
+> Complete business profile, service offerings, methodology, pricing, and entity data for GyanArt (Bengaluru, India).
+
+## About GyanArt
+
+GyanArt is an independent digital growth consultancy and web design studio founded and led by Gyaneshwar, a UX designer with more than 20 years of experience. GyanArt specializes in helping small, owner-operated businesses and professional services in Bangalore establish a credible, high-converting digital presence.
+
+Instead of generic website templates or vanity traffic campaigns, GyanArt focuses on the complete customer enquiry journey:
+1. **Get Found:** Local SEO foundations, Google Business Profile optimization, and accurate area-served targeting.
+2. **Get Chosen:** Clear visual hierarchy, transparent pricing, genuine credentials, and mobile usability that builds immediate trust.
+3. **Get Contacted:** Direct, low-friction next actions—predominantly phone calls and WhatsApp messaging, aligned with local Indian consumer behavior.
+4. **Get Better:** Continuous measurement, review management, and monthly performance tuning.
+
+---
+
+## Detailed Service Catalog
+
+### 1. Website Design & Development
+- **URL:** https://www.gyanart.com/website-design.html
+- **Target Audience:** Small business owners, clinics, independent consultants, local retailers in Bangalore.
+- **Technologies:** Semantic HTML5, lightweight modern CSS, performant JavaScript, custom WordPress (block-based, zero page-builder bloat), Shopify/WooCommerce e-commerce.
+- **Key Features:** Mobile-first layout, Core Web Vitals optimization, accessible color contrast, click-to-call & WhatsApp integration, Schema.org structured data, XML sitemaps, Google Search Console & Analytics integration.
+- **Timeline:** 2 to 3 weeks for standard 5 to 10-page websites.
+
+### 2. Local SEO Services
+- **URL:** https://www.gyanart.com/local-seo-services.html
+- **Focus:** Ranking for high-intent local searches across Bangalore neighborhoods (e.g., Whitefield, Varthur, HSR Layout, Koramangala).
+- **Deliverables:** On-page localization, service-area alignment, title/meta tag tuning, internal linking structure, and local business citation consistency.
+
+### 3. Google Business Profile (GBP) Optimization
+- **URL:** https://www.gyanart.com/google-business-profile-optimization.html
+- **Focus:** Google Maps and Local 3-Pack visibility.
+- **Deliverables:** Primary category selection, verified pin placement, operating hours, comprehensive service listings, photo audit, and ethical review response strategy.
+
+### 4. Logo & Visual Identity Design
+- **URL:** https://www.gyanart.com/logo-design.html
+- **Deliverables:** Functional logos for digital screens, WhatsApp profiles, Google Business profiles, and local signage.
+
+---
+
+## Transparent Pricing Tiers
+
+All packages include full responsive design, semantic code, search readiness, and direct collaboration with the founder.
+
+| Package | One-Time Fee | Scope | Best For |
+|:---|:---:|:---|:---|
+| **Digital Foundation** | ₹10,000 | Up to 5 standard pages, responsive mobile layout, WhatsApp/call CTA, GBP setup basics | Solo professionals & early-stage local shops |
+| **Enquiry Builder** | ₹25,000 | Up to 10 pages, custom visual styling, conversion-focused page layout, enquiry tracking | Established local businesses seeking more leads |
+| **Growth Optimization** | ₹37,000 | Up to 30 pages, tailored service structure, deeper analytics & search measurement | Larger practices, clinics & multi-service firms |
+| **Monthly Support** | ₹1,000 – ₹3,000 / mo | Technical maintenance, content updates, and Local SEO monitoring | Continuous improvement post-launch |
+
+---
+
+## Geographic Service Area (Bangalore Localities)
+
+GyanArt primarily serves businesses located in and around:
+- **East Bangalore:** Varthur, Balagere, Marathahalli, Whitefield, Bellandur, Kadubeesanahalli, Sarjapur Road.
+- **South & Central Bangalore:** HSR Layout, Koramangala, Indiranagar, BTM Layout, Jayanagar.
+
+---
+
+## Founder Profile & Verification
+
+- **Founder:** Gyaneshwar
+- **Role:** UX Designer & Digital Growth Consultant
+- **Experience:** 20+ years in user experience design and web development
+- **LinkedIn:** https://www.linkedin.com/in/uxgyan/
+- **Official Address:** A107, Hilife Pearl Shell, Balagere Road, Varthur, Bengaluru, Karnataka 560087, India
+- **Phone:** +91-9880208870
+- **Email:** info@gyanart.com
+- **Google Maps Listing:** https://maps.app.goo.gl/QYAzaKxRDyMyX7RA6
+- **YouTube Channel:** https://www.youtube.com/@gyanart
+- **Instagram:** https://www.instagram.com/gyanehswar.mule/

@@ -253,7 +253,90 @@ function render(page){
     ]
   };
   let pageSchemaTags = '<script type="application/ld+json">' + JSON.stringify(primarySchema) + '</script>\n';
+
+  if (page.isHome || page.output === "index.html") {
+    const websiteSchema = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "GyanArt",
+      "alternateName": ["GyanArt Web Design", "GyanArt Digital Growth"],
+      "url": "https://www.gyanart.com/",
+      "description": "UX-led website design and local SEO services for small businesses in Bangalore.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "GyanArt"
+      }
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(websiteSchema) + '</script>\n';
+  }
+
+  if (!(page.isHome || page.output === "index.html") && crumbParts && crumbParts.length > 1) {
+    const breadcrumbSchema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": crumbParts.map((crumb, idx) => {
+        let itemUrl = "https://www.gyanart.com/";
+        if (idx === 0) {
+          itemUrl = lang === "en" ? "https://www.gyanart.com/" : "https://www.gyanart.com/" + lang + "/";
+        } else if (idx === crumbParts.length - 1) {
+          itemUrl = "https://www.gyanart.com/" + page.output;
+        } else if (parent[slug]) {
+          itemUrl = "https://www.gyanart.com/" + (lang === "en" ? "" : lang + "/") + parent[slug][1];
+        }
+        return {
+          "@type": "ListItem",
+          "position": idx + 1,
+          "name": crumb.label,
+          "item": itemUrl
+        };
+      })
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(breadcrumbSchema) + '</script>\n';
+  }
+
   if (pageSlug === "website-design.html") {
+    const websiteDesignServiceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website Design for Small Businesses in Bangalore",
+      "serviceType": "Website Design and Development",
+      "description": "UX-led, conversion-focused mobile-friendly website design for small businesses in Bangalore, built around clear information, trust, and enquiry actions.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/"
+      },
+      "areaServed": primarySchema.areaServed,
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Website Design Packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Digital Foundation",
+            "price": "10000",
+            "priceCurrency": "INR",
+            "description": "Up to 5 standard responsive pages, mobile click-to-call, WhatsApp actions, and Google Business Profile basics."
+          },
+          {
+            "@type": "Offer",
+            "name": "Enquiry Builder",
+            "price": "25000",
+            "priceCurrency": "INR",
+            "description": "Up to 10 standard pages, custom styling, conversion-focused page layout, and enquiry tracking."
+          },
+          {
+            "@type": "Offer",
+            "name": "Growth Optimization",
+            "price": "37000",
+            "priceCurrency": "INR",
+            "description": "Up to 30 pages, tailored service structure, and advanced measurement."
+          }
+        ]
+      }
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(websiteDesignServiceSchema) + '</script>\n';
+
     const websiteDesignFaqSchema = {
       "@context": "https://schema.org",
       "@type": "FAQPage",
@@ -301,6 +384,57 @@ function render(page){
       ]
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(websiteDesignFaqSchema) + '</script>\n';
+  } else if (pageSlug === "local-seo-services.html") {
+    const localSeoServiceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Local SEO Services in Bangalore",
+      "serviceType": "Local Search Engine Optimization",
+      "description": "Local SEO setup, on-page location optimization, local keyword alignment, and Google search visibility support for small businesses across Bangalore.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/"
+      },
+      "areaServed": primarySchema.areaServed,
+      "offers": {
+        "@type": "Offer",
+        "price": "1000",
+        "priceCurrency": "INR",
+        "description": "Monthly Local SEO and Google Business Profile maintenance starting from ₹1,000 to ₹3,000 per month."
+      }
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(localSeoServiceSchema) + '</script>\n';
+  } else if (pageSlug === "google-business-profile-optimization.html") {
+    const gbpServiceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Google Business Profile Optimization in Bangalore",
+      "serviceType": "Google Business Profile and Maps Optimization",
+      "description": "Verification, category selection, NAP consistency, service descriptions, and review response guidance for Google Business Profiles in Bangalore.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/"
+      },
+      "areaServed": primarySchema.areaServed
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(gbpServiceSchema) + '</script>\n';
+  } else if (pageSlug === "logo-design.html") {
+    const logoServiceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Logo & Brand Identity Design in Bangalore",
+      "serviceType": "Logo Design and Visual Identity",
+      "description": "Practical logo design and brand identity kits for Bangalore small businesses across digital and print touchpoints.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/"
+      },
+      "areaServed": primarySchema.areaServed
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(logoServiceSchema) + '</script>\n';
   } else if (pageSlug === "faqs.html") {
     const faqsPageSchema = {
       "@context": "https://schema.org",
@@ -308,31 +442,115 @@ function render(page){
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "How much does a small business website cost in Bangalore?",
+          "name": "How much does a small-business website cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "GyanArt setup packages start at ₹10,000 for standard 5-page small-business sites, ₹25,000 for up to 10 pages with custom styling and enquiry tracking, and ₹37,000 for up to 30 pages with advanced measurement."
+            "text": "GyanArt website packages currently start at ₹10,000 for standard 5-page small-business sites, ₹25,000 for up to 10 pages with custom styling and enquiry tracking, and ₹37,000 for up to 30 pages with advanced measurement."
           }
         },
         {
           "@type": "Question",
-          "name": "How long does it take to design and launch a website?",
+          "name": "Will a new website automatically rank on Google?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A standard 5 to 10-page website typically takes 2 to 3 weeks once goals, structure, and content are agreed."
+            "text": "No. A search-ready structure helps, but rankings also depend on relevance, competition, content quality, links, technical access and other factors."
           }
         },
         {
           "@type": "Question",
-          "name": "Do you offer ongoing website support and Local SEO?",
+          "name": "Do I need a new website or can you improve my existing one?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. GyanArt provides monthly maintenance and visibility support starting from ₹1,000 to ₹3,000 per month."
+            "text": "We first review content, mobile usability, performance, search structure and the enquiry journey. Sometimes focused improvements are enough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you guarantee a top Google or Maps ranking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Local results depend on relevance, distance, prominence, competition and other factors. GyanArt focuses on sound improvements and transparent measurement, not guaranteed positions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between local SEO and Google Business Profile optimization?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Google Business Profile work improves the usefulness and accuracy of your listing. Local SEO also considers your website, service pages, location relevance, internal links and the broader discovery journey."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does SEO take to improve traffic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It varies with the site's current state, competition, content and crawl/indexing conditions. Technical changes can be recognized sooner, while ranking and traffic gains often take months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens during a free growth audit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We review public information about your website, search presence and customer contact journey, then provide a concise summary of strengths, improvement opportunities and suggested next steps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I prepare before starting a website project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prepare a short description of your services, main customer types, service areas, preferred contact method, and existing website or brand assets."
           }
         }
       ]
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(faqsPageSchema) + '</script>\n';
+  } else if (pageSlug === "insights.html") {
+    const insightsCollectionSchema = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Local SEO, Website UX & Digital Growth Guides | GyanArt",
+      "description": page.description,
+      "url": "https://www.gyanart.com/insights.html",
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://www.gyanart.com/insights/why-visitors-dont-contact-you.html",
+            "name": "Why Visitors Don't Contact You"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://www.gyanart.com/insights/google-business-profile-local-seo-guide.html",
+            "name": "Google Business Profile & Local SEO Guide"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://www.gyanart.com/insights/ai-search-google-visibility-local-business.html",
+            "name": "AI Search Visibility for Local Businesses"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://www.gyanart.com/insights/designing-website-customer-journey.html",
+            "name": "Designing the Website Customer Journey"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://www.gyanart.com/insights/website-design-cost-in-bangalore.html",
+            "name": "Website Design Cost in Bangalore"
+          }
+        ]
+      }
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(insightsCollectionSchema) + '</script>\n';
   }
   if (pageSlug.startsWith("insights/")) {
     const articleSchema = {
@@ -531,6 +749,8 @@ fs.copyFileSync(path.join(src,"og-gyanart.svg"),path.join(dist,"assets/og-gyanar
 const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
+if(fs.existsSync(path.join(src,"llms.txt"))) fs.copyFileSync(path.join(src,"llms.txt"),path.join(dist,"llms.txt"));
+if(fs.existsSync(path.join(src,"llms-full.txt"))) fs.copyFileSync(path.join(src,"llms-full.txt"),path.join(dist,"llms-full.txt"));
 const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>(page.isHome||page.output==="index.html")?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output);
 const sitemapXml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemapUrls.map(url=>'  <url><loc>'+url+'</loc></url>').join("\n")+'\n</urlset>\n';
 fs.writeFileSync(path.join(dist,"sitemap.xml"),sitemapXml);
@@ -576,6 +796,14 @@ const htaccess = `DirectoryIndex index.html
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} !^www\\.gyanart\\.com$ [NC]
   RewriteRule ^ https://www.gyanart.com%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# HTTP Security Headers for GEO & Browser Protection
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
 # Keep HTML revalidatable so deployments appear promptly.
