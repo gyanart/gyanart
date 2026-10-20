@@ -132,6 +132,147 @@ function render(page){
       `<link rel="stylesheet" href="${stylesheetHref}" media="print" onload="this.media='all'">\n`+
       `<noscript><link rel="stylesheet" href="${stylesheetHref}"></noscript>\n`
     : `<link rel="stylesheet" href="${stylesheetHref}">\n`;
+  const primarySchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "GyanArt",
+    "alternateName": ["Gyanart Web Design", "GyanArt Digital Growth Consultancy"],
+    "url": "https://www.gyanart.com/",
+    "logo": "https://www.gyanart.com/assets/og-gyanart.svg",
+    "image": "https://www.gyanart.com/assets/og-gyanart.svg",
+    "description": "UX-led digital growth support for local businesses, including conversion-focused website design, local SEO, and Google Business Profile optimization in Bangalore.",
+    "telephone": "+91-9880208870",
+    "email": "info@gyanart.com",
+    "priceRange": "₹10,000 - ₹37,000",
+    "hasMap": "https://maps.app.goo.gl/QYAzaKxRDyMyX7RA6",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "A107, Hilife Pearl Shell, Balagere Road, Varthur",
+      "addressLocality": "Bengaluru",
+      "postalCode": "560087",
+      "addressRegion": "Karnataka",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 12.9395061,
+      "longitude": 77.7299794
+    },
+    "areaServed": [
+      {"@type": "City", "name": "Bengaluru"},
+      {"@type": "AdministrativeArea", "name": "Varthur"},
+      {"@type": "AdministrativeArea", "name": "Balagere"},
+      {"@type": "AdministrativeArea", "name": "Marathahalli"},
+      {"@type": "AdministrativeArea", "name": "Whitefield"},
+      {"@type": "AdministrativeArea", "name": "HSR Layout"},
+      {"@type": "AdministrativeArea", "name": "Koramangala"},
+      {"@type": "AdministrativeArea", "name": "Indiranagar"},
+      {"@type": "AdministrativeArea", "name": "BTM Layout"},
+      {"@type": "AdministrativeArea", "name": "Bellandur"}
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Gyaneshwar",
+      "jobTitle": "UX Designer and Digital Growth Consultant",
+      "sameAs": "https://www.linkedin.com/in/uxgyan/"
+    },
+    "sameAs": [
+      "https://maps.app.goo.gl/QYAzaKxRDyMyX7RA6",
+      "https://www.linkedin.com/in/uxgyan/",
+      "https://www.youtube.com/@gyanart",
+      "https://www.instagram.com/gyanehswar.mule/"
+    ],
+    "knowsAbout": [
+      "Website Design",
+      "Local SEO",
+      "Google Business Profile optimization",
+      "Website UX",
+      "Conversion optimization",
+      "Digital growth strategy"
+    ]
+  };
+  let pageSchemaTags = '<script type="application/ld+json">' + JSON.stringify(primarySchema) + '</script>\n';
+  if (pageSlug === "website-design.html") {
+    const websiteDesignFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a small-business website cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt website setup packages currently start at ₹10,000 for standard local business sites, with ₹25,000 and ₹37,000 tiers for custom structures, larger page limits, and deeper enquiry tracking."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will a new website automatically rank on Google?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A search-ready structure helps, but rankings also depend on relevance, competition, content quality, links and other factors. A website should be built around useful information and a clear customer journey, not ranking promises."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to rebuild my existing website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not always. We first review content, mobile usability, performance, search structure and enquiry paths. Focused improvements may be enough."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you help people find the website locally?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Website improvements can be paired with local SEO and Google Business Profile optimization to strengthen the overall discovery and enquiry journey."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which areas in Bangalore do you serve for website design?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt works with small businesses across Bangalore, including Varthur, Balagere, Marathahalli, Whitefield, HSR Layout, Koramangala, Indiranagar, Bellandur, and BTM Layout."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(websiteDesignFaqSchema) + '</script>\n';
+  } else if (pageSlug === "faqs.html") {
+    const faqsPageSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does a small business website cost in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt setup packages start at ₹10,000 for standard 5-page small-business sites, ₹25,000 for up to 10 pages with custom styling and enquiry tracking, and ₹37,000 for up to 30 pages with advanced measurement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to design and launch a website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard 5 to 10-page website typically takes 2 to 3 weeks once goals, structure, and content are agreed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer ongoing website support and Local SEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. GyanArt provides monthly maintenance and visibility support starting from ₹1,000 to ₹3,000 per month."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(faqsPageSchema) + '</script>\n';
+  }
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
     '<meta name="viewport" content="width=device-width, initial-scale=1">\n'+
@@ -155,7 +296,7 @@ function render(page){
     '<meta property="og:url" content="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<link rel="canonical" href="https://www.gyanart.com/'+(page.isHome ? (page.lang ? page.lang+"/" : "") : (page.output === "index.html" ? "" : page.output))+'">\n'+
     '<title>'+page.title+'</title>\n'+
-    '<script type="application/ld+json">'+JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"GyanArt","url":"https://www.gyanart.com/","description":"UX-led digital growth support for local businesses, including local SEO, Google Business Profile optimization and conversion-focused website design.","email":"info@gyanart.com","areaServed":{"@type":"City","name":"Bengaluru"},"knowsAbout":["Local SEO","Google Business Profile optimization","Website UX","Website design","Conversion optimization","Digital growth strategy"],"founder":{"@type":"Person","name":"Gyaneshwar","jobTitle":"UX Designer and Digital Growth Consultant"}})+'</script>\n'+
+    pageSchemaTags+
     '<link rel="icon" type="image/svg+xml" href="'+prefix+'favicon.svg">\n'+
     '<script>\n'+
     '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "yxvmsm9pma");\n'+
@@ -201,7 +342,7 @@ for(const file of htmlFiles){
   if(html.includes("919999999999") || html.includes("+91 99999 99999")){
     throw new Error("Legacy WhatsApp placeholder remains in "+path.relative(dist,file));
   }
-  const relativeFavicon=path.relative(path.dirname(file),path.join(dist,"favicon.svg")).replace(/\\\\/g,"/");
+  const relativeFavicon=path.relative(path.dirname(file),path.join(dist,"favicon.svg")).replace(/\\/g,"/");
   if(!html.includes('href="'+relativeFavicon+'"')){
     throw new Error("Favicon link is missing or incorrect in "+path.relative(dist,file));
   }

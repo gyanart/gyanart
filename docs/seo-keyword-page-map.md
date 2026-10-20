@@ -36,3 +36,19 @@ The 11–17 October 2026 Search Console baseline is a very small sample: `websit
 - Track impressions, clicks, CTR and average position for the target clusters above. Use GA4/lead tracking to assess qualified calls, WhatsApp messages and forms, not rankings alone.
 - After publishing changes, inspect the deployed canonical URL and sitemap, then request indexing only for materially updated canonical pages. Do not repeatedly request indexing for unchanged pages.
 - First priority for content iteration: the homepage for website-designer intent, the detailed website-design service, and the Local SEO and Google Business Profile pages. Use query data to refine headings and copy only when Search Console begins showing relevant impressions; do not infer demand from the current four impressions alone.
+
+
+## Local SEO & Schema Implementation (October 2026)
+
+### Verified Business Profile & Geocoordinates
+- **Google Business Profile:** [Gyanart Web Design on Google Maps](https://maps.app.goo.gl/QYAzaKxRDyMyX7RA6)
+- **Studio Address:** A107, Hilife Pearl Shell, Balagere Road, Varthur, Bengaluru, Karnataka 560087
+- **Exact Coordinates:** Latitude `12.9395061`, Longitude `77.7299794`
+- **Primary Direct WhatsApp:** `+91 98802 08870` (`919880208870`)
+
+### Structured Data Architecture
+- **Global Schema:** Upgraded from generic `Organization` to `ProfessionalService` (inherits from `LocalBusiness`), incorporating full NAP (Name, Address, Phone), precise coordinates, price range (`₹10,000 - ₹37,000`), map link, and multi-locality `areaServed` coverage (Varthur, Balagere, Marathahalli, Whitefield, HSR Layout, Koramangala, Indiranagar, BTM Layout, Bellandur).
+- **FAQPage Schema:** Added to `website-design.html` and `faqs.html` to capture Google rich snippet accordions in SERPs.
+
+### Mobile Lead-Capture Triggers
+- Floating sticky WhatsApp button (`.whatsapp-float`) enabled across all viewport sizes with pre-filled enquiry text, configured so it never collides with `.back-to-top`.

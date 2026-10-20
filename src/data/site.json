@@ -2,5 +2,18 @@
   "name": "GyanArt",
   "tagline": "Turn Your Online Presence Into a Customer Engine.",
   "email": "info@gyanart.com",
-  "whatsapp": "919880208870"
+  "whatsapp": "919880208870",
+  "phone": "+91 98802 08870",
+  "maps": "https://maps.app.goo.gl/QYAzaKxRDyMyX7RA6",
+  "address": {
+    "street": "A107, Hilife Pearl Shell, Balagere Road, Varthur",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "postalCode": "560087",
+    "country": "IN"
+  },
+  "geo": {
+    "latitude": 12.9395061,
+    "longitude": 77.7299794
+  }
 }
