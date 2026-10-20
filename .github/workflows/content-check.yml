@@ -1,0 +1,33 @@
+name: Editorial Content Checks
+
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - "scripts/check-content.js"
+      - ".github/workflows/content-check.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "content/**"
+      - "scripts/check-content.js"
+      - ".github/workflows/content-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content:
+    name: Validate editorial metadata and readiness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate article metadata and review-state checks
+        run: node scripts/check-content.js

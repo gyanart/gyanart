@@ -1,6 +1,1 @@
-{
-  "name":"gyanart",
-  "private":true,
-  "version":"1.0.0",
-  "scripts":{"build":"node build.js"}
-}
+{"name":"gyanart","private":true,"version":"1.0.0","scripts":{"build":"node build.js","check:content":"node scripts/check-content.js"}}
