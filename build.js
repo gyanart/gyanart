@@ -41,7 +41,12 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design","logo-design.html":"Logo Design","portfolio.html":"Our Work","case-studies/mayura-cafe.html":"Mayura Cafe Case Study","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions"
+    "website-design.html":"Website Design","logo-design.html":"Logo Design","portfolio.html":"Our Work","case-studies/mayura-cafe.html":"Mayura Cafe Case Study","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions",
+    "insights/why-visitors-dont-contact-you.html":"Why Visitors Don't Contact You",
+    "insights/google-business-profile-local-seo-guide.html":"Google Business Profile Guide",
+    "insights/ai-search-google-visibility-local-business.html":"AI Search Visibility Guide",
+    "insights/designing-website-customer-journey.html":"Customer Journey Guide",
+    "insights/website-design-cost-in-bangalore.html":"Website Design Cost Guide"
   };
   const parent={
     "case-studies/mayura-cafe.html":["Our Work","portfolio.html"],
@@ -52,12 +57,54 @@ function render(page){
     "local-seo-services.html":["Solutions","solutions.html"],
     "google-business-profile-optimization.html":["Solutions","solutions.html"],
     "website-design.html":["Solutions","solutions.html"],
-    "logo-design.html":["Solutions","solutions.html"]
+    "logo-design.html":["Solutions","solutions.html"],
+    "insights/why-visitors-dont-contact-you.html":["Insights","insights.html"],
+    "insights/google-business-profile-local-seo-guide.html":["Insights","insights.html"],
+    "insights/ai-search-google-visibility-local-business.html":["Insights","insights.html"],
+    "insights/designing-website-customer-journey.html":["Insights","insights.html"],
+    "insights/website-design-cost-in-bangalore.html":["Insights","insights.html"]
+  };
+  const parentLabels = {
+    "Insights": { en: "Insights", kn: "ಮಾಹಿತಿ", hi: "जानकारी" },
+    "Solutions": { en: "Solutions", kn: "ಸೇವೆಗಳು", hi: "सेवाएं" },
+    "Growth Experiments": { en: "Growth Experiments", kn: "ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು", hi: "ग्रोथ उदाहरण" },
+    "Our Work": { en: "Our Work", kn: "ನಮ್ಮ ಕೆಲಸ", hi: "हमारा काम" }
+  };
+  const articleCrumbLabels = {
+    "insights/why-visitors-dont-contact-you.html": {
+      en: "Why Visitors Don't Contact You",
+      kn: "ಸಂದರ್ಶಕರು ಸಂಪರ್ಕಿಸದಿರಲು ಕಾರಣ",
+      hi: "विज़िटर्स संपर्क क्यों नहीं करते"
+    },
+    "insights/google-business-profile-local-seo-guide.html": {
+      en: "Google Business Profile Guide",
+      kn: "Google Business Profile ಮಾರ್ಗದರ್ಶಿ",
+      hi: "Google Business Profile गाइड"
+    },
+    "insights/ai-search-google-visibility-local-business.html": {
+      en: "AI Search Visibility Guide",
+      kn: "AI ಸರ್ಚ್ ಗೋಚರತೆ ಮಾರ್ಗದರ್ಶಿ",
+      hi: "AI सर्च विजिबिलिटी गाइड"
+    },
+    "insights/designing-website-customer-journey.html": {
+      en: "Customer Journey Guide",
+      kn: "ಗ್ರಾಹಕ ಪ್ರಯಾಣ ಮಾರ್ಗದರ್ಶಿ",
+      hi: "ग्राहक यात्रा गाइड"
+    },
+    "insights/website-design-cost-in-bangalore.html": {
+      en: "Website Design Cost Guide",
+      kn: "ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ವೆಚ್ಚ ಗೈಡ್",
+      hi: "वेबसाइट डिज़ाइन लागत गाइड"
+    }
   };
   const homeHref=lang==="en"?prefix+"index.html":"../".repeat(Math.max(0,page.output.split("/").length-2))+"index.html";
   const crumbParts=[{label:lang==="kn"?"ಮುಖಪುಟ":lang==="hi"?"होम":"Home",href:homeHref}];
-  if(parent[slug]) crumbParts.push({label:parent[slug][0],href:lang==="en"?prefix+parent[slug][1]:"../".repeat(Math.max(0,page.output.split("/").length-2))+parent[slug][1]});
-  if(labels[slug]) crumbParts.push({label:labels[slug]});
+  if(parent[slug]) {
+    const parentName = parentLabels[parent[slug][0]] ? (parentLabels[parent[slug][0]][lang] || parent[slug][0]) : parent[slug][0];
+    crumbParts.push({label:parentName,href:lang==="en"?prefix+parent[slug][1]:"../".repeat(Math.max(0,page.output.split("/").length-2))+parent[slug][1]});
+  }
+  const currentCrumbLabel = (articleCrumbLabels[slug] && articleCrumbLabels[slug][lang]) || labels[slug];
+  if(currentCrumbLabel) crumbParts.push({label:currentCrumbLabel});
   const breadcrumb=(page.isHome || page.output==="index.html")?"":'<nav class="breadcrumbs container" aria-label="Breadcrumb"><ol>'+crumbParts.map((c,i)=>'<li>'+(c.href?'<a href="'+c.href+'">'+c.label+'</a>': '<span aria-current="page">'+c.label+'</span>')+'</li>').join('<li class="breadcrumb-separator" aria-hidden="true">/</li>')+'</ol></nav>';
   let pageContent=body;
   if(!(page.isHome || page.output==="index.html" || page.noBreadcrumbs)){
@@ -272,6 +319,70 @@ function render(page){
       ]
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(faqsPageSchema) + '</script>\n';
+  }
+  if (pageSlug.startsWith("insights/")) {
+    const articleSchema = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": page.title.split("|")[0].trim(),
+      "description": page.description,
+      "inLanguage": pageLang,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.gyanart.com/" + page.output
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Gyaneshwar",
+        "jobTitle": "UX Designer and Digital Growth Consultant",
+        "url": "https://www.linkedin.com/in/uxgyan/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.gyanart.com/assets/og-gyanart.svg"
+        }
+      },
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20"
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(articleSchema) + '</script>\n';
+  }
+  if (pageSlug === "insights/website-design-cost-in-bangalore.html") {
+    const costFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does website design cost in Bangalore in 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Bangalore, small business website design typically costs ₹10,000 to ₹25,000 for standard 5-to-10 page brochure sites, ₹25,000 to ₹45,000 for customized conversion-focused sites, and ₹37,000 to ₹80,000+ for comprehensive platforms with booking or e-commerce."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between freelancer and agency website costs in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Freelancers typically charge ₹10,000 to ₹40,000 per project with low overhead and direct communication. Traditional digital agencies charge ₹60,000 to ₹2,50,000+ to cover account managers and office overhead. GyanArt offers founder-led UX leadership at transparent freelancer-level rates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the hidden costs of running a business website in Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Standard ongoing costs include domain name registration (₹800 to ₹1,200/year), reliable cloud or shared hosting (₹2,500 to ₹6,000/year), and monthly support or maintenance (₹1,000 to ₹3,000/month)."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(costFaqSchema) + '</script>\n';
   }
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
     '<meta charset="utf-8">\n'+
