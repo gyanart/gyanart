@@ -127,6 +127,9 @@ jobs:
           check grep -q 'mobile-action-bar' dist/index.html
           check grep -q 'google-rating-badge' dist/index.html
           check grep -q 'audit-reassurance' dist/growth-audit.html
+          check grep -q 'FAQPage' dist/index.html
+          check grep -q 'OfferCatalog' dist/index.html
+          check grep -q 'FAQPage' dist/pricing.html
           check grep -q 'rate_limit_passes' dist/submit-form.php
           check grep -q 'website_confirm' dist/submit-form.php
           check grep -q 'form_started_at' dist/submit-form.php

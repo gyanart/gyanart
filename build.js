@@ -250,7 +250,41 @@ function render(page){
       "Website UX",
       "Conversion optimization",
       "Digital growth strategy"
-    ]
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "7"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Website Design and Local Digital Growth Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Digital Foundation",
+          "price": "10000",
+          "priceCurrency": "INR",
+          "description": "Responsive website setup for up to 5 standard pages, click-to-call, WhatsApp actions, and Google Business Profile optimization."
+        },
+        {
+          "@type": "Offer",
+          "name": "Enquiry Builder",
+          "price": "25000",
+          "priceCurrency": "INR",
+          "description": "Up to 10 standard pages, custom visual styling, conversion-focused page layout, enquiry forms, and local SEO setup."
+        },
+        {
+          "@type": "Offer",
+          "name": "Growth Optimization",
+          "price": "37000",
+          "priceCurrency": "INR",
+          "description": "Up to 30 standard pages, tailored layouts, structured measurement, and baseline performance review."
+        }
+      ]
+    }
   };
   let pageSchemaTags = '<script type="application/ld+json">' + JSON.stringify(primarySchema) + '</script>\n';
 
@@ -268,6 +302,62 @@ function render(page){
       }
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(websiteSchema) + '</script>\n';
+
+    const homeFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you work with small businesses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. GyanArt works with businesses where improving digital discovery, trust and customer actions can make a meaningful difference."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you guarantee Google rankings?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Search rankings depend on many factors outside anyone's control. The focus is on sound practices, useful experiences and measurable improvement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work outside Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Work is delivered remotely, with Bangalore as the initial focus and India-wide or selective international engagements possible."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build websites?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, when a website is part of the growth problem. Rebuilding a website isn't automatically the answer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are advertising costs included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Advertising spend is separate and paid directly by the client to the advertising platform."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you improve an existing website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The first step is to understand the current customer journey and identify what needs to change."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(homeFaqSchema) + '</script>\n';
   }
 
   if (!(page.isHome || page.output === "index.html") && crumbParts && crumbParts.length > 1) {
@@ -551,6 +641,54 @@ function render(page){
       }
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(insightsCollectionSchema) + '</script>\n';
+  } else if (pageSlug === "pricing.html") {
+    const pricingServiceSchema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Website Design Packages & Pricing in Bangalore",
+      "serviceType": "Small Business Website Design",
+      "description": "Transparent website design setup packages and monthly support tiers for local businesses in Bangalore.",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "GyanArt",
+        "url": "https://www.gyanart.com/"
+      },
+      "areaServed": primarySchema.areaServed,
+      "hasOfferCatalog": primarySchema.hasOfferCatalog
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(pricingServiceSchema) + '</script>\n';
+
+    const pricingFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Which website package fits my business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Choose Digital Foundation (₹10,000 setup) for up to 5 standard pages and Google Business Profile setup. Choose Enquiry Builder (₹25,000 setup) for up to 10 pages with conversion-focused design and monthly support. Choose Growth Optimization (₹37,000 setup) for up to 30 pages with structured analytics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do the website setup fees include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One-time setup fees cover a standard small-business responsive website within the listed page limit, contact details, click-to-call, WhatsApp actions, and local search basics. Complex custom integrations or hosting are quoted separately."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is monthly support mandatory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Monthly support (₹1,000 to ₹3,000 per month) is optional ongoing maintenance covering profile checks, visibility monitoring, and agreed small content updates."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(pricingFaqSchema) + '</script>\n';
   }
   if (pageSlug.startsWith("insights/")) {
     const articleSchema = {
@@ -786,6 +924,9 @@ ErrorDocument 404 /404.html
 
   # Redirect legacy URLs to the closest current equivalent in one hop.
   RewriteRule ^index\\.(html|htm)$ https://www.gyanart.com/ [R=301,L,NC]
+  RewriteRule ^free-audit(\\.html)?$ https://www.gyanart.com/growth-audit.html [R=301,L,NC]
+  RewriteRule ^privacy(\\.html)?$ https://www.gyanart.com/privacy-policy.html [R=301,L,NC]
+  RewriteRule ^terms(\\.html)?$ https://www.gyanart.com/terms-and-conditions.html [R=301,L,NC]
   RewriteRule ^website_design\\.htm$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^website-design/?$ https://www.gyanart.com/website-design.html [R=301,L,NC]
   RewriteRule ^logo_design\\.htm$ https://www.gyanart.com/logo-design.html [R=301,L,NC]
