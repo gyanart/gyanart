@@ -99,6 +99,11 @@ jobs:
           check grep -q 'Logo Design' dist/solutions.html
           check test -f dist/submit-form.php
           check test -f dist/assets/og-gyanart.svg
+          check test -f dist/assets/og-gyanart.png
+          check grep -q 'og-gyanart.png' dist/index.html
+          check grep -q 'lastmod' dist/sitemap.xml
+          check grep -q 'FAQPage' dist/local-seo-services.html
+          check grep -q 'FAQPage' dist/google-business-profile-optimization.html
           check grep -q 'og:image' dist/index.html
           check grep -q 'twitter:card.*summary_large_image' dist/index.html
           check grep -q 'Cache-Control' dist/.htaccess

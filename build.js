@@ -199,8 +199,8 @@ function render(page){
     "name": "GyanArt",
     "alternateName": ["Gyanart Web Design", "GyanArt Digital Growth Consultancy"],
     "url": "https://www.gyanart.com/",
-    "logo": "https://www.gyanart.com/assets/og-gyanart.svg",
-    "image": "https://www.gyanart.com/assets/og-gyanart.svg",
+    "logo": "https://www.gyanart.com/assets/og-gyanart.png",
+    "image": "https://www.gyanart.com/assets/og-gyanart.png",
     "description": "UX-led digital growth support for local businesses, including conversion-focused website design, local SEO, and Google Business Profile optimization in Bangalore.",
     "telephone": "+91-9880208870",
     "email": "info@gyanart.com",
@@ -495,6 +495,46 @@ function render(page){
       }
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(localSeoServiceSchema) + '</script>\n';
+
+    const localSeoFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can you guarantee a Google ranking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Local results depend on factors including relevance, distance, prominence and competition. GyanArt focuses on sound improvements and transparent measurement, not ranking guarantees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a new website for local SEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily. We first assess whether your current site can support the customer journey with targeted improvements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which Bangalore neighbourhoods do you provide Local SEO for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt provides local SEO and Google Business Profile optimization across Bangalore, with primary focus on East and South-East tech corridors: Varthur, Balagere, Whitefield, Marathahalli, Bellandur, Sarjapur Road, HSR Layout, Koramangala, Indiranagar, and BTM Layout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is advertising spend included in local SEO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Any advertising budget is separate and paid directly by you to the platform."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(localSeoFaqSchema) + '</script>\n';
   } else if (pageSlug === "google-business-profile-optimization.html") {
     const gbpServiceSchema = {
       "@context": "https://schema.org",
@@ -510,6 +550,46 @@ function render(page){
       "areaServed": primarySchema.areaServed
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(gbpServiceSchema) + '</script>\n';
+
+    const gbpFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can optimization guarantee a top position on Google Maps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Local results depend on relevance, distance, prominence, competition and other factors. No provider can guarantee a particular position."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do customer reviews matter on Google Business Profile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reviews can help people evaluate a business and can contribute to local prominence. Ask real customers for honest feedback and never buy or fabricate reviews."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a website if I have a Google Business Profile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A useful website gives customers more detail about services, expertise, policies and next steps. The profile and website should support one another."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know if the profile is helping?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Monitor available profile interactions alongside website visits, calls, form submissions and qualified enquiries. Rankings and profile views alone do not show the whole business outcome."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(gbpFaqSchema) + '</script>\n';
   } else if (pageSlug === "logo-design.html") {
     const logoServiceSchema = {
       "@context": "https://schema.org",
@@ -844,15 +924,16 @@ function render(page){
     '<meta name="description" content="'+page.description+'">\n'+
     ((page.noindex || process.env.PREVIEW_BUILD === "true") ? '<meta name="robots" content="noindex,follow">\n' : '')+
     '<meta property="og:site_name" content="'+site.name+'">\n'+
-    '<meta property="og:image" content="https://www.gyanart.com/assets/og-gyanart.svg">\n'+
-    '<meta property="og:image:type" content="image/svg+xml">\n'+
+    '<meta property="og:image" content="https://www.gyanart.com/assets/og-gyanart.png">\n'+
+    '<meta property="og:image:secure_url" content="https://www.gyanart.com/assets/og-gyanart.png">\n'+
+    '<meta property="og:image:type" content="image/png">\n'+
     '<meta property="og:image:width" content="1200">\n'+
     '<meta property="og:image:height" content="630">\n'+
     '<meta property="og:image:alt" content="GyanArt — Help more local customers find and choose your business. UX-led digital growth for local businesses.">\n'+
     '<meta property="og:locale" content="'+pageLocale+'">\n'+
     alternates+
     '<meta name="twitter:card" content="summary_large_image">\n'+
-    '<meta name="twitter:image" content="https://www.gyanart.com/assets/og-gyanart.svg">\n'+
+    '<meta name="twitter:image" content="https://www.gyanart.com/assets/og-gyanart.png">\n'+
     '<meta property="og:title" content="'+page.title+'">\n'+
     '<meta property="og:description" content="'+page.description+'">\n'+
     '<meta property="og:type" content="website">\n'+
@@ -884,13 +965,23 @@ fs.copyFileSync(path.join(src,"scripts/main.js"),path.join(dist,"js/main.js"));
 fs.copyFileSync(path.join(src,"favicon.svg"),path.join(dist,"favicon.svg"));
 ensure(path.join(dist,"assets/og-gyanart.svg"));
 fs.copyFileSync(path.join(src,"og-gyanart.svg"),path.join(dist,"assets/og-gyanart.svg"));
+if(fs.existsSync(path.join(src,"og-gyanart.png"))) {
+  ensure(path.join(dist,"assets/og-gyanart.png"));
+  fs.copyFileSync(path.join(src,"og-gyanart.png"),path.join(dist,"assets/og-gyanart.png"));
+}
 const assetsDir=path.join(src,"assets");
 if(fs.existsSync(assetsDir)) fs.cpSync(assetsDir,path.join(dist,"assets"),{recursive:true});
 fs.copyFileSync(path.join(src,"robots.txt"),path.join(dist,"robots.txt"));
 if(fs.existsSync(path.join(src,"llms.txt"))) fs.copyFileSync(path.join(src,"llms.txt"),path.join(dist,"llms.txt"));
 if(fs.existsSync(path.join(src,"llms-full.txt"))) fs.copyFileSync(path.join(src,"llms-full.txt"),path.join(dist,"llms-full.txt"));
-const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>(page.isHome||page.output==="index.html")?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output);
-const sitemapXml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemapUrls.map(url=>'  <url><loc>'+url+'</loc></url>').join("\n")+'\n</urlset>\n';
+const sitemapUrls=pages.filter(page=>!page.noindex).map(page=>{
+  const url=(page.isHome||page.output==="index.html")?(page.lang?"https://www.gyanart.com/"+page.lang+"/":"https://www.gyanart.com/"):"https://www.gyanart.com/"+page.output;
+  const isHome=page.isHome||page.output==="index.html";
+  const priority=isHome?"1.0":(page.output==="pricing.html"||page.output==="website-design.html"||page.output==="solutions.html"?"0.9":"0.8");
+  const changefreq=isHome?"weekly":"monthly";
+  return '  <url>\n    <loc>'+url+'</loc>\n    <lastmod>2026-10-20</lastmod>\n    <changefreq>'+changefreq+'</changefreq>\n    <priority>'+priority+'</priority>\n  </url>';
+}).join("\n");
+const sitemapXml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemapUrls+'\n</urlset>\n';
 fs.writeFileSync(path.join(dist,"sitemap.xml"),sitemapXml);
 fs.copyFileSync(path.join(src,"submit-form.php"),path.join(dist,"submit-form.php"));
 const htmlFiles=[];
