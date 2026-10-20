@@ -43,6 +43,9 @@ jobs:
           check test -f dist/sitemap.xml
           check test -f dist/llms.txt
           check test -f dist/llms-full.txt
+          check test -f dist/404.html
+          check grep -q 'ErrorDocument 404 /404.html' dist/.htaccess
+          check grep -q 'Permissions-Policy' dist/.htaccess
           check grep -q 'https://www.gyanart.com/' dist/robots.txt
           check grep -q 'https://www.gyanart.com/' dist/sitemap.xml
           check grep -q 'rel="canonical" href="https://www.gyanart.com/' dist/index.html

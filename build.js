@@ -41,7 +41,7 @@ function render(page){
     "experiments/restaurant.html":"Restaurant",
     "local-seo-services.html":"Local SEO Services",
     "google-business-profile-optimization.html":"Google Business Profile",
-    "website-design.html":"Website Design","logo-design.html":"Logo Design","portfolio.html":"Our Work","case-studies/mayura-cafe.html":"Mayura Cafe Case Study","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions",
+    "website-design.html":"Website Design","logo-design.html":"Logo Design","portfolio.html":"Our Work","case-studies/mayura-cafe.html":"Mayura Cafe Case Study","privacy-policy.html":"Privacy Policy","terms-and-conditions.html":"Terms & Conditions","404.html":"Page Not Found",
     "insights/why-visitors-dont-contact-you.html":"Why Visitors Don't Contact You",
     "insights/google-business-profile-local-seo-guide.html":"Google Business Profile Guide",
     "insights/ai-search-google-visibility-local-business.html":"AI Search Visibility Guide",
@@ -779,6 +779,7 @@ if(!contactHtml.includes("https://wa.me/"+whatsappNumber) || !contactHtml.includ
   throw new Error("Contact page WhatsApp number/link does not match src/data/site.json");
 }
 const htaccess = `DirectoryIndex index.html
+ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -800,10 +801,11 @@ const htaccess = `DirectoryIndex index.html
 
 # HTTP Security Headers for GEO & Browser Protection
 <IfModule mod_headers.c>
-  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
 </IfModule>
 
 # Keep HTML revalidatable so deployments appear promptly.
