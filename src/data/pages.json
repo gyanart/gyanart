@@ -755,5 +755,55 @@
     "slug": "professional-services.html",
     "title": "ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೃತ್ತಿಪರ ಸೇವೆಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
     "description": "ಸಲಹೆಗಾರರು, ಸಿಎ ಸಂಸ್ಥೆಗಳು, ಆರ್ಕಿಟೆಕ್ಟ್‌ಗಳು ಮತ್ತು ವಕೀಲರಿಗೆ ಹೊಸ ಗ್ರಾಹಕರ ವಿಚಾರಣೆಗಳನ್ನು ತರುವ ವಿಶ್ವಾಸಾರ್ಹ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ."
+  },
+  {
+    "output": "website-design-whitefield.html",
+    "content": "pages/website-design-whitefield.html",
+    "slug": "website-design-whitefield.html",
+    "title": "Website Design in Whitefield, Bangalore | GyanArt",
+    "description": "Founder-led website design and Local SEO for Whitefield businesses. Fast mobile sites, verified Google Maps prominence, and direct WhatsApp customer enquiry flow."
+  },
+  {
+    "output": "hi/website-design-whitefield.html",
+    "content": "translations/hi/website-design-whitefield.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "website-design-whitefield.html",
+    "title": "व्हाइटफील्ड, बेंगलुरु में वेबसाइट डिज़ाइन | GyanArt",
+    "description": "व्हाइटफील्ड और वरथूर के व्यवसायों के लिए सुपर-फास्ट वेबसाइट डिज़ाइन, गूगल मैप्स रैंकिंग और सीधी व्हाट्सएप पूछताछ सुविधा।"
+  },
+  {
+    "output": "kn/website-design-whitefield.html",
+    "content": "translations/kn/website-design-whitefield.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "website-design-whitefield.html",
+    "title": "ವೈಟ್‌ಫೀಲ್ಡ್, ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ವೈಟ್‌ಫೀಲ್ಡ್ ಮತ್ತು ವರ್ತೂರಿನ ಸಣ್ಣ ವ್ಯವಹಾರಗಳಿಗಾಗಿ ಸ್ಪಷ್ಟ, ವೇಗದ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ, ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್ ಪ್ರೊಫೈಲ್ ಮತ್ತು ನೇರ ವಾಟ್ಸಾಪ್ ವಿಚಾರಣೆಗಳು."
+  },
+  {
+    "output": "website-design-hsr-layout.html",
+    "content": "pages/website-design-hsr-layout.html",
+    "slug": "website-design-hsr-layout.html",
+    "title": "Website Design in HSR Layout, Bangalore | GyanArt",
+    "description": "Conversion-focused website design and UX strategy for HSR Layout and Koramangala startups. Zero framework bloat, sub-second speed, and clear enquiry paths."
+  },
+  {
+    "output": "hi/website-design-hsr-layout.html",
+    "content": "translations/hi/website-design-hsr-layout.html",
+    "lang": "hi",
+    "locale": "hi_IN",
+    "slug": "website-design-hsr-layout.html",
+    "title": "एचएसआर लेआउट, बेंगलुरु में वेबसाइट डिज़ाइन | GyanArt",
+    "description": "एचएसआर लेआउट और कोरमंगला के स्टार्टअप्स व व्यवसायों के लिए हाई-कन्वर्जन वेबसाइट डिज़ाइन, सब-सेकंड लोडिंग और लीड जनरेशन।"
+  },
+  {
+    "output": "kn/website-design-hsr-layout.html",
+    "content": "translations/kn/website-design-hsr-layout.html",
+    "lang": "kn",
+    "locale": "kn_IN",
+    "slug": "website-design-hsr-layout.html",
+    "title": "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್, ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
+    "description": "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್ ಮತ್ತು ಕೋರಮಂಗಲದ ಸ್ಟಾರ್ಟ್‌ಅಪ್‌ಗಳು ಹಾಗೂ ಸಂಸ್ಥೆಗಳಿಗಾಗಿ ಪರಿವರ್ತನೆ-ಕೇಂದ್ರಿತ, ವೇಗದ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಮತ್ತು ಯುಎಕ್ಸ್ ತಂತ್ರಜ್ಞಾನ."
   }
 ]

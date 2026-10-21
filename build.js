@@ -48,7 +48,9 @@ function render(page){
     "insights/designing-website-customer-journey.html":"Customer Journey Guide",
     "insights/website-design-cost-in-bangalore.html":"Website Design Cost Guide",
     "restaurants.html":"Restaurants & Cafes",
-    "professional-services.html":"Professional Services"
+    "professional-services.html":"Professional Services",
+    "website-design-whitefield.html":"Whitefield Web Design",
+    "website-design-hsr-layout.html":"HSR Layout Web Design"
   };
   const parent={
     "case-studies/mayura-cafe.html":["Our Work","portfolio.html"],
@@ -66,7 +68,9 @@ function render(page){
     "insights/designing-website-customer-journey.html":["Insights","insights.html"],
     "insights/website-design-cost-in-bangalore.html":["Insights","insights.html"],
     "restaurants.html":["Solutions","solutions.html"],
-    "professional-services.html":["Solutions","solutions.html"]
+    "professional-services.html":["Solutions","solutions.html"],
+    "website-design-whitefield.html":["Solutions","solutions.html"],
+    "website-design-hsr-layout.html":["Solutions","solutions.html"]
   };
   const parentLabels = {
     "Insights": { en: "Insights", kn: "ಮಾಹಿತಿ", hi: "जानकारी" },
@@ -109,6 +113,16 @@ function render(page){
       en: "Professional Services",
       kn: "ವೃತ್ತಿಪರ ಸೇವೆಗಳು",
       hi: "पेशेवर सेवाएं"
+    },
+    "website-design-whitefield.html": {
+      en: "Whitefield Web Design",
+      kn: "ವೈಟ್‌ಫೀಲ್ಡ್ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",
+      hi: "व्हाइटफील्ड वेबसाइट डिज़ाइन"
+    },
+    "website-design-hsr-layout.html": {
+      en: "HSR Layout Web Design",
+      kn: "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",
+      hi: "एचएसआर लेआउट वेबसाइट डिज़ाइन"
     }
   };
   const homeHref=lang==="en"?prefix+"index.html":"../".repeat(Math.max(0,page.output.split("/").length-2))+"index.html";
@@ -909,6 +923,89 @@ function render(page){
     };
     pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(profFaqSchema) + '</script>\n';
   }
+  if (pageSlug === "website-design-whitefield.html") {
+    const whitefieldFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can we meet in person in Whitefield or Varthur to discuss our website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. GyanArt's studio is located directly on Balagere Road in Varthur (Bengaluru 560087). We regularly meet with local business owners in Whitefield, ITPL, and Varthur for preliminary project discussions and strategy reviews."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a website design cost in Whitefield, Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt website packages start at ₹10,000 for standard 5-page small business websites, ₹25,000 for customized conversion-focused sites, and ₹37,000 for comprehensive multi-service platforms. There are zero agency sales commissions or hidden maintenance fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to launch a business website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard 5-to-10 page small business website in Whitefield typically takes 2 to 3 weeks to design, build, test, and launch once initial text and photos are confirmed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you help our website rank locally on Google Maps in Whitefield?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Every website package includes Google Business Profile coordination: ensuring verified coordinates, primary categories, operating hours, and local Whitefield service corridors match your website's structured data."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(whitefieldFaqSchema) + '</script>\n';
+  }
+  if (pageSlug === "website-design-hsr-layout.html") {
+    const hsrFaqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is GyanArt different from traditional agencies in HSR Layout?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Traditional agencies in HSR Layout charge significant markups to cover account managers and commercial rents. At GyanArt, you work directly with Gyaneshwar, a UX designer with 20+ years of digital experience, ensuring senior design thinking without agency bloat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does a website design cost in HSR Layout, Bangalore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GyanArt website packages start at ₹10,000 for standard 5-page small business sites, ₹25,000 for customized conversion-focused sites, and ₹37,000 for comprehensive platforms with booking or lead qualification funnels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the typical turnaround time for an HSR Layout website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A standard 5-to-10 page small business website typically launches within 2 to 3 weeks once initial text, branding assets, and photography are confirmed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you build conversion-optimized landing pages for PPC ad campaigns?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our Enquiry Builder and Growth Optimization packages include dedicated, high-converting landing page layouts built to maximize return on Google Ads and Meta campaign spend."
+          }
+        }
+      ]
+    };
+    pageSchemaTags += '<script type="application/ld+json">' + JSON.stringify(hsrFaqSchema) + '</script>\n';
+  }
+
   const fontPreconnect='<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">\n';
   const themeDetectionScript='<script>(function(){try{var s=localStorage.getItem("gyanart-theme");var t=s||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>\n';
   const html="<!doctype html>\n<html lang=\""+pageLang+"\">\n<head>\n"+
