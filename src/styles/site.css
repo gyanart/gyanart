@@ -387,6 +387,34 @@ p { margin-top: 0; }
   border-color: var(--blue);
   transform: translateY(-1px);
 }
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-light);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.15s ease;
+}
+.text-link:hover {
+  color: var(--blue);
+}
+.case-study-cta-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.btn + .btn {
+  margin-left: 12px;
+}
+.btn + .text-link,
+.text-link + .btn {
+  margin-left: 16px;
+}
 
 /* Eyebrows & Badges */
 .eyebrow {
@@ -1142,25 +1170,34 @@ p { margin-top: 0; }
 }
 
 /* Growth Audit Closing Banner */
+.audit,
 .home-free-audit .audit {
   background: linear-gradient(135deg, #1E1B4B 0%, #0F172A 100%);
   border-radius: 28px;
   padding: 56px 48px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
   color: #fff;
 }
+.audit h2,
 .home-free-audit h2 {
-  color: #fff;
+  color: #fff !important;
 }
+.audit p,
 .home-free-audit p {
-  color: #CBD5E1;
+  color: #CBD5E1 !important;
 }
+.audit .note,
 .home-free-audit .note {
-  color: #94A3B8;
+  color: #94A3B8 !important;
   font-size: 13px;
   margin-top: 20px;
+}
+.audit .eyebrow {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #A5B4FC;
 }
 .audit-grid {
   display: grid;
@@ -1468,6 +1505,15 @@ p { margin-top: 0; }
     align-items: stretch;
   }
   .header-actions-mobile { display: flex; }
+  .nav-dropdown-menu {
+    position: static !important;
+    box-shadow: none !important;
+    border: 1px solid var(--line) !important;
+    margin-top: 8px !important;
+    min-width: 100% !important;
+    background: var(--bg) !important;
+    border-radius: 12px !important;
+  }
   .nav-toggle {
     display: flex;
     flex-direction: column;
@@ -2768,7 +2814,7 @@ p { margin-top: 0; }
 }
 
 
-/* 4-Box Grid Tablet Breakpoints */
+/* Tablet & Mobile Grid & Component Breakpoints */
 @media (max-width: 1050px) {
   .solution-grid,
   .cap-grid {
@@ -2776,11 +2822,63 @@ p { margin-top: 0; }
     gap: 20px;
   }
 }
-@media (max-width: 650px) {
+@media (max-width: 768px) {
   .solution-grid,
-  .cap-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+  .solution-grid:has(> :nth-child(2):last-child),
+  .home-capabilities .solution-grid,
+  .cap-grid,
+  .pricing-grid,
+  .experiment-grid,
+  .cred-grid,
+  .faq-two-col-grid,
+  .work-process-grid,
+  .work-case-facts,
+  .work-iteration-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .solution-card,
+  .cap-item {
+    padding: 24px;
+  }
+  .audit,
+  .home-free-audit .audit {
+    padding: 32px 20px !important;
+    border-radius: 20px;
+  }
+  .audit-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .hero-actions,
+  .case-study-cta-wrap,
+  .home-buyer-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+  .hero-actions .btn,
+  .case-study-cta-wrap .btn,
+  .home-buyer-actions .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin: 0 !important;
+  }
+  .case-study-cta-wrap .text-link,
+  .home-buyer-actions .text-link {
+    text-align: center;
+    justify-content: center;
+    padding: 8px 0;
+    margin: 0 !important;
+  }
+  .btn + .btn,
+  .btn + .text-link,
+  .text-link + .btn {
+    margin-left: 0;
+    margin-top: 12px;
   }
 }
 
