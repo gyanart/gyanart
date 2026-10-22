@@ -123,8 +123,11 @@ jobs:
           check grep -q 'contact_method:"phone"' dist/js/main.js
           check grep -q 'contact_method:"email"' dist/js/main.js
           check grep -q 'Google Analytics 4 (GA4)' dist/privacy-policy.html
-          check grep -q 'site-toast' dist/css/site.css
-          check grep -q 'showFormToast' dist/js/main.js
+          # The confirmation is now persistent inside each form, not a temporary toast.
+          check grep -Fq 'is-submit-success' dist/css/site.css
+          check grep -Fq 'button.textContent=submitText.success' dist/js/main.js
+          check grep -Fq 'form-feedback-error' dist/js/main.js
+          check grep -Fq 'action="../submit-form.php"' dist/hi/growth-audit.html
           check grep -q 'form_started_at' dist/contact.html
           check grep -q 'website_confirm' dist/contact.html
           check grep -q 'form_started_at' dist/growth-audit.html
