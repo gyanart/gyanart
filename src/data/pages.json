@@ -30,6 +30,13 @@
     "description": "Compare GyanArt website packages: ₹10,000, ₹25,000 or ₹37,000 setup, plus ₹1,000–₹3,000 monthly support, with page limits and scope explained."
   },
   {
+    "output": "starter-website-offer.html",
+    "content": "pages/starter-website-offer.html",
+    "title": "Starter Business Website for ₹4,999 | Limited GyanArt Offer",
+    "description": "Get a mobile-friendly small business website for a one-time ₹4,999 setup fee. No mandatory monthly subscription. View what's included and enquire with GyanArt.",
+    "noBreadcrumbs": true
+  },
+  {
     "output": "about.html",
     "content": "pages/about.html",
     "title": "About Gyaneshwar | UX & Digital Growth Consultant",
