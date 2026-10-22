@@ -48,6 +48,18 @@ jobs:
       - name: Check PHP form handler syntax
         run: |
           if command -v php >/dev/null 2>&1; then php -l dist/submit-form.php; else echo "PHP CLI not available; syntax validation skipped"; fi
+      - name: Capture optional desktop and mobile screenshots
+        continue-on-error: true
+        shell: bash
+        run: |
+          BROWSER="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$BROWSER" ]; then
+            echo "No headless browser on runner; offline HTML preview is still available."
+            exit 0
+          fi
+          FILE="file://$(pwd)/dist/starter-website-offer.html"
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --allow-file-access-from-files --virtual-time-budget=2000 --window-size=1440,6500 --screenshot="$(pwd)/dist/offer-desktop-preview.png" "$FILE"
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --allow-file-access-from-files --virtual-time-budget=2000 --window-size=420,6500 --screenshot="$(pwd)/dist/offer-mobile-preview.png" "$FILE"
       - name: Upload downloadable local preview
         uses: actions/upload-artifact@v4
         with:
