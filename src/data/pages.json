@@ -34,7 +34,8 @@
     "content": "pages/starter-website-offer.html",
     "title": "Starter Business Website for ₹4,999 | Limited GyanArt Offer",
     "description": "Get a mobile-friendly small business website for a one-time ₹4,999 setup fee. No mandatory monthly subscription. View what's included and enquire with GyanArt.",
-    "noBreadcrumbs": true
+    "noBreadcrumbs": true,
+    "translationOptional": true
   },
   {
     "output": "about.html",
