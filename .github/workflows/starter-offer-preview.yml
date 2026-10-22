@@ -1,0 +1,68 @@
+name: Starter Website Offer preview
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "src/pages/starter-website-offer.html"
+      - "src/data/pages.json"
+      - "src/pages/home.html"
+      - "src/pages/pricing.html"
+      - "src/styles/site.css"
+      - "src/submit-form.php"
+      - "src/pages/privacy-policy.html"
+      - "src/components/footer.html"
+      - ".github/workflows/starter-offer-preview.yml"
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build preview site
+        run: PREVIEW_BUILD=true npm run build
+      - name: Check offer page and links
+        run: |
+          node <<'NODE'
+          const fs=require("node:fs"),assert=require("node:assert/strict");
+          const offer=fs.readFileSync("dist/starter-website-offer.html","utf8");
+          const home=fs.readFileSync("dist/index.html","utf8");
+          const pricing=fs.readFileSync("dist/pricing.html","utf8");
+          assert.match(offer,/<h1\b[^>]*>[\s\S]*?Your website should be too/);
+          assert(offer.includes("₹4,999")&&offer.includes("No mandatory monthly subscription"));
+          assert(offer.includes('name="form_type" value="offer"'));
+          assert(offer.includes('name="promo_opt_in" value="yes"'));
+          assert(offer.includes('action="submit-form.php"'));
+          assert(offer.includes('href="https://www.gyanart.com/starter-website-offer.html"'));
+          assert(home.includes('href="starter-website-offer.html"'));
+          assert(pricing.includes('href="starter-website-offer.html"'));
+          assert(fs.existsSync("dist/assets/mayura/home-desktop.png"));
+          assert(fs.existsSync("dist/assets/mayura/home-mobile.png"));
+          assert(fs.existsSync("dist/submit-form.php"));
+          assert(fs.readFileSync("dist/sitemap.xml","utf8").includes("starter-website-offer.html"));
+          console.log("Starter offer preview assertions passed.");
+          NODE
+      - name: Check PHP form handler syntax
+        run: |
+          if command -v php >/dev/null 2>&1; then php -l dist/submit-form.php; else echo "PHP CLI not available; syntax validation skipped"; fi
+      - name: Capture optional desktop and mobile screenshots
+        continue-on-error: true
+        shell: bash
+        run: |
+          BROWSER="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$BROWSER" ]; then
+            echo "No headless browser on runner; offline HTML preview is still available."
+            exit 0
+          fi
+          FILE="file://$(pwd)/dist/starter-website-offer.html"
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --allow-file-access-from-files --virtual-time-budget=2000 --window-size=1440,6500 --screenshot="$(pwd)/dist/offer-desktop-preview.png" "$FILE"
+          "$BROWSER" --headless --no-sandbox --disable-dev-shm-usage --disable-gpu --hide-scrollbars --allow-file-access-from-files --virtual-time-budget=2000 --window-size=420,6500 --screenshot="$(pwd)/dist/offer-mobile-preview.png" "$FILE"
+      - name: Upload downloadable local preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: starter-website-offer-preview
+          path: dist/
+          retention-days: 14

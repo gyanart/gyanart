@@ -120,7 +120,7 @@ for p in PAGES:
             actual_alts[lang]=x.get("href")
     check(actual_alts==expected_alts,"hreflang",
           f"Expected {expected_alts}; got {actual_alts}",key)
-    if slug(p) == "404.html":
+    if slug(p) == "404.html" or p.get("translationOptional"):
         continue
     # Verify every EN/HI/KN language switch leads to the same page in that language.
     for target_lang in ("en","hi","kn"):
@@ -155,7 +155,7 @@ for p in PAGES:
             notes.append((key,f"Unverified fragment #{parsed.fragment}"))
     files[key]=pg
 
-lang_groups=[g for g in groups.values() if not any(x.get("noindex") for x in g)]
+lang_groups=[g for g in groups.values() if not any(x.get("noindex") or x.get("translationOptional") for x in g)]
 for g in lang_groups:
     langs={x.get("lang") or "en" for x in g}
     check(langs=={"en","hi","kn"},"missing-translation",f"Missing set in {slug(g[0])}: {langs}")

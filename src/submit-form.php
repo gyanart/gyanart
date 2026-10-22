@@ -74,17 +74,18 @@ $mobile = field('mobile', 40);
 $website = field('website', 500);
 $message = field('message', 5000);
 $goal = field('goal', 3000);
+$promoOptIn = field('promo_opt_in', 10) === 'yes';
 
-if (!in_array($type, ['contact', 'audit'], true)) {
+if (!in_array($type, ['contact', 'audit', 'offer'], true)) {
     respond(400, ['success' => false, 'message' => 'This form could not be identified. Please refresh the page and try again.']);
 }
-if ($name === '' || $email === '' || $mobile === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+if ($name === '' || $mobile === '' || ($type !== 'offer' && $email === '') || ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL))) {
     respond(422, ['success' => false, 'message' => 'Please complete the required fields with a valid email address.']);
 }
 if ($type === 'contact' && $message === '') {
     respond(422, ['success' => false, 'message' => 'Please tell us briefly how we can help.']);
 }
-if ($type === 'audit' && $business === '') {
+if (in_array($type, ['audit', 'offer'], true) && $business === '') {
     respond(422, ['success' => false, 'message' => 'Please enter your business name to request the audit.']);
 }
 if ($website !== '' && (!filter_var($website, FILTER_VALIDATE_URL) || !in_array(strtolower((string)parse_url($website, PHP_URL_SCHEME)), ['http', 'https'], true))) {
@@ -96,13 +97,13 @@ if (!rate_limit_passes()) {
 
 $recipient = 'info@gyanart.com';
 $sender = 'info@gyanart.com';
-$replyEmail = clean_header($email);
+$replyEmail = clean_header($email !== '' ? $email : $sender);
 $subject = $type === 'audit'
     ? 'New free growth audit request — ' . clean_header($business)
-    : 'New website enquiry — ' . clean_header($name);
+    : ($type === 'offer' ? '₹4,999 Starter Website offer enquiry — ' . clean_header($business) : 'New website enquiry — ' . clean_header($name));
 
 $details = [
-    'Form: ' . ($type === 'audit' ? 'Free Growth Audit' : 'Contact enquiry'),
+    'Form: ' . ($type === 'audit' ? 'Free Growth Audit' : ($type === 'offer' ? '₹4,999 Starter Website Offer' : 'Contact enquiry')),
     'Name: ' . $name,
     'Business: ' . ($business !== '' ? $business : 'Not provided'),
     'Email: ' . $email,
@@ -110,6 +111,7 @@ $details = [
     'Website / Google Maps: ' . ($website !== '' ? $website : 'Not provided'),
     'Message: ' . ($message !== '' ? $message : 'Not provided'),
     'Audit goal: ' . ($goal !== '' ? $goal : 'Not provided'),
+    'Optional marketing opt-in: ' . ($type === 'offer' ? ($promoOptIn ? 'YES, explicitly checked' : 'NO') : 'Not requested'),
     '',
     'Received from gyanart.com'
 ];
@@ -132,6 +134,10 @@ if ($type === 'audit') {
     $confirmationSubject = 'We’ve received your GyanArt Growth Audit request';
     $confirmationBody = "Hi " . $name . ",\n\nThank you for requesting a free GyanArt Growth Audit. I’ve received your details and will review your website and Google presence. I’ll get back to you within 24–48 hours with the next steps for your audit.\n\nThere’s no obligation to purchase a service.\n\nRegards,\nGyanArt\ninfo@gyanart.com";
     $successMessage = 'Successfully sent! Thank you for requesting your free growth audit. We’ll email you within 24–48 hours with the next steps.';
+} elseif ($type === 'offer') {
+    $confirmationSubject = 'We received your Starter Website enquiry | GyanArt';
+    $confirmationBody = "Hi " . $name . ",\n\nThank you for asking about the ₹4,999 Starter Website offer. I’ve received your details and will get in touch to discuss what your business needs, what the setup includes and any separately payable third-party costs.\n\nThere is no mandatory monthly subscription with this offer. No project is confirmed until we agree the scope and terms.\n\nRegards,\nGyanArt\ninfo@gyanart.com";
+    $successMessage = 'Thanks! Your ₹4,999 Starter Website enquiry has been sent. We’ll contact you to discuss the next steps.';
 } else {
     $confirmationSubject = 'Thank you for contacting GyanArt';
     $confirmationBody = "Hi " . $name . ",\n\nThank you for contacting GyanArt. I’ve received your enquiry and will review the details. I’ll get back to you within 24–48 hours.\n\nIf there’s anything else you’d like to share, you can reply to this email.\n\nRegards,\nGyanArt\ninfo@gyanart.com";
@@ -147,7 +153,7 @@ $confirmationHeaders = [
 $confirmationHeaderString = '';
 foreach ($confirmationHeaders as $key => $value) $confirmationHeaderString .= $key . ': ' . $value . "\r\n";
 
-if (!mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaderString)) {
+if ($email !== '' && !mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaderString)) {
     error_log('GyanArt form: confirmation email failed for ' . $type . ' form');
     respond(500, ['success' => false, 'message' => 'Your request reached GyanArt, but the confirmation email could not be sent. We’ll follow up within 24–48 hours; you can also reach us at info@gyanart.com.']);
 }
@@ -158,8 +164,8 @@ if (stripos($accept, 'application/json') !== false || strtolower($_SERVER['HTTP_
 }
 http_response_code(200);
 header('Content-Type: text/html; charset=utf-8');
-$pageTitle = $type === 'audit' ? 'Growth audit request submitted' : 'Contact form submitted';
-$returnPage = $type === 'audit' ? 'growth-audit.html' : 'contact.html';
+$pageTitle = $type === 'audit' ? 'Growth audit request submitted' : ($type === 'offer' ? 'Starter Website enquiry submitted' : 'Contact form submitted');
+$returnPage = $type === 'audit' ? 'growth-audit.html' : ($type === 'offer' ? 'starter-website-offer.html#offer-enquiry' : 'contact.html');
 $safeTitle = htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8');
 $safeMessage = htmlspecialchars($successMessage, ENT_QUOTES, 'UTF-8');
 echo '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>' . $safeTitle . ' | GyanArt</title><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f8f8f6;color:#202421;font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.card{box-sizing:border-box;width:min(560px,calc(100% - 32px));padding:32px;border:1px solid #b8e7d3;border-radius:18px;background:#fff;box-shadow:0 16px 48px #18251b12}.mark{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#e8f7f0;color:#116149;font-size:25px}.card h1{font-size:25px;margin:18px 0 8px}.card p{margin:0 0 22px}.button{display:inline-block;padding:11px 17px;border-radius:9px;background:#173d32;color:#fff;text-decoration:none;font-weight:650}</style></head><body><main class="card"><div class="mark" aria-hidden="true">✓</div><h1>' . $safeTitle . '</h1><p>' . $safeMessage . '</p><a class="button" href="' . htmlspecialchars($returnPage, ENT_QUOTES, 'UTF-8') . '">Return to the form</a></main></body></html>';
