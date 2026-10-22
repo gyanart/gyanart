@@ -128,6 +128,14 @@ document.addEventListener("DOMContentLoaded",()=>{
     button.setAttribute("aria-expanded",String(open));
   }));
 
+  // Keep button feedback in the language of the page.
+  const formFeedbackText={
+    en:{sending:"Sending…",success:"✓ Successfully sent!"},
+    hi:{sending:"भेजा जा रहा है…",success:"✓ सफलतापूर्वक भेज दिया!"},
+    kn:{sending:"ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…",success:"✓ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!"}
+  };
+  const submitText=formFeedbackText[currentLanguage]||formFeedbackText.en;
+
   // Shared submission feedback for contact, audit, and Starter Website forms.
   document.querySelectorAll("form[data-email-form]").forEach(form=>{
     const started=form.querySelector('input[name="form_started_at"]');
@@ -160,7 +168,7 @@ document.addEventListener("DOMContentLoaded",()=>{
       form.dataset.sending="true";
       if(button){
         button.disabled=true;
-        button.textContent="Sending…";
+        button.textContent=submitText.sending;
       }
       if(status){
         status.className="form-status note";
@@ -182,7 +190,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         form.classList.add("is-submitted");
         if(button){
           button.classList.add("is-submit-success");
-          button.textContent="✓ Successfully sent!";
+          button.textContent=submitText.success;
         }
         if(status){
           status.className="form-status form-feedback-success";
