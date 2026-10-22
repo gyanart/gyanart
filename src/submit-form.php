@@ -154,8 +154,11 @@ $confirmationHeaderString = '';
 foreach ($confirmationHeaders as $key => $value) $confirmationHeaderString .= $key . ': ' . $value . "\r\n";
 
 if ($email !== '' && !mail($email, $confirmationSubject, $confirmationBody, $confirmationHeaderString)) {
+    // The owner notification has already been accepted above. Do not report
+    // a failed enquiry (or trigger a visitor retry) just because the optional
+    // customer confirmation could not be sent.
     error_log('GyanArt form: confirmation email failed for ' . $type . ' form');
-    respond(500, ['success' => false, 'message' => 'Your request reached GyanArt, but the confirmation email could not be sent. We’ll follow up within 24–48 hours; you can also reach us at info@gyanart.com.']);
+    $successMessage = 'Your enquiry was submitted, but we could not send a confirmation email. We’ll contact you directly; you can also email info@gyanart.com.';
 }
 
 $accept = $_SERVER['HTTP_ACCEPT'] ?? '';

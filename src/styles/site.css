@@ -2795,6 +2795,38 @@ p { margin-top: 0; }
   margin-top: 14px;
   font-size: 14px;
 }
+/* Persisted form feedback is visible as well as announced by role=status. */
+.form-status.form-feedback-success {
+  color: var(--ink);
+  font-weight: 600;
+}
+.form-status.form-feedback-error {
+  color: #b91c1c;
+}
+[data-theme="dark"] .form-status.form-feedback-error {
+  color: #fca5a5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .form-status.form-feedback-error {
+    color: #fca5a5;
+  }
+}
+/* Only a successfully submitted form turns its submit button green. */
+form[data-email-form] button[type="submit"].is-submit-success,
+form[data-email-form] button[type="submit"].is-submit-success:hover {
+  background: #047857;
+  background-image: none;
+  border-color: #047857;
+  color: #fff !important;
+  opacity: 1;
+  box-shadow: 0 6px 20px rgba(4, 120, 87, 0.25);
+  transform: none;
+  cursor: default;
+}
+form[data-email-form] button[type="submit"]:disabled:not(.is-submit-success) {
+  cursor: progress;
+  opacity: 0.75;
+}
 .audit-copy h2 {
   font-size: clamp(28px, 3.4vw, 42px);
   line-height: 1.2;

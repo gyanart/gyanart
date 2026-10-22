@@ -8,29 +8,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   if(packageInterest&&contactMessage&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)&&!contactMessage.value.trim()){
     contactMessage.value=`I’m interested in the ${packageInterest} package. I’d like to discuss my business requirements.`;
   }
-  let formToastTimer;
-  let formToastFadeTimer;
-  const showFormToast=(message,form)=>{
-    let toast=document.querySelector(".site-toast");
-    if(!toast){
-      toast=document.createElement("div");
-      toast.className="site-toast";
-      toast.setAttribute("role","status");
-      toast.setAttribute("aria-live","polite");
-      toast.setAttribute("aria-atomic","true");
-    }
-    if(form&&!toast.parentElement?.isSameNode(form))form.appendChild(toast);
-    window.clearTimeout(formToastTimer);
-    window.clearTimeout(formToastFadeTimer);
-    toast.textContent=message;
-    toast.classList.remove("is-visible","is-hiding");
-    requestAnimationFrame(()=>toast.classList.add("is-visible"));
-    formToastTimer=window.setTimeout(()=>{
-      toast.classList.remove("is-visible");
-      toast.classList.add("is-hiding");
-      formToastFadeTimer=window.setTimeout(()=>toast.classList.remove("is-hiding"),350);
-    },2000);
-  };
   // Remember the visitor's explicit language choice across page navigation.
   const languageKey="gyanart-language";
   const localizedPages={
@@ -151,40 +128,88 @@ document.addEventListener("DOMContentLoaded",()=>{
     button.setAttribute("aria-expanded",String(open));
   }));
 
+  // Keep button feedback in the language of the page.
+  const formFeedbackText={
+    en:{sending:"Sending…",success:"✓ Successfully sent!"},
+    hi:{sending:"भेजा जा रहा है…",success:"✓ सफलतापूर्वक भेज दिया!"},
+    kn:{sending:"ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ…",success:"✓ ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!"}
+  };
+  const submitText=formFeedbackText[currentLanguage]||formFeedbackText.en;
+
+  // Shared submission feedback for contact, audit, and Starter Website forms.
   document.querySelectorAll("form[data-email-form]").forEach(form=>{
     const started=form.querySelector('input[name="form_started_at"]');
-    if(started)started.value=String(Date.now());
-  });
-
-  document.querySelectorAll("form[data-email-form]").forEach(form=>form.addEventListener("submit",async event=>{
-    event.preventDefault();
-    if(!form.reportValidity())return;
     const button=form.querySelector('button[type="submit"]');
     const status=form.querySelector(".form-status");
-    const originalText=button?button.textContent:"";
-    if(button){button.disabled=true;button.textContent="Sending…";}
-    if(status){status.className="form-status note";status.textContent="Sending your request securely…";}
-    try{
-      const response=await fetch(form.getAttribute("action")||"submit-form.php",{
-        method:"POST",
-        body:new FormData(form),
-        headers:{"Accept":"application/json"}
-      });
-      const result=await response.json();
-      if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
-      const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
-      trackGA4("generate_lead",{form_name:formName,page_path:window.location.pathname,...(form.closest(".dental-landing")?{lead_source:"dental_clinics"}:{}),...(packageInterest&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)?{package_interest:packageInterest}:{})});
-      if(status){status.className="form-status note";status.textContent="";}
-      showFormToast(result.message||"Your request was submitted successfully.",form);
-      form.reset();
-      const resetStarted=form.querySelector('input[name="form_started_at"]');
-      if(resetStarted)resetStarted.value=String(Date.now());
-    }catch(error){
-      if(status){status.className="form-status form-feedback form-feedback-error";status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";}
-    }finally{
-      if(button){button.disabled=false;button.textContent=originalText;}
-    }
-  }));
+    const originalButtonHtml=button?.innerHTML||"";
+    if(started)started.value=String(Date.now());
+
+    // Keep success visible. A new enquiry can be started by editing a field.
+    const clearSuccess=()=>{
+      if(!form.classList.contains("is-submitted"))return;
+      form.classList.remove("is-submitted");
+      if(button){
+        button.disabled=false;
+        button.classList.remove("is-submit-success");
+        button.innerHTML=originalButtonHtml;
+      }
+      if(status){
+        status.className="form-status note";
+        status.textContent="";
+      }
+    };
+    form.addEventListener("input",clearSuccess);
+    form.addEventListener("change",clearSuccess);
+
+    form.addEventListener("submit",async event=>{
+      event.preventDefault();
+      if(form.dataset.sending==="true"||form.classList.contains("is-submitted"))return;
+      if(!form.reportValidity())return;
+      form.dataset.sending="true";
+      if(button){
+        button.disabled=true;
+        button.textContent=submitText.sending;
+      }
+      if(status){
+        status.className="form-status note";
+        status.textContent="Sending your request securely…";
+      }
+      try{
+        const response=await fetch(form.getAttribute("action")||"submit-form.php",{
+          method:"POST",
+          body:new FormData(form),
+          headers:{"Accept":"application/json"}
+        });
+        const result=await response.json();
+        if(!response.ok||!result.success)throw new Error(result.message||"We couldn’t send your request. Please email info@gyanart.com.");
+
+        const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
+        trackGA4("generate_lead",{form_name:formName,page_path:window.location.pathname,...(form.closest(".dental-landing")?{lead_source:"dental_clinics"}:{}),...(packageInterest&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)?{package_interest:packageInterest}:{})});
+        form.reset();
+        if(started)started.value=String(Date.now());
+        form.classList.add("is-submitted");
+        if(button){
+          button.classList.add("is-submit-success");
+          button.textContent=submitText.success;
+        }
+        if(status){
+          status.className="form-status form-feedback-success";
+          status.textContent=result.message||"Your enquiry was received. We’ll be in touch.";
+        }
+      }catch(error){
+        if(status){
+          status.className="form-status form-feedback-error";
+          status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";
+        }
+      }finally{
+        form.dataset.sending="false";
+        if(button){
+          button.disabled=form.classList.contains("is-submitted");
+          if(!form.classList.contains("is-submitted"))button.innerHTML=originalButtonHtml;
+        }
+      }
+    });
+  });
 
   // Theme Switcher & System Color Scheme Sync
   const themeToggles = document.querySelectorAll("[data-theme-toggle]");
