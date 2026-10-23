@@ -42,7 +42,7 @@ jobs:
               assert 'name="form_type" value="audit"' in content, f"{path}: audit form missing"
               assert 'name="website_confirm"' in content, f"{path}: honeypot missing"
               print(f"PASS: {path} is live with relaxed URL input and honeypot (HTTP {status}).")
-          req=urllib.request.Request(base+"/js/main.js",headers={"Cache-Control":"no-cache"})
+          req=urllib.request.Request(base+"/js/main.js",headers={"Cache-Control":"no-cache", "User-Agent":"Mozilla/5.0 (compatible; GyanArt-Live-QA/1.0)", "Accept":"application/javascript,text/javascript,*/*"})
           with urllib.request.urlopen(req,timeout=22) as response:
               js=response.read().decode("utf-8","replace")
           assert "normalizeWebsiteLink" in js and "normalizeAuditWebsite()" in js, "Live JS is not yet deployed"
