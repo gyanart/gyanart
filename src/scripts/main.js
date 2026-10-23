@@ -187,9 +187,9 @@ document.addEventListener("DOMContentLoaded",()=>{
   const normalizeWebsiteLink=value=>{
     const text=value.trim();
     if(!text)return '';
-    if(/\\s/.test(text)||text.startsWith('//'))return null;
-    if(!/^https?:\\/\\//i.test(text)&&/^[a-z][a-z0-9+.-]*:/i.test(text))return null;
-    const candidate=/^https?:\\/\\//i.test(text)?text:'https://'+text;
+    if(/\s/.test(text)||text.startsWith('//'))return null;
+    if(!/^https?:\/\//i.test(text)&&/^[a-z][a-z0-9+.-]*:/i.test(text))return null;
+    const candidate=/^https?:\/\//i.test(text)?text:'https://'+text;
     try{
       const parsed=new URL(candidate);
       if(!['http:','https:'].includes(parsed.protocol)||parsed.username||parsed.password)return null;
