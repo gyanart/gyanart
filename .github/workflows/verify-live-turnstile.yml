@@ -21,6 +21,7 @@ jobs:
           python3 - <<'PY'
           import json
           import urllib.error
+          import urllib.parse
           import urllib.request
 
           BASE = "https://www.gyanart.com"
