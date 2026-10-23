@@ -1447,6 +1447,58 @@ p { margin-top: 0; }
   transform: translateX(3px);
 }
 
+/* Floating Go to top control; without this the footer SVG renders as a
+   stray browser-default button near the bottom-left edge. */
+.back-to-top {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 98;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.back-to-top:hover { background: var(--card-hover); }
+.back-to-top:focus-visible { outline: 3px solid var(--blue-light); outline-offset: 3px; }
+@media (max-width: 900px) {
+  /* Keep the arrow above the fixed Call / WhatsApp mobile action bar. */
+  .back-to-top {
+    left: 16px;
+    bottom: calc(78px + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top { transition: none; }
+}
+
 /* Floating WhatsApp desktop button */
 .whatsapp-float {
   position: fixed;
