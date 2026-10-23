@@ -1,0 +1,57 @@
+name: Validate enquiry anti-spam protection
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/submit-form.php'
+      - 'src/scripts/main.js'
+      - 'docs/form-turnstile-setup.md'
+      - '.github/workflows/validate-turnstile.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntax, static build and protections
+        run: |
+          set -euo pipefail
+          php -l src/submit-form.php
+          node --check src/scripts/main.js
+          npm run build
+          php -l dist/submit-form.php
+          grep -Fq 'turnstile_passes($turnstileSecret)' dist/submit-form.php
+          grep -Fq 'rate_limit_passes()' dist/submit-form.php
+          grep -Fq "website_confirm" dist/submit-form.php
+      - name: Verify enabled Turnstile blocks missing tokens before email
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd dist
+          GYANART_TURNSTILE_SITE_KEY=integration-test-public-key GYANART_TURNSTILE_SECRET=integration-test-private-secret php -S 127.0.0.1:18937 > /tmp/gyanart-php.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for i in 1 2 3 4 5; do
+            if curl -sSf "http://127.0.0.1:18937/submit-form.php?turnstile_config=1" > /tmp/turnstile-config.json; then break; fi
+            sleep 1
+          done
+          python3 - <<'PY'
+          import json
+          with open('/tmp/turnstile-config.json') as f:
+              data=json.load(f)
+          assert data['enabled'] is True
+          assert data['siteKey']=='integration-test-public-key'
+          assert 'secret' not in data
+          PY
+          status=$(curl -sS -o /tmp/turnstile-response.json -w '%{http_code}' -X POST \
+            -d 'form_type=contact' -d 'name=Test+Bot' -d 'email=test@example.org' \
+            -d 'mobile=9999999999' -d 'message=TEST+missing+Turnstile+token' \
+            http://127.0.0.1:18937/submit-form.php)
+          test "$status" = '422'
+          grep -q 'Security verification failed' /tmp/turnstile-response.json
+          echo "PASS: Missing token rejected before email."

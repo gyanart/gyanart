@@ -46,6 +46,57 @@ function rate_limit_passes(): bool {
     }
 }
 
+// Public config exposes the site key only. Both values must be configured on
+// the server before Turnstile is activated. Never put the secret in Git.
+$turnstileSiteKey = trim((string)(getenv('GYANART_TURNSTILE_SITE_KEY') ?: ''));
+$turnstileSecret = trim((string)(getenv('GYANART_TURNSTILE_SECRET') ?: ''));
+// cPanel fallback: place this private file ONE directory above public_html.
+// It must not be committed to Git or placed in the public web directory.
+$privateConfigPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'gyanart-turnstile-config.php';
+if (is_file($privateConfigPath)) {
+    $privateConfig = require $privateConfigPath;
+    if (is_array($privateConfig)) {
+        $turnstileSiteKey = trim((string)($privateConfig['site_key'] ?? $turnstileSiteKey));
+        $turnstileSecret = trim((string)($privateConfig['secret_key'] ?? $turnstileSecret));
+    }
+}
+$turnstileEnabled = $turnstileSiteKey !== '' && $turnstileSecret !== '';
+
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && ($_GET['turnstile_config'] ?? '') === '1') {
+    respond(200, ['enabled' => $turnstileEnabled, 'siteKey' => $turnstileEnabled ? $turnstileSiteKey : '']);
+}
+
+function turnstile_passes(string $secret): bool {
+    $token = $_POST['cf-turnstile-response'] ?? '';
+    if (!is_string($token) || $token === '' || strlen($token) > 2048) return false;
+    if (!function_exists('curl_init')) return false;
+    $payload = http_build_query([
+        'secret' => $secret,
+        'response' => $token,
+        'remoteip' => (string)($_SERVER['REMOTE_ADDR'] ?? ''),
+    ]);
+    $ch = curl_init('https://challenges.cloudflare.com/turnstile/v0/siteverify');
+    if ($ch === false) return false;
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 4,
+        CURLOPT_TIMEOUT => 9,
+        CURLOPT_SSL_VERIFYPEER => true,
+    ]);
+    $result = curl_exec($ch);
+    $httpCode = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+    if (!is_string($result) || $httpCode !== 200) return false;
+    $data = json_decode($result, true);
+    // Check the expected host so tokens issued for a different website fail.
+    return is_array($data)
+        && ($data['success'] ?? false) === true
+        && strtolower((string)($data['hostname'] ?? '')) === 'www.gyanart.com';
+}
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     respond(405, ['success' => false, 'message' => 'Please submit the form on the website.']);
 }
@@ -90,6 +141,10 @@ if (in_array($type, ['audit', 'offer'], true) && $business === '') {
 }
 if ($website !== '' && (!filter_var($website, FILTER_VALIDATE_URL) || !in_array(strtolower((string)parse_url($website, PHP_URL_SCHEME)), ['http', 'https'], true))) {
     respond(422, ['success' => false, 'message' => 'Please enter a valid website or Google Maps URL starting with https://.']);
+}
+// Reject unverified submissions before sending any owner or customer emails.
+if ($turnstileEnabled && !turnstile_passes($turnstileSecret)) {
+    respond(422, ['success' => false, 'message' => 'Security verification failed or expired. Please try again, or email info@gyanart.com.']);
 }
 if (!rate_limit_passes()) {
     respond(429, ['success' => false, 'message' => 'Too many submissions were received from this connection. Please wait 15 minutes before trying again, or email info@gyanart.com.']);

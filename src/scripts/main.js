@@ -136,6 +136,52 @@ document.addEventListener("DOMContentLoaded",()=>{
   };
   const submitText=formFeedbackText[currentLanguage]||formFeedbackText.en;
 
+  // Turnstile is activated only after BOTH cPanel environment variables exist.
+  // The public endpoint reveals the site key only; the secret remains in PHP.
+  let turnstileRequired=false;
+  let turnstileReady=false;
+  const protectedForms=[...document.querySelectorAll('form[data-email-form]')];
+  if(protectedForms.length){
+    fetch('/submit-form.php?turnstile_config=1',{cache:'no-store'})
+      .then(response=>{if(!response.ok)throw new Error('Config unavailable');return response.json();})
+      .then(config=>{
+        if(!config.enabled||!config.siteKey)return;
+        turnstileRequired=true;
+        protectedForms.forEach(form=>{
+          const slot=document.createElement('div');
+          slot.className='gyanart-turnstile';
+          slot.setAttribute('aria-label','Spam protection verification');
+          const submit=form.querySelector('button[type="submit"]');
+          if(submit)form.insertBefore(slot,submit);
+          form.dataset.turnstileReady='false';
+        });
+        const script=document.createElement('script');
+        script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        script.async=true;
+        script.onload=()=>{
+          if(!window.turnstile)return;
+          protectedForms.forEach(form=>{
+            const slot=form.querySelector('.gyanart-turnstile');
+            if(!slot)return;
+            window.turnstile.render(slot,{
+              sitekey:config.siteKey,
+              action:'gyanart_enquiry',
+              callback:()=>{form.dataset.turnstileReady='true';},
+              'expired-callback':()=>{form.dataset.turnstileReady='false';},
+              'error-callback':()=>{form.dataset.turnstileReady='false';},
+            });
+          });
+          turnstileReady=true;
+        };
+        script.onerror=()=>{turnstileReady=false;};
+        document.head.appendChild(script);
+      }).catch(()=>{
+        // PHP remains the source of truth: no unverified token is accepted
+        // when Turnstile is active, even if the browser cannot load it.
+        turnstileRequired=true;
+      });
+  }
+
   // Shared submission feedback for contact, audit, and Starter Website forms.
   document.querySelectorAll("form[data-email-form]").forEach(form=>{
     const started=form.querySelector('input[name="form_started_at"]');
@@ -165,6 +211,13 @@ document.addEventListener("DOMContentLoaded",()=>{
       event.preventDefault();
       if(form.dataset.sending==="true"||form.classList.contains("is-submitted"))return;
       if(!form.reportValidity())return;
+      if(turnstileRequired&&(!turnstileReady||form.dataset.turnstileReady!=='true')){
+        if(status){
+          status.className='form-status form-feedback-error';
+          status.textContent='Please complete the security check. If it does not load, email info@gyanart.com.';
+        }
+        return;
+      }
       form.dataset.sending="true";
       if(button){
         button.disabled=true;
@@ -186,6 +239,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         const formName=form.querySelector('input[name="form_type"]')?.value||form.id||"unknown";
         trackGA4("generate_lead",{form_name:formName,page_path:window.location.pathname,...(form.closest(".dental-landing")?{lead_source:"dental_clinics"}:{}),...(packageInterest&&["Digital Foundation","Enquiry Builder","Growth Optimization"].includes(packageInterest)?{package_interest:packageInterest}:{})});
         form.reset();
+        if(turnstileRequired&&window.turnstile){
+          const widget=form.querySelector('.gyanart-turnstile');
+          if(widget)window.turnstile.reset(widget);
+          form.dataset.turnstileReady='false';
+        }
         if(started)started.value=String(Date.now());
         form.classList.add("is-submitted");
         if(button){
@@ -197,6 +255,11 @@ document.addEventListener("DOMContentLoaded",()=>{
           status.textContent=result.message||"Your enquiry was received. We’ll be in touch.";
         }
       }catch(error){
+        if(turnstileRequired&&window.turnstile){
+          const widget=form.querySelector('.gyanart-turnstile');
+          if(widget)window.turnstile.reset(widget);
+          form.dataset.turnstileReady='false';
+        }
         if(status){
           status.className="form-status form-feedback-error";
           status.textContent=error.message||"We couldn’t send your request. Please email info@gyanart.com.";
