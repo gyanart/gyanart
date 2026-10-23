@@ -18,6 +18,28 @@ function field(string $key, int $max = 3000): string {
 function clean_header(string $value): string {
     return str_replace(["\r", "\n"], '', $value);
 }
+// Domain-only addresses are common in Growth Audit enquiries. Normalize on the
+// server too, so browsers without JS and direct form posts follow the same rules.
+function normalize_website_link(string $value): ?string {
+    if ($value === '') return '';
+    if (preg_match('/\\s/u', $value) || preg_match('/[\\x00-\\x1F\\x7F]/', $value) || strpos($value, '//') === 0) return null;
+    if (!preg_match('~^https?://~i', $value)) {
+        if (preg_match('~^[a-z][a-z0-9+.-]*:~i', $value)) return null;
+        $value = 'https://' . $value;
+    }
+    if (!filter_var($value, FILTER_VALIDATE_URL)) return null;
+    $parts = parse_url($value);
+    if (!is_array($parts) || !isset($parts['host'], $parts['scheme'])) return null;
+    if (!in_array(strtolower((string)$parts['scheme']), ['http', 'https'], true)) return null;
+    if (isset($parts['user']) || isset($parts['pass'])) return null;
+    $host = (string)$parts['host'];
+    if (strpos($host, '.') === false || !filter_var($host, FILTER_VALIDATE_DOMAIN, FILTER_FLAG_HOSTNAME)) return null;
+    $segments = explode('.', $host);
+    $tld = end($segments);
+    if (!is_string($tld) || strlen($tld) < 2 || !preg_match('/[a-z]/i', $tld)) return null;
+    return $value;
+}
+
 function rate_limit_passes(): bool {
     $ip = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
     $key = hash('sha256', 'gyanart-form-v1|' . $ip);
@@ -139,9 +161,11 @@ if ($type === 'contact' && $message === '') {
 if (in_array($type, ['audit', 'offer'], true) && $business === '') {
     respond(422, ['success' => false, 'message' => 'Please enter your business name to request the audit.']);
 }
-if ($website !== '' && (!filter_var($website, FILTER_VALIDATE_URL) || !in_array(strtolower((string)parse_url($website, PHP_URL_SCHEME)), ['http', 'https'], true))) {
-    respond(422, ['success' => false, 'message' => 'Please enter a valid website or Google Maps URL starting with https://.']);
+$normalizedWebsite = normalize_website_link($website);
+if ($normalizedWebsite === null) {
+    respond(422, ['success' => false, 'message' => 'Please enter a valid website such as gyanart.com or a Google Maps link.']);
 }
+$website = $normalizedWebsite; // Save a complete, clickable URL in the enquiry email.
 // Reject unverified submissions before sending any owner or customer emails.
 if ($turnstileEnabled && !turnstile_passes($turnstileSecret)) {
     respond(422, ['success' => false, 'message' => 'Security verification failed or expired. Please try again, or email info@gyanart.com.']);
