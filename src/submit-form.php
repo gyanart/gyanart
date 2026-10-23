@@ -50,6 +50,16 @@ function rate_limit_passes(): bool {
 // the server before Turnstile is activated. Never put the secret in Git.
 $turnstileSiteKey = trim((string)(getenv('GYANART_TURNSTILE_SITE_KEY') ?: ''));
 $turnstileSecret = trim((string)(getenv('GYANART_TURNSTILE_SECRET') ?: ''));
+// cPanel fallback: place this private file ONE directory above public_html.
+// It must not be committed to Git or placed in the public web directory.
+$privateConfigPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'gyanart-turnstile-config.php';
+if (is_file($privateConfigPath)) {
+    $privateConfig = require $privateConfigPath;
+    if (is_array($privateConfig)) {
+        $turnstileSiteKey = trim((string)($privateConfig['site_key'] ?? $turnstileSiteKey));
+        $turnstileSecret = trim((string)($privateConfig['secret_key'] ?? $turnstileSecret));
+    }
+}
 $turnstileEnabled = $turnstileSiteKey !== '' && $turnstileSecret !== '';
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && ($_GET['turnstile_config'] ?? '') === '1') {
