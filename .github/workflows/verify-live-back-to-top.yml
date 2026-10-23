@@ -1,0 +1,42 @@
+name: Verify live Go to top styling
+
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/verify-live-back-to-top.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live-button-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check production CSS and footer button
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+
+          base='https://www.gyanart.com'
+          headers={'User-Agent':'Mozilla/5.0 (compatible; GyanArt-Live-QA/1.0)', 'Cache-Control':'no-cache'}
+          for path in ['/','/growth-audit.html']:
+              request=urllib.request.Request(base+path,headers=headers)
+              with urllib.request.urlopen(request,timeout=22) as response:
+                  page=response.read().decode('utf-8','replace')
+                  status=response.status
+              assert status==200, f'{path} failed to load (HTTP {status})'
+              assert 'class="back-to-top"' in page and 'data-back-to-top' in page, f'{path}: footer button missing'
+              print(f'PASS: {path} serves Go to top markup (HTTP {status}).')
+          request=urllib.request.Request(base+'/css/site.css?footer-button-qa=20261023',headers=headers)
+          with urllib.request.urlopen(request,timeout=22) as response:
+              css=response.read().decode('utf-8','replace')
+              status=response.status
+          assert status==200, f'Production stylesheet HTTP {status}'
+          assert '.back-to-top.is-visible' in css, 'Back-to-top visible state not published yet'
+          assert '.back-to-top svg' in css, 'SVG arrow styling not published yet'
+          assert 'bottom: calc(78px + env(safe-area-inset-bottom, 0px))' in css, 'Mobile dock offset missing'
+          assert 'pointer-events: none;' in css, 'Hidden button must not intercept clicks'
+          print('PASS: Production stylesheet includes positioned, responsive, accessible Go to top button.')
+          PY
