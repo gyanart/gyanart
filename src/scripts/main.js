@@ -182,12 +182,56 @@ document.addEventListener("DOMContentLoaded",()=>{
       });
   }
 
+  // Accept domain-only website and Maps links in Growth Audit forms.
+  // PHP repeats this validation so direct posts cannot bypass it.
+  const normalizeWebsiteLink=value=>{
+    const text=value.trim();
+    if(!text)return '';
+    if(/\s/.test(text)||text.startsWith('//'))return null;
+    if(!/^https?:\/\//i.test(text)&&/^[a-z][a-z0-9+.-]*:/i.test(text))return null;
+    const candidate=/^https?:\/\//i.test(text)?text:'https://'+text;
+    try{
+      const parsed=new URL(candidate);
+      if(!['http:','https:'].includes(parsed.protocol)||parsed.username||parsed.password)return null;
+      const host=parsed.hostname;
+      const labels=host.split('.');
+      if(labels.length<2||labels.some(label=>!label||label.length>63||!/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i.test(label)))return null;
+      if(labels[labels.length-1].length<2||!/^[a-z]/i.test(labels[labels.length-1]))return null;
+      return candidate;
+    }catch{return null;}
+  };
+  const websiteInputErrors={
+    en:'Enter a website such as gyanart.com or a valid Google Maps link.',
+    hi:'gyanart.com जैसा वेबसाइट पता या सही Google Maps लिंक दर्ज करें।',
+    kn:'gyanart.com ನಂತಹ ವೆಬ್‌ಸೈಟ್ ವಿಳಾಸ ಅಥವಾ ಸರಿಯಾದ Google Maps ಲಿಂಕ್ ನಮೂದಿಸಿ.'
+  };
+
   // Shared submission feedback for contact, audit, and Starter Website forms.
   document.querySelectorAll("form[data-email-form]").forEach(form=>{
     const started=form.querySelector('input[name="form_started_at"]');
     const button=form.querySelector('button[type="submit"]');
     const status=form.querySelector(".form-status");
     const originalButtonHtml=button?.innerHTML||"";
+    const websiteInput=form.querySelector('input[data-normalize-website]');
+    const normalizeAuditWebsite=()=>{
+      if(!websiteInput)return true;
+      const normalized=normalizeWebsiteLink(websiteInput.value);
+      if(normalized===null){
+        websiteInput.setCustomValidity(websiteInputErrors[currentLanguage]||websiteInputErrors.en);
+        return false;
+      }
+      websiteInput.setCustomValidity('');
+      websiteInput.value=normalized;
+      return true;
+    };
+    if(websiteInput){
+      websiteInput.addEventListener('input',()=>websiteInput.setCustomValidity(''));
+      websiteInput.addEventListener('blur',()=>{
+        // Only rewrite a valid domain; let submit report invalid input.
+        const normalized=normalizeWebsiteLink(websiteInput.value);
+        if(normalized!==null)websiteInput.value=normalized;
+      });
+    }
     if(started)started.value=String(Date.now());
 
     // Keep success visible. A new enquiry can be started by editing a field.
@@ -210,6 +254,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     form.addEventListener("submit",async event=>{
       event.preventDefault();
       if(form.dataset.sending==="true"||form.classList.contains("is-submitted"))return;
+      if(!normalizeAuditWebsite()){
+        websiteInput.reportValidity();
+        return;
+      }
       if(!form.reportValidity())return;
       if(turnstileRequired&&(!turnstileReady||form.dataset.turnstileReady!=='true')){
         if(status){
