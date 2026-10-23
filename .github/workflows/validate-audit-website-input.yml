@@ -1,0 +1,107 @@
+name: Validate Growth Audit website link input
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/pages/growth-audit.html'
+      - 'src/translations/hi/growth-audit.html'
+      - 'src/translations/kn/growth-audit.html'
+      - 'src/scripts/main.js'
+      - 'src/submit-form.php'
+      - '.github/workflows/validate-audit-website-input.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-website-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build and check syntax
+        run: |
+          set -euo pipefail
+          node --check src/scripts/main.js
+          php -l src/submit-form.php
+          npm run build
+          php -l dist/submit-form.php
+      - name: Check localized field types and browser normalization
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for p in ["dist/growth-audit.html", "dist/hi/growth-audit.html", "dist/kn/growth-audit.html"]:
+              html = Path(p).read_text()
+              assert 'name="website" type="text" inputmode="url"' in html, p
+              assert 'data-normalize-website' in html, p
+              assert 'name="form_type" value="audit"' in html, p
+              print("PASS:", p, "accepts naturally entered website addresses")
+          script = Path("dist/js/main.js").read_text()
+          assert "normalizeWebsiteLink" in script
+          assert "normalizeAuditWebsite()" in script
+          assert "turnstile_config=1" in script, "Turnstile integration must stay intact"
+          print("PASS: Browser normalization and Turnstile integration remain available")
+          PY
+      - name: Test server-side validation without sending email
+        shell: bash
+        run: |
+          set -euo pipefail
+          (
+            cd dist
+            GYANART_TURNSTILE_SITE_KEY=qa-only-site-key GYANART_TURNSTILE_SECRET=qa-only-secret-key php -S 127.0.0.1:18943 > /tmp/gyanart-audit-qa.log 2>&1
+          ) &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import json
+          import time
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+
+          endpoint="http://127.0.0.1:18943/submit-form.php"
+          valid=["gyanart.com","www.gyanart.com","https://www.gyanart.com",
+                 "http://gyanart.com", "maps.app.goo.gl/abc123",
+                 "https://www.google.com/maps/place/Example", ""]
+          invalid=["gyanart", "https://", "not a website", "ftp://gyanart.com",
+                   "javascript:alert(1)", "//gyanart.com", "https://localhost",
+                   "https://user:pass@gyanart.com", "gyanart..com", "https://gyanart.c"]
+          for _ in range(20):
+              try:
+                  urllib.request.urlopen(endpoint+"?turnstile_config=1",timeout=2)
+                  break
+              except Exception:
+                  time.sleep(.4)
+          else:
+              raise AssertionError("Local PHP handler did not start")
+          for entry in valid+invalid:
+              data=urllib.parse.urlencode({
+                  "form_type":"audit",
+                  "name":"Growth Audit Test",
+                  "business":"Test Business",
+                  "email":"qa@example.invalid",
+                  "mobile":"9999999999",
+                  "website":entry,
+              }).encode()
+              req=urllib.request.Request(endpoint,data=data,headers={"Accept":"application/json"})
+              try:
+                  with urllib.request.urlopen(req,timeout=10) as res:
+                      status=res.status
+                      payload=json.loads(res.read())
+              except urllib.error.HTTPError as exc:
+                  status=exc.code
+                  payload=json.loads(exc.read())
+              assert status==422 and payload.get("success") is False, (entry,status,payload)
+              message=payload.get("message","")
+              if entry in valid:
+                  assert "Security verification" in message, (entry,message)
+                  print("PASS: valid website accepted by validation; Turnstile safely blocked test email:",repr(entry))
+              else:
+                  assert "valid website" in message, (entry,message)
+                  print("PASS: invalid website rejected before Turnstile:",repr(entry))
+          PY
