@@ -143,7 +143,7 @@ function render(page){
     pageContent='<div class="page-top">'+breadcrumb+intro+'</div>'+remainder;
   }
   const availableSlugs=new Set(pages.filter(p=>(p.lang||"en")===lang).map(p=>p.slug||path.basename(p.output)));
-  const navHref=(target)=>lang==="en"?prefix+target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target);
+  const navHref=(target)=>{ if(target==="index.html" && lang==="en") return prefix || "/"; return lang==="en"?prefix+target:(availableSlugs.has(target)?"../".repeat(Math.max(0,page.output.split("/").length-2))+target:prefix+target); };
   const navLabels=lang==="kn"?{how:"ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",solutions:"ಸೇವೆಗಳು",solutionsAll:"ಎಲ್ಲಾ ಸೇವೆಗಳು",websiteDesign:"ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ",logoDesign:"ಲೋಗೋ ವಿನ್ಯಾಸ",localSeo:"ಸ್ಥಳೀಯ SEO ಸೇವೆಗಳು",gbp:"Google Business Profile",experiments:"ಬೆಳವಣಿಗೆ ಉದಾಹರಣೆಗಳು",work:"ನಮ್ಮ ಕೆಲಸ",pricing:"ಬೆಲೆಗಳು",about:"ನಮ್ಮ ಬಗ್ಗೆ",insights:"ಮಾಹಿತಿ",audit:"ಉಚಿತ ಪರಿಶೀಲನೆ",language:"ಭಾಷೆ"}:lang==="hi"?{how:"कैसे काम करता है",solutions:"सेवाएं",solutionsAll:"सभी सेवाएं",websiteDesign:"वेबसाइट डिज़ाइन",logoDesign:"लोगो डिज़ाइन",localSeo:"लोकल SEO सेवाएं",gbp:"Google Business Profile",experiments:"ग्रोथ उदाहरण",work:"हमारा काम",pricing:"कीमतें",about:"हमारे बारे में",insights:"जानकारी",audit:"मुफ़्त ऑडिट",language:"भाषा"}:{how:"How It Works",solutions:"Solutions",solutionsAll:"All Solutions",websiteDesign:"Website Design",logoDesign:"Logo Design",localSeo:"Local SEO Services",gbp:"Google Business Profile",experiments:"Growth Experiments",work:"Our Work",pricing:"Pricing",about:"About Gyan",insights:"Insights",audit:"Get Free Growth Audit",language:"Language"};
   const languageItems=[{code:"en",name:"English"},{code:"kn",name:"ಕನ್ನಡ"},{code:"hi",name:"हिन्दी"}];
   const equivalentSlug=p=>p.slug||(p.output.startsWith("experiments/")?p.output:path.basename(p.output));
@@ -179,7 +179,8 @@ function render(page){
     .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
   const footerPrefix=lang==="en"?prefix:"../".repeat(Math.max(0,page.output.split("/").length-2));
   const foot=footer.replaceAll("{{SITE_NAME}}",site.name).replaceAll("{{TAGLINE}}",site.tagline)
-    .replaceAll('href="index.html"','href="'+footerPrefix+'index.html"')
+    .replaceAll('href="index.html"','href="'+(footerPrefix || "/")+'"')
+    .replaceAll('href="starter-website-offer.html"','href="'+footerPrefix+'starter-website-offer.html"')
     .replaceAll('href="how-it-works.html"','href="'+footerPrefix+'how-it-works.html"')
     .replaceAll('href="solutions.html"','href="'+footerPrefix+'solutions.html"')
     .replaceAll('href="growth-experiments.html"','href="'+footerPrefix+'growth-experiments.html"')
@@ -1126,6 +1127,13 @@ ErrorDocument 404 /404.html
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} !^www\\.gyanart\\.com$ [NC]
   RewriteRule ^ https://www.gyanart.com%{REQUEST_URI} [R=301,L]
+
+  # Clean URLs: Rewrite extensionless requests to their .html equivalent
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f [OR]
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
 </IfModule>
 
 # HTTP Security Headers for GEO & Browser Protection

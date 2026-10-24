@@ -29,7 +29,7 @@ jobs:
           const fs=require('fs'), assert=require('node:assert/strict');
           const read=p=>fs.readFileSync('dist/'+p,'utf8');
           const en=read('index.html'),hi=read('hi/index.html'),kn=read('kn/index.html');
-          assert(en.includes('<h1>Website Design in Bangalore That Helps Small Businesses Get More Customers</h1>'));
+          assert(en.includes('<h1>Website Design in Bangalore That Converts Visitors Into <span class="gradient-text">Real Customers</span></h1>'));
           assert(en.includes('Website Designer in Bangalore for Small Businesses | GyanArt'));
           assert(hi.includes('<h1>बेंगलुरु में छोटे व्यवसायों के लिए वेबसाइट डिज़ाइन</h1>'));
           assert(kn.includes('<h1>ಬೆಂಗಳೂರಿನ ಸಣ್ಣ ವ್ಯಾಪಾರಗಳಿಗೆ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ</h1>'));
