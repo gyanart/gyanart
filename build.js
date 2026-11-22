@@ -177,7 +177,7 @@ function render(page){
     .replaceAll("{{NAV_ABOUT}}",navLabels.about).replaceAll("{{NAV_INSIGHTS}}",navLabels.insights)
     .replaceAll("{{NAV_AUDIT}}",navLabels.audit).replaceAll("{{LANGUAGE_LABEL}}",navLabels.language)
     .replaceAll("{{LANGUAGE_OPTIONS}}",languageOptions);
-  const footerPrefix=lang==="en"?prefix:"../".repeat(Math.max(0,page.output.split("/").length-2));
+  const footerPrefix=lang==="en"?prefix:"../".repeat(Math.max(0,page.output.split("/").length-1));
   const foot=footer.replaceAll("{{SITE_NAME}}",site.name).replaceAll("{{TAGLINE}}",site.tagline)
     .replaceAll('href="index.html"','href="'+(footerPrefix || "/")+'"')
     .replaceAll('href="starter-website-offer.html"','href="'+footerPrefix+'starter-website-offer.html"')
