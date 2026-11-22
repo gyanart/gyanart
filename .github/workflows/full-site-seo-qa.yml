@@ -14,6 +14,8 @@ on:
     paths:
       - 'scripts/seo_full_site_qa.py'
       - '.github/workflows/full-site-seo-qa.yml'
+      - 'src/**'
+      - 'build.js'
   workflow_dispatch:
 
 permissions:
