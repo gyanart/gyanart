@@ -1,7 +1,7 @@
 # GyanArt SEO & Organic Lead Generation Playbook
 
-**Version:** 1.0  
-**Last reviewed:** 16 November 2026  
+**Version:** 1.1  
+**Last reviewed:** 22 November 2026  
 **Repository:** gyanart/gyanart  
 **Purpose:** A repeatable operating guide for keyword research, page planning, publishing, measurement and organic lead generation.
 
@@ -286,7 +286,7 @@ Set numerical targets only after the baseline is collected. Segment brand/non-br
 - Analytics and enquiry tracking status.
 - Canonical host preference (www or non-www) and current redirect rules.
 
-## 14. Monthly review and change log
+## 14. Publishing status of the first four pages\n\n| Page | Source output | Primary intent | Current status |\n|---|---|---|---|\n| SEO services for small businesses | `/seo-services-small-business.html` | Commercial service | Source committed; deployment and validation pending |\n| Website redesign services | `/website-redesign.html` | Commercial service | Source committed; deployment and validation pending |\n| Website design cost in India | `/insights/website-design-cost-india.html` | Informational/commercial guide | Source committed; deployment and validation pending |\n| Why your website is not generating leads | `/insights/why-website-not-generating-leads.html` | Informational/commercial guide | Source committed; deployment and validation pending |\n\n**URL convention:** The static-site build currently emits `.html` files and its `.htaccess` supports extensionless clean requests. The existing Bengaluru cost guide remains at `/insights/website-design-cost-in-bangalore.html`; the new India guide has a distinct national scope.\n\n## 15. Monthly review and change log
 
 At each monthly review:
 1. Update GSC metrics and lead outcomes.
@@ -300,6 +300,7 @@ At each monthly review:
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 16 Nov 2026 | Initial strategy, 46 proposed keyword-to-page mappings, eight content clusters, validation process and 90-day roadmap. |
+| 1.1 | 22 Nov 2026 | Added four first-wave content pages to the source repository: SEO services for small businesses, website redesign services, website design cost in India, and why a website is not generating leads. Added the service links to Solutions, the two guides to Insights, and the guides to the Insights collection schema. Pages are committed in source; live deployment, indexing and keyword validation remain pending. |
 
 ---
 
