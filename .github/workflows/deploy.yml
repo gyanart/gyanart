@@ -44,6 +44,18 @@ jobs:
           check test -f dist/llms.txt
           check test -f dist/llms-full.txt
           check test -f dist/404.html
+          check test -f dist/seo-services-small-business.html
+          check test -f dist/website-redesign.html
+          check test -f dist/insights/website-design-cost-india.html
+          check test -f dist/insights/why-website-not-generating-leads.html
+          check grep -q 'SEO Services for Small Businesses' dist/solutions.html
+          check grep -q 'Website Redesign Services' dist/solutions.html
+          check grep -q 'article-website-cost-india' dist/insights.html
+          check grep -q 'article-website-leads' dist/insights.html
+          check grep -q 'seo-services-small-business.html' dist/sitemap.xml
+          check grep -q 'website-redesign.html' dist/sitemap.xml
+          check grep -q 'insights/website-design-cost-india.html' dist/sitemap.xml
+          check grep -q 'insights/why-website-not-generating-leads.html' dist/sitemap.xml
           check grep -q 'ErrorDocument 404 /404.html' dist/.htaccess
           check grep -q 'Permissions-Policy' dist/.htaccess
           check grep -q 'https://www.gyanart.com/' dist/robots.txt
