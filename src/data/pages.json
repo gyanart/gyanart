@@ -813,5 +813,39 @@
     "slug": "website-design-hsr-layout.html",
     "title": "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್, ಬೆಂಗಳೂರಿನಲ್ಲಿ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ | GyanArt",
     "description": "ಎಚ್‌ಎಸ್‌ಆರ್ ಲೇಔಟ್ ಮತ್ತು ಕೋರಮಂಗಲದ ಸ್ಟಾರ್ಟ್‌ಅಪ್‌ಗಳು ಹಾಗೂ ಸಂಸ್ಥೆಗಳಿಗಾಗಿ ಪರಿವರ್ತನೆ-ಕೇಂದ್ರಿತ, ವೇಗದ ವೆಬ್‌ಸೈಟ್ ವಿನ್ಯಾಸ ಮತ್ತು ಯುಎಕ್ಸ್ ತಂತ್ರಜ್ಞಾನ."
+  },
+  {
+    "output": "seo-services-small-business.html",
+    "content": "pages/seo-services-small-business.html",
+    "title": "SEO Services for Small Businesses in India | GyanArt",
+    "description": "Practical SEO support for small businesses: search intent, on-page improvements, technical foundations, internal links and enquiry measurement.",
+    "noBreadcrumbs": true,
+    "translationOptional": true
+  },
+  {
+    "output": "website-redesign.html",
+    "content": "pages/website-redesign.html",
+    "title": "Website Redesign Services for Small Businesses | GyanArt",
+    "description": "Improve your existing website with UX-led redesign, mobile usability, clearer content, stronger enquiry paths and careful SEO URL preservation.",
+    "noBreadcrumbs": true,
+    "translationOptional": true
+  },
+  {
+    "output": "insights/website-design-cost-india.html",
+    "content": "pages/insights/website-design-cost-india.html",
+    "slug": "insights/website-design-cost-india.html",
+    "title": "How Much Does Website Design Cost in India? | GyanArt",
+    "description": "Understand website design costs in India, what changes project pricing and what to check in a website quote. Includes GyanArt's published packages.",
+    "noBreadcrumbs": true,
+    "translationOptional": true
+  },
+  {
+    "output": "insights/why-website-not-generating-leads.html",
+    "content": "pages/insights/why-website-not-generating-leads.html",
+    "slug": "insights/why-website-not-generating-leads.html",
+    "title": "Why Is Your Website Not Generating Leads? | GyanArt",
+    "description": "Explore six reasons website visitors do not enquire and a practical UX, search and analytics checklist to find where the customer journey breaks.",
+    "noBreadcrumbs": true,
+    "translationOptional": true
   }
 ]
