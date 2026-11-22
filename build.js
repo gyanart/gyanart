@@ -724,6 +724,18 @@ function render(page){
             "position": 5,
             "url": "https://www.gyanart.com/insights/website-design-cost-in-bangalore.html",
             "name": "Website Design Cost in Bangalore"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://www.gyanart.com/insights/website-design-cost-india.html",
+            "name": "Website Design Cost in India"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://www.gyanart.com/insights/why-website-not-generating-leads.html",
+            "name": "Why Your Website Is Not Generating Leads"
           }
         ]
       }
