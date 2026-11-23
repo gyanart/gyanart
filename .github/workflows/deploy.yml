@@ -1,6 +1,10 @@
 name: Deploy Website via FTP
 # Redeploy check: FTP account root should map to public_html.
 
+concurrency:
+  group: gyanart-production-deploy
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -46,6 +50,12 @@ jobs:
           check test -f dist/404.html
           check test -f dist/seo-services-small-business.html
           check test -f dist/website-redesign.html
+          check grep -q 'redesign-before-after' dist/website-redesign.html
+          check grep -q 'redesign-process-grid' dist/website-redesign.html
+          check grep -Fq '.redesign-before-after' dist/css/site.css
+          check grep -Fq '.redesign-process-grid' dist/css/site.css
+          check grep -Fq '.seo-dashboard-art' dist/css/site.css
+          check grep -Fq '.seo-process-grid' dist/css/site.css
           check test -f dist/insights/website-design-cost-india.html
           check test -f dist/insights/why-website-not-generating-leads.html
           check grep -q 'SEO Services for Small Businesses' dist/solutions.html
