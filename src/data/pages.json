@@ -847,5 +847,13 @@
     "description": "Explore six reasons website visitors do not enquire and a practical UX, search and analytics checklist to find where the customer journey breaks.",
     "noBreadcrumbs": true,
     "translationOptional": true
+  },
+  {
+    "output": "website-seo-audit.html",
+    "content": "pages/website-seo-audit.html",
+    "title": "Website SEO Audit Services | Find What Is Holding Your Site Back | GyanArt",
+    "description": "A practical website SEO audit covering crawlability, indexing, search intent, content, internal links, mobile experience and prioritised next steps.",
+    "noBreadcrumbs": true,
+    "translationOptional": true
   }
 ]
