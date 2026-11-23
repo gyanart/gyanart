@@ -1,7 +1,7 @@
 # GyanArt SEO & Organic Lead Generation Playbook
 
-**Version:** 1.1  
-**Last reviewed:** 22 November 2026  
+**Version:** 1.2  
+**Last reviewed:** 23 November 2026  
 **Repository:** gyanart/gyanart  
 **Purpose:** A repeatable operating guide for keyword research, page planning, publishing, measurement and organic lead generation.
 
@@ -96,7 +96,7 @@ A keyword is not “Validated” until search demand, SERP intent and overlap wi
 | Local SEO | local SEO services in Bangalore | local SEO Bangalore; local business SEO; local search optimisation | Commercial/local — service + location | `/local-seo-bangalore/` | Bengaluru | P1 |
 | SEO agency | SEO company in Bangalore | SEO agency Bangalore; SEO consultant Bangalore | Commercial/local — service + location | `/seo-company-bangalore/` | Bengaluru | P2 |
 | Technical SEO | technical SEO services | technical SEO audit; website technical optimisation | Commercial — service | `/technical-seo/` | India | P2 |
-| SEO audit | website SEO audit | SEO audit services; website ranking audit | Commercial investigation — service/lead magnet | `/website-seo-audit/` | India | P1 |
+| SEO audit | website SEO audit | SEO audit services; website ranking audit | Commercial investigation — service/lead magnet | `/website-seo-audit.html` (clean route may also resolve) | India; Bengaluru SERP reviewed | P1 |
 | Google Business Profile | Google Business Profile optimisation services | Google Business Profile management; Google Maps SEO; Google business listing optimisation | Commercial — service | `/google-business-profile-optimisation/` | India | P1 |
 | Google Maps ranking | how to improve Google Business Profile ranking | rank higher on Google Maps; local map pack ranking factors | Informational — blog | `/blog/improve-google-business-profile-ranking/` | India | P2 |
 | Google reviews | how to get more Google reviews for a business | Google review strategy; ask customers for Google reviews | Informational — blog | `/blog/how-to-get-more-google-reviews/` | India | P2 |
@@ -286,7 +286,69 @@ Set numerical targets only after the baseline is collected. Segment brand/non-br
 - Analytics and enquiry tracking status.
 - Canonical host preference (www or non-www) and current redirect rules.
 
-## 14. Publishing status of the first four pages\n\n| Page | Source output | Primary intent | Current status |\n|---|---|---|---|\n| SEO services for small businesses | `/seo-services-small-business.html` | Commercial service | Source committed; deployment and validation pending |\n| Website redesign services | `/website-redesign.html` | Commercial service | Source committed; deployment and validation pending |\n| Website design cost in India | `/insights/website-design-cost-india.html` | Informational/commercial guide | Source committed; deployment and validation pending |\n| Why your website is not generating leads | `/insights/why-website-not-generating-leads.html` | Informational/commercial guide | Source committed; deployment and validation pending |\n\n**URL convention:** The static-site build currently emits `.html` files and its `.htaccess` supports extensionless clean requests. The existing Bengaluru cost guide remains at `/insights/website-design-cost-in-bangalore.html`; the new India guide has a distinct national scope.\n\n## 15. Monthly review and change log
+## 14. Publishing status of the first four pages\n\n| Page | Source output | Primary intent | Current status |\n|---|---|---|---|\n| SEO services for small businesses | `/seo-services-small-business.html` | Commercial service | Source committed with visual explainer; production deployment and indexation still require verification |\n| Website redesign services | `/website-redesign.html` | Commercial service | Source committed with visual explainer; production deployment and indexation still require verification |\n| Website design cost in India | `/insights/website-design-cost-india.html` | Informational/commercial guide | Source committed with visual explainer; production deployment and indexation still require verification |\n| Why your website is not generating leads | `/insights/why-website-not-generating-leads.html` | Informational/commercial guide | Source committed with visual explainer; production deployment and indexation still require verification |\n\n**URL convention:** The static-site build currently emits `.html` files and its `.htaccess` supports extensionless clean requests. The existing Bengaluru cost guide remains at `/insights/website-design-cost-in-bangalore.html`; the new India guide has a distinct national scope.\n\n
+## 16. Website SEO audit page — brief and future content strategy
+
+**Page:** `/website-seo-audit.html`  
+**Source:** `src/pages/website-seo-audit.html`  
+**Primary keyword:** website SEO audit  
+**Supporting terms:** SEO audit services; website ranking audit  
+**Intent:** Commercial investigation / service lead generation  
+**Audience:** Small and local businesses in Bengaluru first, with remote India-wide delivery only where operationally supported  
+**Status:** Source committed; live deployment, Search Console demand validation and indexation verification pending.
+
+### Evidence and validation notes (23 Nov 2026)
+- Live SERP review surfaced service pages from Indian providers including JIN Solutions, Chirag Digital, PixelSprout (Bengaluru), SEOKart and other audit providers.
+- The observed intent is predominantly commercial investigation: visitors expect to understand what is checked, what they receive, how the review works, and what happens after the audit.
+- Competitor patterns include crawl/indexing, on-page and content review, internal links, mobile/performance, local signals, competitor context and a prioritised action plan. GyanArt's page uses this intent structure but does not copy competitor claims or service guarantees.
+- Search volume, trend and organic difficulty have **not** been verified with Google Keyword Planner or GSC. SERP presence alone does not prove demand or ranking opportunity. Keep keyword status at **Validating**, not Validated.
+- Competitor review references: JIN Solutions (`jinsolutions.in/services/website-seo-audit`), Chirag Digital (`chiragdigital.in/seo-audit.html`), PixelSprout (`pixelsprout.in/services/seo-audit/`), SEOKart (`seokart.in/seo-audit-company-india/`).
+
+### Positioning and scope guardrails
+- Position the audit as a practical diagnosis and prioritised action plan, not an automated score or promise of rankings.
+- Explain the difference between an initial free growth review and a focused website SEO audit. Do not call the focused SEO audit free unless a defined offer and scope are approved.
+- Public-page review can start with a website URL. Search Console and analytics insights require client-provided read-only access; never request passwords.
+- Confirm audit depth, deliverables, timeline and fee after understanding website size, goals and access. Do not publish a fixed price or turnaround until operationally confirmed.
+- Findings are diagnostic. Implementation is a separately agreed scope unless explicitly included.
+- Do not claim backlink analysis, competitor traffic estimates, Core Web Vitals field data or exhaustive crawl coverage unless tools, access and actual work support those claims.
+
+### Page structure and internal links
+- Hero: identify the problem and invite an initial review.
+- Problem cards: crawl/index access, search intent, visitor understanding and prioritisation.
+- Visual explainer: Inspect → Diagnose → Prioritise → Act.
+- Scope: crawl/index signals, on-page/search intent, content, internal links, mobile/performance observations and local signals where relevant.
+- Deliverables: executive summary, page-level recommendations, priority/effort and walkthrough.
+- Process: understand, review, prioritise, plan next steps.
+- FAQs: difference from free growth audit, access requirements, ranking guarantees, implementation, fee and pre-redesign use.
+- Link from Solutions, SEO Services and Website Redesign. Link from the audit page back to SEO Services and Website Redesign where contextually useful.
+- Keep the audit page distinct from the broader SEO retainer/service page: audit diagnoses and prioritises; ongoing SEO implements and measures improvements over time.
+
+### Reusable content strategy for every future page
+1. **Start with the existing playbook.** Review the confirmed audience, geography, services, keyword map, page inventory, existing content and current publishing status before proposing a URL.
+2. **Audit before adding.** Check sitemap, `pages.json`, existing page content, canonical URLs, Search Console query/page pairs and internal links. Prefer improving or consolidating an existing URL when intent overlaps.
+3. **Separate evidence from hypotheses.** Record GSC and Keyword Planner metrics with date, geography and source. Review live SERPs and competitor page types. Do not mark a keyword Validated without demand, intent and cannibalisation checks.
+4. **Write a page brief before copy.** Record target audience, business problem, primary intent, primary keyword, supporting variants, unique value, proof/assets available, CTA, exclusions, proposed URL and internal links.
+5. **Use the right page type.** Commercial pages explain audience, problem, scope, deliverables, process, evidence, FAQs and next step. Informational articles answer the question directly, explain trade-offs, use examples/checklists and link naturally to one or two services. Industry pages must address sector-specific workflows and needs.
+6. **Make every page genuinely useful.** Add original examples, process diagrams, comparison tables, checklists or authentic project imagery only where they improve understanding. Do not add stock imagery or decorative graphics just to fill space.
+7. **Keep claims defensible.** Verify prices, delivery capabilities, timelines, case studies and outcomes with the business owner. Never invent proof, guarantees, credentials or service inclusions. State when access or evidence is unavailable.
+8. **Build contextual pathways.** Every indexable page needs relevant incoming internal links and links to the next useful service/resource. Avoid orphan pages, sitewide exact-match anchors and indiscriminate cross-linking.
+9. **Implement metadata and technical essentials.** Unique title/meta description, one clear H1, logical headings, canonical, indexability, descriptive alt text, structured data consistent with visible content, sitemap registration and mobile-responsive layout.
+10. **Instrument the business outcome.** Track form submissions, WhatsApp clicks and calls where feasible. A page is not successful just because it is published or indexed.
+11. **QA before release.** Run build, broken-link and multilingual checks; test mobile and desktop layouts, CTAs, canonical, schema and sitemap output. Confirm production deployment separately from source commit.
+12. **Review after publication.** Check indexation, GSC queries/pages, clicks, impressions, CTR, engagement and qualified enquiries at 28/56/90 days. Improve, consolidate or defer based on evidence.
+
+### Page decision record
+| Decision | Current record |
+|---|---|
+| Keyword status | Validating — SERP reviewed; demand metrics pending |
+| Preferred URL | `/website-seo-audit.html` |
+| CTA | Initial review request via existing `growth-audit.html` form |
+| Pricing | Not published; confirm after scope |
+| Translation | English first; translation optional until demand is established |
+| Tracking | Reuse existing growth-audit event; verify event and enquiry attribution |
+| Deployment | Source commit only until production workflow and live URL are verified |
+
+## 15. Monthly review and change log
 
 At each monthly review:
 1. Update GSC metrics and lead outcomes.
@@ -300,7 +362,7 @@ At each monthly review:
 | Version | Date | Change |
 |---|---|---|
 | 1.0 | 16 Nov 2026 | Initial strategy, 46 proposed keyword-to-page mappings, eight content clusters, validation process and 90-day roadmap. |
-| 1.1 | 22 Nov 2026 | Added four first-wave content pages to the source repository: SEO services for small businesses, website redesign services, website design cost in India, and why a website is not generating leads. Added the service links to Solutions, the two guides to Insights, and the guides to the Insights collection schema. Pages are committed in source; live deployment, indexing and keyword validation remain pending. |
+| 1.1 | 22 Nov 2026 | Added four first-wave content pages to the source repository: SEO services for small businesses, website redesign services, website design cost in India, and why a website is not generating leads. Added the service links to Solutions, the two guides to Insights, and the guides to the Insights collection schema. Pages are committed in source; live deployment, indexing and keyword validation remain pending. |\n| 1.2 | 23 Nov 2026 | Added the Website SEO Audit service page, Solutions navigation and contextual links from SEO Services and Website Redesign. Updated this playbook with SERP observations, explicit validation gaps, scope/claim guardrails and a reusable future-page production strategy. Search demand and production deployment remain unverified. |
 
 ---
 
