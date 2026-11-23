@@ -58,6 +58,10 @@ jobs:
           check grep -Fq '.seo-process-grid' dist/css/site.css
           check test -f dist/insights/website-design-cost-india.html
           check test -f dist/insights/why-website-not-generating-leads.html
+          check grep -q 'leads-journey-visual' dist/insights/why-website-not-generating-leads.html
+          check grep -q 'leads-reason-grid' dist/insights/why-website-not-generating-leads.html
+          check grep -Fq '.leads-journey-visual' dist/css/site.css
+          check grep -Fq '.leads-reason-grid' dist/css/site.css
           check grep -q 'SEO Services for Small Businesses' dist/solutions.html
           check grep -q 'Website Redesign Services' dist/solutions.html
           check grep -q 'article-website-cost-india' dist/insights.html
